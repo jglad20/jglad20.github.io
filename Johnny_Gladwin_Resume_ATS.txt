@@ -70,18 +70,9 @@ SENIOR SYSTEMS ENGINEER | Cognizant | April 2016 - December 2017
 • Led AWS infrastructure automation for enterprise clients using CloudFormation and Auto Scaling
 • Implemented load balancing with HAProxy and reverse proxy architecture reducing overhead by 75%
 
-EDUCATION & CERTIFICATIONS
+EDUCATION
 
-Education:
 B.E. Computer Science Engineering | Sathyabama University, Chennai | 2014
-
-Professional Certifications:
-• AWS Certified DevOps Engineer – Professional
-• AWS Certified Solutions Architect – Associate
-• Certified Kubernetes Administrator (CKA)
-• Google Cloud Professional DevOps Engineer
-• HashiCorp Terraform Associate (In Progress)
-• Julia Programming Language Certification
 
 KEY ACHIEVEMENTS & IMPACT
 
