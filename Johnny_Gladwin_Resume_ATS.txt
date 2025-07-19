@@ -10,7 +10,7 @@ GitHub: github.com/jglad20
 
 PROFESSIONAL SUMMARY
 
-Senior DevOps Engineer with 10+ years building enterprise infrastructure automation frameworks and managing cloud-native platforms at scale. Architected JuliaHubInfrastructure - a comprehensive infrastructure-as-code framework in Julia wrapping Terraform, Kubernetes, AWS, and Ansible. Managed production Kubernetes clusters serving 10M+ users with 99.99% uptime and 40% cost optimization.
+Senior DevOps Engineer with 10+ years building enterprise infrastructure automation frameworks and managing cloud-native platforms at scale. Built JuliaHubInfrastructure - a comprehensive infrastructure-as-code framework in Julia wrapping Terraform, Kubernetes, AWS, and Ansible. Managed production Kubernetes clusters serving 10M+ users with 99.99% uptime and 40% cost optimization.
 
 Core Technologies: Julia, Kubernetes/EKS, Terraform, Helm, ArgoCD, Docker, AWS, Infrastructure Automation
 
@@ -27,15 +27,16 @@ PROFESSIONAL EXPERIENCE
 
 CLOUD ENGINEER | JuliaHub, Bengaluru | February 2023 - Present
 
-Architect and maintain Julia computing platform serving 10M+ developers globally with enterprise-grade infrastructure
+Build and maintain Julia computing platform serving 10M+ developers globally with enterprise-grade infrastructure
 
 Key Achievements:
-• Architected JHubInfrastructure - enterprise automation platform with custom Julia REPL managing 4-layer architecture (account → cluster → platform → services) integrating Terraform, Kubernetes, Ansible, and AWS
+• Built JuliaHubInfrastructure - enterprise automation platform with custom Julia REPL managing 4-layer architecture (account → cluster → platform → services) integrating Terraform, Kubernetes, Ansible, and AWS
 • Built 20+ cluster components including EKS, VPC, Karpenter auto-scaling, Cert-Manager, EBS/EFS CSI drivers, AWS Load Balancer Controller, Grafana Cloud monitoring, and Redpanda streaming
 • Designed platform layer with RDS databases, WAF security, CloudFront CDN, ALB load balancing, EC2 scheduling, and Cognito authentication systems
+• Provisioned 22+ microservices including websrvr, teamsrvr, authsrvr, searchsrvr, cachesrvr, pkgsyncsrvr, datasetsrvr, fssrvr, docgensrvr, hasura, and dexsrvr
 • Maintain production infrastructure serving 40,000+ Julia packages and 10M+ developers with zero-downtime deployments and 99.99% uptime SLA
 • Develop operational runbooks covering security, compliance, incident response, continuous integration, alerting, and release management procedures
-• Implement GitOps workflows with automated settings management, SSO integration, logo customization, and customer team provisioning
+• Implement GitOps workflows with automated settings management, SSO integration, logo customization, and customer team provisioning via Julia automation
 
 Technologies: Julia, Kubernetes/EKS, Terraform, AWS, Helm, Tilt, PostgreSQL, Redis, Hasura, Prometheus/Grafana
 
@@ -60,7 +61,7 @@ DEVOPS ENGINEER | Freelance | April 2018 - July 2019
 • Developed Terraform AWS modules for infrastructure provisioning and Hadoop cluster automation
 • Implemented monitoring solutions using Grafana/Prometheus achieving 99.95% availability
 
-SENIOR SYSTEMS ENGINEER | Guess Corp | January 2018 - April 2018
+SENIOR SYSTEMS ENGINEER | Quess Corp | January 2018 - April 2018
 
 • Managed Kubernetes clusters for retail e-commerce serving 1M+ daily users
 • Automated multi-cloud deployment (AWS/GCP) using Ansible and Docker containerization
@@ -70,14 +71,22 @@ SENIOR SYSTEMS ENGINEER | Cognizant | April 2016 - December 2017
 • Led AWS infrastructure automation for enterprise clients using CloudFormation and Auto Scaling
 • Implemented load balancing with HAProxy and reverse proxy architecture reducing overhead by 75%
 
+SYSTEMS ENGINEER | Cognizant | December 2014 - April 2016
+
+• Log Analysis: Analyzed logs and implemented monitoring metrics using New Relic
+• Job Scheduling: Responsible for scheduling jobs and execution of scripts
+• Server Management: Performed server management and provisioning using ServiceNow
+• DevOps CI/CD: Leveraged DevOps CI/CD for deployment and testing processes
+
 EDUCATION
 
-B.E. Computer Science Engineering | Sathyabama University, Chennai | 2014
+B.E. Computer Science Engineering
+Sathyabama University, Chennai | 2014
 
 KEY ACHIEVEMENTS & IMPACT
 
 Infrastructure Innovation:
-• Architected JHubInfrastructure - enterprise infrastructure automation platform with custom Julia REPL, 4-layer architecture (account/cluster/platform/services), and comprehensive operational runbooks
+• Built JuliaHubInfrastructure - enterprise infrastructure automation platform with custom Julia REPL, 4-layer architecture (account/cluster/platform/services), and comprehensive operational runbooks
 
 Scale & Reliability:
 • Manage production Kubernetes clusters across JuliaHub and StackState serving 10M+ users with 99.99% uptime
@@ -96,4 +105,4 @@ English: Fluent (Professional)
 Tamil: Native
 Hindi: Conversational
 
-This resume showcases enterprise-level infrastructure engineering expertise with unique Julia-based automation frameworks, making me an ideal candidate for Principal/Staff Engineer roles at top-tier technology companies.
+ 

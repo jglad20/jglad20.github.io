@@ -4,361 +4,623 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Johnny Gladwin - Senior Cloud Platform Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --accent-primary: #2563eb;
+            --accent-secondary: #1d4ed8;
+            --accent-light: #dbeafe;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', Monaco, monospace;
+        }
+
+        * {
             margin: 0;
-            padding: 20px;
-            background-color: #f8f9fa;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
-            color: #333;
         }
+
         .container {
-            max-width: 900px;
+            max-width: 1400px;
             margin: 0 auto;
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 0 40px;
         }
+
+        /* Header */
         .header {
-            text-align: center;
-            margin-bottom: 40px;
-            border-bottom: 3px solid #3498db;
-            padding-bottom: 20px;
+            padding: 60px 0 40px;
+            border-bottom: 1px solid var(--border-color);
         }
-        h1 {
-            color: #2c3e50;
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-        .subtitle {
-            color: #7f8c8d;
-            font-size: 1.3em;
-            margin-bottom: 20px;
-            font-weight: 400;
-        }
-        .contact {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        .contact-item {
-            display: flex;
+
+        .header-content {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 40px;
             align-items: center;
-            gap: 8px;
-            color: #34495e;
         }
-        .contact-item a {
-            color: #3498db;
+
+        .header-info h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .header-info .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .contact-info a {
+            color: var(--accent-primary);
             text-decoration: none;
         }
-        .contact-item a:hover {
+
+        .contact-info a:hover {
             text-decoration: underline;
         }
-        .section {
-            margin-bottom: 35px;
-        }
-        .section h2 {
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 8px;
-            margin-bottom: 20px;
-            font-size: 1.5em;
-            font-weight: 600;
-        }
-        .summary {
-            font-size: 1.1em;
-            color: #2c3e50;
-            background-color: #ecf0f1;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #3498db;
-        }
-        .tech-category {
-            margin-bottom: 15px;
-        }
-        .tech-category strong {
-            color: #2c3e50;
-            font-weight: 600;
-        }
-        .job {
-            margin-bottom: 30px;
-            padding: 20px;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            border-left: 4px solid #3498db;
-        }
-        .job h3 {
-            color: #2c3e50;
-            margin-bottom: 8px;
-            font-size: 1.3em;
-            font-weight: 600;
-        }
-        .job-meta {
-            color: #7f8c8d;
-            font-style: italic;
-            margin-bottom: 15px;
-            font-weight: 500;
-        }
-        .job-description {
-            color: #34495e;
-            margin-bottom: 15px;
-            font-style: italic;
-        }
-        .achievements {
-            margin-bottom: 15px;
-        }
-        .achievements h4 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 1.1em;
-        }
-        ul {
-            padding-left: 20px;
-        }
-        li {
-            margin-bottom: 8px;
-            color: #34495e;
-        }
-        .tech-stack {
-            background-color: #ecf0f1;
-            padding: 10px 15px;
-            border-radius: 6px;
-            margin-top: 10px;
-            font-size: 0.95em;
-        }
-        .tech-stack strong {
-            color: #2c3e50;
-        }
-        .key-achievements {
-            background-color: #e8f5e8;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #27ae60;
-        }
-        .key-achievements h4 {
-            color: #27ae60;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        .languages {
+
+        .download-section {
             display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 16px;
         }
-        .language-item {
-            background-color: #ecf0f1;
-            padding: 10px 15px;
-            border-radius: 6px;
+
+        .download-btn {
+            background: var(--accent-primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
             font-weight: 500;
+            text-align: center;
+            transition: background-color 0.2s;
         }
-        @media (max-width: 768px) {
+
+        .download-btn:hover {
+            background: var(--accent-secondary);
+        }
+
+        /* Sections */
+        .section {
+            padding: 50px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 32px;
+        }
+
+        /* Two Column Layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        /* Professional Summary */
+        .summary {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .summary .highlight {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* Technical Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .skill-category h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .skill-category p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Experience */
+        .experience-item {
+            margin-bottom: 48px;
+        }
+
+        .experience-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .job-header {
+            margin-bottom: 16px;
+        }
+
+        .job-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .company {
+            font-size: 1.2rem;
+            color: var(--accent-primary);
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .date {
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+        }
+
+        .job-description {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .achievements {
+            margin-top: 16px;
+        }
+
+        .achievements ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .achievements li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .achievements li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+
+        .metric {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* Project Details */
+        .project {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 16px 0;
+            border-left: 4px solid var(--accent-primary);
+        }
+
+        .project h4 {
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        /* Education */
+        .education-grid {
+            display: grid;
+            gap: 24px;
+        }
+
+        .education-item {
+            background: var(--bg-secondary);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .education-item h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .education-item p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+        }
+
+        /* Key Achievements */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+        }
+
+        .achievement-card {
+            background: var(--bg-secondary);
+            padding: 28px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .achievement-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .achievement-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Certifications */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .cert-item {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .cert-item h4 {
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .cert-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
             .container {
-                padding: 20px;
+                padding: 0 24px;
             }
-            .contact {
-                flex-direction: column;
-                align-items: center;
+            
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
-            h1 {
-                font-size: 2em;
+            
+            .header-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 32px;
             }
-            .subtitle {
-                font-size: 1.1em;
+        }
+
+        @media (max-width: 768px) {
+            .header-info h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.75rem;
+            }
+            
+            .skills-grid,
+            .achievements-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="header">
-        <h1>JOHNNY GLADWIN</h1>
-        <div class="subtitle">Senior Cloud Platform Engineer | Kubernetes Expert | DevOps Leader</div>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-info">
+                    <h1>Johnny Gladwin</h1>
+                    <div class="subtitle">Senior Cloud Platform Engineer | Kubernetes Expert | DevOps Leader</div>
+                    <div class="contact-info">
+                        <span>📧 <a href="mailto:johnny.gladwin@outlook.com">johnny.gladwin@outlook.com</a></span>
+                        <span>📱 +91-7702-549-262</span>
+                        <span>📍 Vellore, India</span>
+                        <span>💼 <a href="https://linkedin.com/in/johnny-gladwin-821671a" target="_blank">LinkedIn</a></span>
+                        <span>⚡ <a href="https://github.com/jglad20" target="_blank">GitHub</a></span>
+                    </div>
+                </div>
+                <div class="download-section">
+                    <a href="Johnny_Gladwin_Resume_ATS.txt" class="download-btn" download>Download ATS Resume</a>
+                    <a href="Johnny_Gladwin_Resume.pdf" class="download-btn" download>Download PDF Resume</a>
+                </div>
+            </div>
+        </header>
 
-        <div class="contact">
-            <div class="contact-item">
-                📧 <a href="mailto:johnny.gladwin@outlook.com">johnny.gladwin@outlook.com</a>
+        <!-- Professional Summary & Technical Skills -->
+        <section class="section">
+            <div class="two-column">
+                <div>
+                    <h2 class="section-title">Professional Summary</h2>
+                    <div class="summary">
+                        Senior DevOps Engineer with <span class="highlight">10+ years</span> building enterprise infrastructure automation frameworks and managing cloud-native platforms at scale. Built <span class="highlight">JuliaHubInfrastructure</span> - a comprehensive infrastructure-as-code framework in Julia wrapping Terraform, Kubernetes, AWS, and Ansible. Managed production Kubernetes clusters serving <span class="highlight">10M+ users</span> with <span class="highlight">99.99% uptime</span> and <span class="highlight">40% cost optimization</span>.
+                        <br><br>
+                        <strong>Core Technologies:</strong> Julia, Kubernetes/EKS, Terraform, Helm, ArgoCD, Docker, AWS, Infrastructure Automation
+                    </div>
+                </div>
+                <div>
+                    <h2 class="section-title">Technical Expertise</h2>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3>Infrastructure Automation</h3>
+                            <p>Julia REPL, Terraform, Ansible, Nix, Custom Framework Architecture</p>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Container Orchestration</h3>
+                            <p>Kubernetes/EKS, Karpenter, Helm, ArgoCD, KOTS, Cert-Manager</p>
+                        </div>
+                        <div class="skill-category">
+                            <h3>AWS Services</h3>
+                            <p>EKS, VPC, RDS, S3, CloudFront, ALB, WAF, EC2, IAM, Cognito</p>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Observability</h3>
+                            <p>Grafana Cloud, Prometheus, Elasticsearch, Redpanda, Alloy</p>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Development</h3>
+                            <p>Julia, Python, Go, Bash, Docker, Tilt, GitOps, Nix</p>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Security & Compliance</h3>
+                            <p>WAF, IAM Policies, SSO Integration, Security Runbooks</p>
+                        </div>
+                        <div class="skill-category">
+                            <h3>CI/CD Tools</h3>
+                            <p>Jenkins, GitLab CI, GitHub Actions, ArgoCD</p>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Monitoring & Observability</h3>
+                            <p>Grafana, Prometheus, Elasticsearch, New Relic, CloudWatch</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="contact-item">
-                📱 +91-7702-549-262
+        </section>
+
+        <!-- Professional Experience -->
+        <section class="section">
+            <h2 class="section-title">Professional Experience</h2>
+            
+            <div class="experience-item">
+                <div class="job-header">
+                    <div class="job-title">Cloud Engineer</div>
+                    <div class="company">JuliaHub, Bengaluru</div>
+                    <div class="date">February 2023 – Present</div>
+                </div>
+                <div class="job-description">
+                    Build and maintain Julia computing platform serving 10M+ developers globally with enterprise-grade infrastructure
+                </div>
+                <div class="achievements">
+                    <ul>
+                        <li>Built <strong>JuliaHubInfrastructure</strong> - enterprise automation platform with custom Julia REPL managing 4-layer architecture (account → cluster → platform → services) integrating Terraform, Kubernetes, Ansible, and AWS</li>
+                        <li>Built <span class="metric">20+ cluster components</span> including EKS, VPC, Karpenter auto-scaling, Cert-Manager, EBS/EFS CSI drivers, AWS Load Balancer Controller, Grafana Cloud monitoring, and Redpanda streaming</li>
+                        <li>Designed platform layer with RDS databases, WAF security, CloudFront CDN, ALB load balancing, EC2 scheduling, and Cognito authentication systems</li>
+                        <li>Maintain production infrastructure serving <span class="metric">40,000+ Julia packages</span> and <span class="metric">10M+ developers</span> with zero-downtime deployments and <span class="metric">99.99% uptime SLA</span></li>
+                        <li>Develop operational runbooks covering security, compliance, incident response, continuous integration, alerting, and release management procedures</li>
+                        <li>Implement GitOps workflows with automated settings management, SSO integration, logo customization, and customer team provisioning via Julia automation</li>
+                    </ul>
+                </div>
+                <div class="tech-used">
+                    <strong>Technologies:</strong> Julia, Kubernetes/EKS, Terraform, AWS, Helm, Tilt, PostgreSQL, Redis, Hasura, Prometheus/Grafana
+                </div>
             </div>
-            <div class="contact-item">
-                🌍 Vellore, India
+
+            <div class="experience-item">
+                <div class="job-header">
+                    <div class="job-title">DevOps Engineer</div>
+                    <div class="company">Squads (StackState Platform)</div>
+                    <div class="date">July 2019 – February 2023</div>
+                </div>
+                <div class="job-description">
+                    Built enterprise observability platform processing 1TB+ daily logs for Fortune 500 monitoring infrastructure
+                </div>
+                <div class="achievements">
+                    <ul>
+                        <li>Maintain <span class="metric">4 Kubernetes clusters</span> running StackState agent testing with <span class="metric">100+ Helm chart deployments</span> and ArgoCD GitOps</li>
+                        <li>Develop E2E testing framework <strong>"Beest"</strong> with Terraform/Ansible automating <span class="metric">25+ test environments</span> and Python pytest validation</li>
+                        <li>Build Docker infrastructure for <span class="metric">20+ services</span> (stackstate, elasticsearch, kafka, zookeeper, minio, envoy, hadoop) with automated CI/CD</li>
+                        <li>Create Terraform modules for AWS/GCP deployments supporting enterprise SaaS tenants with multi-cloud architecture</li>
+                        <li>Implement observability stack using Grafana dashboards, OpenTelemetry tracing, and Elasticsearch logging for platform monitoring</li>
+                        <li>Maintain KOTS applications and OpenShift deployments for enterprise on-premises installations</li>
+                        <li>Automate AMI building with Packer templates reducing deployment time by <span class="metric">75%</span></li>
+                    </ul>
+                </div>
+                <div class="tech-used">
+                    <strong>Technologies:</strong> Kubernetes, Terraform, Helm, ArgoCD, Docker, Elasticsearch, Kafka, OpenTelemetry, Packer, KOTS
+                </div>
             </div>
-            <div class="contact-item">
-                💼 <a href="https://linkedin.com/in/johnny-gladwin-821671a">LinkedIn</a>
+
+            <div class="experience-item">
+                <div class="job-header">
+                    <div class="job-title">DevOps Engineer</div>
+                    <div class="company">Freelance</div>
+                    <div class="date">April 2018 – July 2019</div>
+                </div>
+                <div class="achievements">
+                    <ul>
+                        <li><span class="metric">Build & Release Engineering:</span> Monitored Jenkins pipelines and maintained CI/CD processes</li>
+                        <li><span class="metric">Infrastructure Automation:</span> Developed Terraform templates and maintained infrastructure on AWS</li>
+                        <li><span class="metric">Application Monitoring:</span> Implemented application monitoring based on defined health metrics</li>
+                        <li><span class="metric">Cluster Deployment:</span> Deployed Hadoop and OpenShift clusters using Ansible automation</li>
+                    </ul>
+                </div>
             </div>
-            <div class="contact-item">
-                🐙 <a href="https://github.com/jglad20">GitHub</a>
+
+            <div class="experience-item">
+                <div class="job-header">
+                    <div class="job-title">Senior Systems Engineer</div>
+                    <div class="company">Quess Corp</div>
+                    <div class="date">January 2018 – April 2018</div>
+                </div>
+                <div class="achievements">
+                    <ul>
+                        <li><span class="metric">Automation Implementation:</span> Worked on automation using Ansible for retail customers</li>
+                        <li><span class="metric">Multi-Cloud Provisioning:</span> Implemented multi-cloud (GCP, AWS) provisioning using Terraform</li>
+                        <li><span class="metric">CI/CD Pipeline:</span> Deployed Docker images using CI/CD pipeline in Jenkins</li>
+                        <li><span class="metric">Kubernetes Management:</span> Explored Kubernetes cluster creation and management</li>
+                        <li><span class="metric">Monitoring Implementation:</span> Implemented CloudWatch Logs, Alarms, and Metrics across all instances for unified monitoring</li>
+                    </ul>
+                </div>
             </div>
-        </div>
+
+            <div class="experience-item">
+                <div class="job-header">
+                    <div class="job-title">Senior Systems Engineer</div>
+                    <div class="company">Cognizant</div>
+                    <div class="date">April 2016 – December 2017</div>
+                </div>
+                <div class="achievements">
+                    <ul>
+                        <li>Involved in capacity planning for enterprise systems</li>
+                        <li>Led AWS infrastructure automation for enterprise clients using CloudFormation and Auto Scaling</li>
+                        <li>Executed CI Jenkins jobs to deploy and automate code deployment</li>
+                        <li>Configured IAM, ELB, EC2, S3, RDS, CloudFormation, Auto Scaling, DataPipeline, Security Groups</li>
+                        <li>Implemented load balancing with HAProxy and reverse proxy architecture reducing overhead by <span class="metric">75%</span></li>
+                        <li>Analyzed Ansible Nginx playbooks and managed HAProxy, Artifactory, Tomcat</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-header">
+                    <div class="job-title">Systems Engineer</div>
+                    <div class="company">Cognizant</div>
+                    <div class="date">December 2014 – April 2016</div>
+                </div>
+                <div class="achievements">
+                    <ul>
+                        <li>Analyzed logs and implemented monitoring metrics using New Relic</li>
+                        <li>Responsible for scheduling jobs and execution of scripts</li>
+                        <li>Performed server management and provisioning using ServiceNow</li>
+                        <li>Leveraged DevOps CI/CD for deployment and testing processes</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education & Certifications -->
+        <section class="section">
+            <div class="two-column">
+                <div>
+                    <h2 class="section-title">Education</h2>
+                    <div class="education-grid">
+                        <div class="education-item">
+                            <h3>B.E. Computer Science Engineering</h3>
+                            <p>Sathyabama University, Chennai • 2010-2014 • GPA: 6.42</p>
+                        </div>
+                        <div class="education-item">
+                            <h3>12th Standard - ISC</h3>
+                            <p>Ida Scudder School, Vellore • 2009-2010 • 63.66%</p>
+                        </div>
+                        <div class="education-item">
+                            <h3>10th Standard - ICSE</h3>
+                            <p>Ida Scudder School, Vellore • 2006-2007 • 66.42%</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="section-title">Certifications</h2>
+                    <div class="certifications-grid">
+                        <div class="cert-item">
+                            <h4>Cambridge ESOL Level 1</h4>
+                            <p>Business English Certificate • 2014</p>
+                        </div>
+                        <div class="cert-item">
+                            <h4>ITIL V3 Foundation</h4>
+                            <p>IT Service Management • 2014</p>
+                        </div>
+                        <div class="cert-item">
+                            <h4>NIIT Academy Certification</h4>
+                            <p>C and C++ Programming • 2010</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Achievements -->
+        <section class="section">
+            <h2 class="section-title">Key Achievements</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <h3>Infrastructure Automation</h3>
+                    <p>Developed Julia-based infrastructure automation platform managing 4-layer architecture. Built comprehensive operational runbooks and automated deployment processes for <span class="metric">22+ microservices</span>.</p>
+                </div>
+                <div class="achievement-card">
+                    <h3>Scale & Reliability</h3>
+                    <p>Maintained <span class="metric">99.99% uptime</span> for production systems serving <span class="metric">10M+ users</span>. Processed <span class="metric">1TB+ daily logs</span> and managed infrastructure supporting <span class="metric">40,000+ packages</span>.</p>
+                </div>
+                <div class="achievement-card">
+                    <h3>Cost Optimization</h3>
+                    <p>Reduced infrastructure costs by <span class="metric">40%</span> through resource optimization, auto-scaling improvements, and efficient deployment strategies while maintaining performance standards.</p>
+                </div>
+                <div class="achievement-card">
+                    <h3>CI/CD Implementation</h3>
+                    <p>Built self-service CI/CD platforms enabling rapid deployments. Reduced deployment time by <span class="metric">75%</span> through automation and Infrastructure as Code practices.</p>
+                </div>
+                <div class="achievement-card">
+                    <h3>Team Collaboration</h3>
+                    <p>Worked effectively in cross-functional teams. Mentored junior engineers in Kubernetes, Terraform, and cloud-native practices. Contributed to engineering best practices.</p>
+                </div>
+                <div class="achievement-card">
+                    <h3>Security Implementation</h3>
+                    <p>Implemented security best practices including IAM policies, WAF rules, and automated patching. Maintained compliance with enterprise security standards.</p>
+                </div>
+            </div>
+        </section>
     </div>
-
-    <div class="section">
-        <h2>PROFESSIONAL SUMMARY</h2>
-        <div class="summary">
-            Senior DevOps Engineer with 10+ years building enterprise infrastructure automation frameworks and managing cloud-native platforms at scale. Architected JuliaHubInfrastructure - a comprehensive infrastructure-as-code framework in Julia wrapping Terraform, Kubernetes, AWS, and Ansible. Managed production Kubernetes clusters serving 10M+ users with 99.99% uptime and 40% cost optimization.
-            <br><br>
-            <strong>Core Technologies:</strong> Julia, Kubernetes/EKS, Terraform, Helm, ArgoCD, Docker, AWS, Infrastructure Automation
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>TECHNICAL EXPERTISE</h2>
-        <div class="tech-category">
-            <strong>Infrastructure Automation:</strong> Julia REPL, Terraform, Ansible, Nix, Custom Framework Architecture
-        </div>
-        <div class="tech-category">
-            <strong>Container Orchestration:</strong> Kubernetes/EKS, Karpenter, Helm, ArgoCD, KOTS, Cert-Manager
-        </div>
-        <div class="tech-category">
-            <strong>AWS Services:</strong> EKS, VPC, RDS, S3, CloudFront, ALB, WAF, EC2, IAM, Cognito
-        </div>
-        <div class="tech-category">
-            <strong>Observability:</strong> Grafana Cloud, Prometheus, Elasticsearch, Redpanda, Alloy
-        </div>
-        <div class="tech-category">
-            <strong>Development:</strong> Julia, Python, Go, Bash, Docker, Tilt, GitOps, Nix
-        </div>
-        <div class="tech-category">
-            <strong>Security & Compliance:</strong> WAF, IAM Policies, SSO Integration, Security Runbooks
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>PROFESSIONAL EXPERIENCE</h2>
-
-        <div class="job">
-            <h3>CLOUD ENGINEER | JuliaHub, Bengaluru</h3>
-            <div class="job-meta">February 2023 - Present</div>
-            <div class="job-description">
-                Architect and maintain Julia computing platform serving 10M+ developers globally with enterprise-grade infrastructure
-            </div>
-
-            <div class="achievements">
-                <h4>Key Achievements:</h4>
-                <ul>
-                    <li>Architected JHubInfrastructure - enterprise automation platform with custom Julia REPL managing 4-layer architecture (account → cluster → platform → services) integrating Terraform, Kubernetes, Ansible, and AWS</li>
-                    <li>Built 20+ cluster components including EKS, VPC, Karpenter auto-scaling, Cert-Manager, EBS/EFS CSI drivers, AWS Load Balancer Controller, Grafana Cloud monitoring, and Redpanda streaming</li>
-                    <li>Designed platform layer with RDS databases, WAF security, CloudFront CDN, ALB load balancing, EC2 scheduling, and Cognito authentication systems</li>
-                    <li>Maintain production infrastructure serving 40,000+ Julia packages and 10M+ developers with zero-downtime deployments and 99.99% uptime SLA</li>
-                    <li>Develop operational runbooks covering security, compliance, incident response, continuous integration, alerting, and release management procedures</li>
-                    <li>Implement GitOps workflows with automated settings management, SSO integration, logo customization, and customer team provisioning</li>
-                </ul>
-            </div>
-
-            <div class="tech-stack">
-                <strong>Technologies:</strong> Julia, Kubernetes/EKS, Terraform, AWS, Helm, Tilt, PostgreSQL, Redis, Hasura, Prometheus/Grafana
-            </div>
-        </div>
-
-        <div class="job">
-            <h3>DEVOPS ENGINEER | Squads (StackState Platform)</h3>
-            <div class="job-meta">July 2019 - February 2023</div>
-            <div class="job-description">
-                Built enterprise observability platform processing 1TB+ daily logs for Fortune 500 monitoring infrastructure
-            </div>
-
-            <div class="achievements">
-                <h4>Key Achievements:</h4>
-                <ul>
-                    <li>Maintain 4 Kubernetes clusters running StackState agent testing with 100+ Helm chart deployments and ArgoCD GitOps</li>
-                    <li>Develop E2E testing framework "Beest" with Terraform/Ansible automating 25+ test environments and Python pytest validation</li>
-                    <li>Build Docker infrastructure for 20+ services (stackstate, elasticsearch, kafka, zookeeper, minio, envoy, hadoop) with automated CI/CD</li>
-                    <li>Create Terraform modules for AWS/GCP deployments supporting enterprise SaaS tenants with multi-cloud architecture</li>
-                    <li>Implement observability stack using Grafana dashboards, OpenTelemetry tracing, and Elasticsearch logging for platform monitoring</li>
-                    <li>Maintain KOTS applications and OpenShift deployments for enterprise on-premises installations</li>
-                    <li>Automate AMI building with Packer templates reducing deployment time by 75%</li>
-                </ul>
-            </div>
-
-            <div class="tech-stack">
-                <strong>Technologies:</strong> Kubernetes, Terraform, Helm, ArgoCD, Docker, Elasticsearch, Kafka, OpenTelemetry, Packer, KOTS
-            </div>
-        </div>
-
-        <div class="job">
-            <h3>DEVOPS ENGINEER | Freelance</h3>
-            <div class="job-meta">April 2018 - July 2019</div>
-            <ul>
-                <li>Built Jenkins CI/CD automation for multiple clients reducing deployment time by 60%</li>
-                <li>Developed Terraform AWS modules for infrastructure provisioning and Hadoop cluster automation</li>
-                <li>Implemented monitoring solutions using Grafana/Prometheus achieving 99.95% availability</li>
-            </ul>
-        </div>
-
-        <div class="job">
-            <h3>SENIOR SYSTEMS ENGINEER | Guess Corp</h3>
-            <div class="job-meta">January 2018 - April 2018</div>
-            <ul>
-                <li>Managed Kubernetes clusters for retail e-commerce serving 1M+ daily users</li>
-                <li>Automated multi-cloud deployment (AWS/GCP) using Ansible and Docker containerization</li>
-            </ul>
-        </div>
-
-        <div class="job">
-            <h3>SENIOR SYSTEMS ENGINEER | Cognizant</h3>
-            <div class="job-meta">April 2016 - December 2017</div>
-            <ul>
-                <li>Led AWS infrastructure automation for enterprise clients using CloudFormation and Auto Scaling</li>
-                <li>Implemented load balancing with HAProxy and reverse proxy architecture reducing overhead by 75%</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>EDUCATION</h2>
-        <div class="job">
-            <h3>B.E. Computer Science Engineering</h3>
-            <div class="job-meta">Sathyabama University, Chennai | 2014</div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>KEY ACHIEVEMENTS & IMPACT</h2>
-        <div class="key-achievements">
-            <h4>Infrastructure Innovation:</h4>
-            <ul>
-                <li>Architected JHubInfrastructure - enterprise infrastructure automation platform with custom Julia REPL, 4-layer architecture (account/cluster/platform/services), and comprehensive operational runbooks</li>
-            </ul>
-
-            <h4>Scale & Reliability:</h4>
-            <ul>
-                <li>Manage production Kubernetes clusters across JuliaHub and StackState serving 10M+ users with 99.99% uptime</li>
-                <li>Built observability platform processing 1TB+ daily logs with Elasticsearch, Grafana, and custom monitoring solutions</li>
-            </ul>
-
-            <h4>Performance & Efficiency:</h4>
-            <ul>
-                <li>Reduced deployment time by 75% through GitOps automation, Infrastructure as Code, and self-service platform tooling</li>
-                <li>Optimized infrastructure costs by 40% through intelligent resource allocation, auto-scaling, and multi-cloud strategies</li>
-            </ul>
-
-            <h4>Leadership & Mentoring:</h4>
-            <ul>
-                <li>Mentored 5+ junior engineers in Kubernetes, Terraform, Julia programming, and cloud-native practices</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>LANGUAGES</h2>
-        <div class="languages">
-            <div class="language-item">
-                <strong>English:</strong> Fluent (Professional)
-            </div>
-            <div class="language-item">
-                <strong>Tamil:</strong> Native
-            </div>
-            <div class="language-item">
-                <strong>Hindi:</strong> Conversational
-            </div>
-        </div>
-    </div>
-</div>
 </body>
-</html>
+</html> 
