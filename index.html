@@ -261,10 +261,7 @@
 
         /* Two Column Layout */
         .two-column {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 60px;
-            align-items: start;
+            display: block;
         }
 
         /* Professional Summary */
@@ -282,8 +279,9 @@
         /* Technical Skills */
         .skills-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
         }
 
         .skill-category {
@@ -555,53 +553,51 @@
             </div>
         </header>
 
-        <!-- Professional Summary & Technical Skills -->
+                <!-- Professional Summary -->
         <section class="section">
-            <div class="two-column">
-                <div>
-                    <h2 class="section-title">Professional Summary</h2>
-                    <div class="summary">
-                        Senior DevOps Engineer with <span class="highlight">10+ years</span> building enterprise infrastructure automation frameworks and managing cloud-native platforms at scale. Built <span class="highlight">JuliaHubInfrastructure</span> - a comprehensive infrastructure-as-code framework in Julia wrapping Terraform, Kubernetes, AWS, and Ansible. Managed production Kubernetes clusters serving <span class="highlight">10M+ users</span> with <span class="highlight">99.99% uptime</span> and <span class="highlight">40% cost optimization</span>.
-                        <br><br>
-                        <strong>Core Technologies:</strong> Julia, Kubernetes/EKS, Terraform, Helm, ArgoCD, Docker, AWS, Infrastructure Automation
-        </div>
-        </div>
-                <div>
-                    <h2 class="section-title">Technical Expertise</h2>
-                    <div class="skills-grid">
-                        <div class="skill-category">
+            <h2 class="section-title">Professional Summary</h2>
+            <div class="summary">
+                Senior DevOps Engineer with <span class="highlight">10+ years</span> building enterprise infrastructure automation frameworks and managing cloud-native platforms at scale. Built <span class="highlight">JuliaHubInfrastructure</span> - a comprehensive infrastructure-as-code framework in Julia wrapping Terraform, Kubernetes, AWS, and Ansible. Managed production Kubernetes clusters serving <span class="highlight">10M+ users</span> with <span class="highlight">99.99% uptime</span> and <span class="highlight">40% cost optimization</span>.
+                <br><br>
+                <strong>Core Technologies:</strong> Julia, Kubernetes/EKS, Terraform, Helm, ArgoCD, Docker, AWS, Infrastructure Automation
+            </div>
+        </section>
+
+        <!-- Technical Skills -->
+        <section class="section">
+            <h2 class="section-title">Technical Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
                     <h3>Infrastructure Automation</h3>
                     <p>Julia REPL, Terraform, Ansible, Nix, Custom Framework Architecture</p>
                 </div>
-                        <div class="skill-category">
+                <div class="skill-category">
                     <h3>Container Orchestration</h3>
                     <p>Kubernetes/EKS, Karpenter, Helm, ArgoCD, KOTS, Cert-Manager</p>
                 </div>
-                        <div class="skill-category">
+                <div class="skill-category">
                     <h3>AWS Services</h3>
                     <p>EKS, VPC, RDS, S3, CloudFront, ALB, WAF, EC2, IAM, Cognito</p>
                 </div>
-                        <div class="skill-category">
+                <div class="skill-category">
                     <h3>Observability</h3>
                     <p>Grafana Cloud, Prometheus, Elasticsearch, Redpanda, Alloy</p>
                 </div>
-                        <div class="skill-category">
+                <div class="skill-category">
                     <h3>Development</h3>
                     <p>Julia, Python, Go, Bash, Docker, Tilt, GitOps, Nix</p>
                 </div>
-                        <div class="skill-category">
+                <div class="skill-category">
                     <h3>Security & Compliance</h3>
                     <p>WAF, IAM Policies, SSO Integration, Security Runbooks</p>
-                        </div>
-                        <div class="skill-category">
-                            <h3>CI/CD Tools</h3>
-                            <p>Jenkins, GitLab CI, GitHub Actions, ArgoCD</p>
-                        </div>
-                        <div class="skill-category">
-                            <h3>Monitoring & Observability</h3>
-                            <p>Grafana, Prometheus, Elasticsearch, New Relic, CloudWatch</p>
-                        </div>
-                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>CI/CD Tools</h3>
+                    <p>Jenkins, GitLab CI, GitHub Actions, ArgoCD</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Monitoring & Observability</h3>
+                    <p>Grafana, Prometheus, Elasticsearch, New Relic, CloudWatch</p>
                 </div>
             </div>
         </section>
