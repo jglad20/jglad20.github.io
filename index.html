@@ -262,8 +262,9 @@
         /* Two Column Layout */
         .two-column {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.2fr 0.8fr;
             gap: 60px;
+            align-items: start;
         }
 
         /* Professional Summary */
@@ -281,8 +282,8 @@
         /* Technical Skills */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 24px;
+            grid-template-columns: 1fr;
+            gap: 20px;
         }
 
         .skill-category {
@@ -534,8 +535,8 @@
         <!-- Header -->
         <header class="header">
             <div class="header-content">
-            <h1>Johnny Gladwin</h1>
-                <div class="subtitle">Senior Cloud Platform Engineer | Kubernetes Expert | DevOps Leader</div>
+                            <h1>Johnny Gladwin</h1>
+                <div class="subtitle">Senior Cloud Platform Engineer</div>
             <div class="contact-info">
                     <span>📧 <a href="mailto:johnny.gladwin@outlook.com">johnny.gladwin@outlook.com</a></span>
                     <span>📱 +91-7702-549-262</span>
