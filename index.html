@@ -931,43 +931,90 @@
             const element = document.querySelector('.container');
             const clonedElement = element.cloneNode(true);
             
-            // Apply inline styles to the cloned element
-            clonedElement.style.backgroundColor = '#ffffff';
-            clonedElement.style.color = '#000000';
+            // Apply dark theme inline styles to the cloned element
+            clonedElement.style.backgroundColor = '#0a0a0a';
+            clonedElement.style.color = '#ffffff';
+            clonedElement.style.padding = '40px';
+            clonedElement.style.borderRadius = '0';
             
-            // Remove animations and effects from clone
+            // Remove animations but keep dark theme
             const allElements = clonedElement.querySelectorAll('*');
             allElements.forEach(el => {
-                el.style.color = '#000000';
-                el.style.backgroundColor = 'transparent';
                 el.style.animation = 'none';
                 el.style.transition = 'none';
-                el.style.boxShadow = 'none';
-                el.style.textShadow = 'none';
             });
             
-            // Style specific elements
-            const headers = clonedElement.querySelectorAll('h1, h2, h3, h4, h5, h6');
+            // Style header section
+            const header = clonedElement.querySelector('.header');
+            if (header) {
+                header.style.background = 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)';
+                header.style.padding = '40px';
+                header.style.borderRadius = '16px';
+                header.style.marginBottom = '32px';
+            }
+            
+            // Style headers with gradient effect
+            const h1 = clonedElement.querySelector('h1');
+            if (h1) {
+                h1.style.color = '#ffffff';
+                h1.style.fontSize = '48px';
+                h1.style.fontWeight = '900';
+                h1.style.textShadow = '0 0 40px rgba(99, 102, 241, 0.5)';
+            }
+            
+            const headers = clonedElement.querySelectorAll('h2, h3');
             headers.forEach(h => {
-                h.style.color = '#000000';
+                h.style.color = '#ffffff';
                 h.style.fontWeight = 'bold';
             });
             
+            // Style sections
+            const sections = clonedElement.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.style.backgroundColor = 'rgba(255, 255, 255, 0.03)';
+                section.style.border = '1px solid rgba(255, 255, 255, 0.08)';
+                section.style.borderRadius = '12px';
+                section.style.padding = '32px';
+                section.style.marginBottom = '24px';
+            });
+            
+            // Style cards
+            const cards = clonedElement.querySelectorAll('.achievement-card, .experience-item');
+            cards.forEach(card => {
+                card.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                card.style.border = '1px solid rgba(255, 255, 255, 0.1)';
+                card.style.borderRadius = '8px';
+                card.style.padding = '24px';
+            });
+            
+            // Style text
             const paragraphs = clonedElement.querySelectorAll('p, li, span, div');
             paragraphs.forEach(p => {
-                p.style.color = '#000000';
+                if (!p.style.color || p.style.color === 'rgb(0, 0, 0)') {
+                    p.style.color = '#e5e5e5';
+                }
             });
             
+            // Style links
             const links = clonedElement.querySelectorAll('a');
             links.forEach(a => {
-                a.style.color = '#1d4ed8';
+                a.style.color = '#8b5cf6';
+                a.style.textDecoration = 'none';
             });
             
+            // Style metrics with glow
             const metrics = clonedElement.querySelectorAll('.metric');
             metrics.forEach(m => {
-                m.style.color = '#1d4ed8';
+                m.style.color = '#8b5cf6';
                 m.style.fontWeight = 'bold';
+                m.style.textShadow = '0 0 20px rgba(139, 92, 246, 0.5)';
             });
+            
+            // Style contact info
+            const contactInfo = clonedElement.querySelector('.contact-info');
+            if (contactInfo) {
+                contactInfo.style.color = '#a8a8a8';
+            }
             
             // Hide download section in clone
             const downloadSection = clonedElement.querySelector('.download-section');
@@ -979,13 +1026,14 @@
             const tempContainer = document.createElement('div');
             tempContainer.style.position = 'absolute';
             tempContainer.style.left = '-9999px';
-            tempContainer.style.backgroundColor = '#ffffff';
+            tempContainer.style.backgroundColor = '#050505';
+            tempContainer.style.width = '8.5in';
             tempContainer.appendChild(clonedElement);
             document.body.appendChild(tempContainer);
             
             // Configure PDF options
             const opt = {
-                margin: [0.5, 0.5, 0.5, 0.5],
+                margin: [0, 0, 0, 0],
                 filename: 'Johnny_Gladwin_Resume.pdf',
                 image: { 
                     type: 'jpeg', 
@@ -994,7 +1042,7 @@
                 html2canvas: { 
                     scale: 2,
                     useCORS: true,
-                    backgroundColor: '#ffffff',
+                    backgroundColor: '#050505',
                     logging: false
                 },
                 jsPDF: { 
