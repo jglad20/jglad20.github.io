@@ -107,11 +107,11 @@
             --bg-secondary: #f8f9fa !important;
             --bg-card: rgba(0, 0, 0, 0.03) !important;
             --bg-card-hover: rgba(0, 0, 0, 0.05) !important;
-            --text-primary: #1a1a1a !important;
-            --text-secondary: #4a4a4a !important;
-            --text-muted: #666666 !important;
-            --border-color: rgba(0, 0, 0, 0.12) !important;
-            --accent-primary: #2563eb !important;
+            --text-primary: #000000 !important;
+            --text-secondary: #333333 !important;
+            --text-muted: #555555 !important;
+            --border-color: rgba(0, 0, 0, 0.15) !important;
+            --accent-primary: #1d4ed8 !important;
             --accent-secondary: #7c3aed !important;
             --glow: rgba(37, 99, 235, 0.2) !important;
         }
@@ -143,12 +143,19 @@
         }
 
         .pdf-mode .metric {
-            color: #2563eb !important;
+            color: #1d4ed8 !important;
             font-weight: 700 !important;
         }
 
         .pdf-mode a {
-            color: #2563eb !important;
+            color: #1d4ed8 !important;
+        }
+
+        .pdf-mode .download-section {
+            visibility: hidden !important;
+            height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
         }
 
         /* Background Effects */
@@ -879,28 +886,25 @@
 
             // Switch to PDF-friendly light theme
             document.body.classList.add('pdf-mode');
-            
-            // Hide the download button temporarily for cleaner PDF
-            const downloadSection = document.querySelector('.download-section');
-            downloadSection.style.display = 'none';
 
             // Small delay to ensure CSS changes are applied
             setTimeout(() => {
                 // Configure PDF options
                 const element = document.querySelector('.container');
                 const opt = {
-                    margin: [0.3, 0.3, 0.3, 0.3],
+                    margin: [0.4, 0.4, 0.4, 0.4],
                     filename: 'Johnny_Gladwin_Resume.pdf',
                     image: { 
                         type: 'jpeg', 
-                        quality: 0.98 
+                        quality: 1.0 
                     },
                     html2canvas: { 
                         scale: 2,
                         useCORS: true,
                         allowTaint: false,
                         backgroundColor: '#ffffff',
-                        logging: false
+                        logging: false,
+                        letterRendering: true
                     },
                     jsPDF: { 
                         unit: 'in', 
@@ -913,21 +917,19 @@
 
                 // Generate PDF
                 html2pdf().set(opt).from(element).save().then(() => {
-                    // Restore original theme and show download button
+                    // Restore original theme
                     document.body.classList.remove('pdf-mode');
-                    downloadSection.style.display = 'flex';
                     button.innerHTML = originalText;
                     button.disabled = false;
                 }).catch((error) => {
                     console.error('PDF generation failed:', error);
-                    // Restore original theme and show download button
+                    // Restore original theme
                     document.body.classList.remove('pdf-mode');
-                    downloadSection.style.display = 'flex';
                     button.innerHTML = originalText;
                     button.disabled = false;
                     alert('PDF generation failed. Please ensure you have a stable internet connection and try again.');
                 });
-            }, 100);
+            }, 200);
         }
 
         // Wait for the page to fully load before enabling PDF download
