@@ -927,242 +927,175 @@
             button.innerHTML = '<svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path d="M10 3a1 1 0 01.993.883L11 4v5.585l1.293-1.292a1 1 0 011.32-.083l.094.083a1 1 0 01.083 1.32l-.083.094-3 3a1 1 0 01-1.32.083l-.094-.083-3-3a1 1 0 011.32-1.497l.094.083L9 9.585V4a1 1 0 011-1zM5 13a1 1 0 01.993.883L6 14v1a1 1 0 00.883.993L7 16h6a1 1 0 00.993-.883L14 15v-1a1 1 0 011.993-.117L16 14v1a3 3 0 01-2.824 2.995L13 18H7a3 3 0 01-2.995-2.824L4 15v-1a1 1 0 011-1z"/></svg> Generating PDF...';
             button.disabled = true;
 
-            // Create a MODERN, COMPACT resume like the kickresume template
-            const originalElement = document.querySelector('.container');
-            const clonedElement = originalElement.cloneNode(true);
+            // Create a SUPER COMPACT, 2-PAGE resume exactly like the kickresume template
             
-            // Modern, compact styling - crisp and clean
-            clonedElement.style.backgroundColor = '#ffffff';
-            clonedElement.style.color = '#2c3e50';
-            clonedElement.style.fontFamily = "'Helvetica Neue', Helvetica, Arial, sans-serif";
-            clonedElement.style.padding = '30px';
-            clonedElement.style.lineHeight = '1.4';
-            clonedElement.style.fontSize = '11px';
+            // Extract data from original
+            const original = document.querySelector('.container');
+            const name = original.querySelector('h1')?.textContent || 'Johnny Gladwin';
+            const title = original.querySelector('.subtitle')?.textContent || 'Senior Cloud Platform Engineer';
             
-            // Remove all problematic styling
-            const allElements = clonedElement.querySelectorAll('*');
-            allElements.forEach(el => {
-                el.style.animation = 'none';
-                el.style.transition = 'none';
-                el.style.transform = 'none';
-                el.style.filter = 'none';
-                el.style.backdropFilter = 'none';
-                el.style.boxShadow = 'none';
-                el.style.backgroundImage = 'none';
-                el.style.background = 'none';
-            });
-            
-            // Compact, modern header
-            const header = clonedElement.querySelector('.header');
-            if (header) {
-                header.style.backgroundColor = 'transparent';
-                header.style.color = '#2c3e50';
-                header.style.padding = '0 0 20px 0';
-                header.style.textAlign = 'left';
-                header.style.marginBottom = '25px';
-                header.style.borderBottom = '1px solid #ecf0f1';
-            }
-            
-            // Modern name styling - compact
-            const h1 = clonedElement.querySelector('h1');
-            if (h1) {
-                h1.style.fontSize = '28px';
-                h1.style.fontWeight = '700';
-                h1.style.color = '#2c3e50';
-                h1.style.margin = '0 0 5px 0';
-                h1.style.fontFamily = "'Helvetica Neue', sans-serif";
-                h1.style.letterSpacing = '-0.5px';
-            }
-            
-            // Compact subtitle
-            const subtitle = clonedElement.querySelector('.subtitle');
-            if (subtitle) {
-                subtitle.style.fontSize = '14px';
-                subtitle.style.color = '#7f8c8d';
-                subtitle.style.margin = '0 0 15px 0';
-                subtitle.style.fontWeight = '400';
-            }
-            
-            // Compact contact info
-            const contactInfo = clonedElement.querySelector('.contact-info');
-            if (contactInfo) {
-                contactInfo.style.color = '#7f8c8d';
-                contactInfo.style.fontSize = '10px';
-                contactInfo.style.lineHeight = '1.3';
-            }
-            
-            // Clean all header text
-            if (header) {
-                const headerElements = header.querySelectorAll('*');
-                headerElements.forEach(el => {
-                    el.style.background = 'none';
-                    el.style.backgroundColor = 'transparent';
-                });
-            }
-            
-            // Compact sections
-            const sections = clonedElement.querySelectorAll('.section');
-            sections.forEach(section => {
-                section.style.backgroundColor = 'transparent';
-                section.style.border = 'none';
-                section.style.padding = '0';
-                section.style.marginBottom = '20px';
-                section.style.borderRadius = '0';
-            });
-            
-            // Modern section titles - compact
-            const sectionTitles = clonedElement.querySelectorAll('.section-title');
-            sectionTitles.forEach(title => {
-                title.style.color = '#2c3e50';
-                title.style.fontSize = '14px';
-                title.style.fontWeight = '700';
-                title.style.marginBottom = '10px';
-                title.style.paddingBottom = '3px';
-                title.style.borderBottom = '2px solid #3498db';
-                title.style.fontFamily = "'Helvetica Neue', sans-serif";
-                title.style.textTransform = 'uppercase';
-                title.style.letterSpacing = '0.5px';
-            });
-            
-            // Compact achievement cards
-            const achievementCards = clonedElement.querySelectorAll('.achievement-card');
-            achievementCards.forEach(card => {
-                card.style.backgroundColor = 'transparent';
-                card.style.border = 'none';
-                card.style.padding = '6px 0';
-                card.style.marginBottom = '8px';
-                card.style.borderRadius = '0';
-            });
-            
-            // Compact experience items
-            const experienceItems = clonedElement.querySelectorAll('.experience-item');
-            experienceItems.forEach(item => {
-                item.style.backgroundColor = 'transparent';
-                item.style.border = 'none';
-                item.style.padding = '8px 0';
-                item.style.marginBottom = '12px';
-                item.style.borderRadius = '0';
-                item.style.borderBottom = '1px solid #ecf0f1';
-            });
-            
-            // Compact skills grid
-            const skillsGrid = clonedElement.querySelector('.skills-grid');
-            if (skillsGrid) {
-                skillsGrid.style.display = 'grid';
-                skillsGrid.style.gridTemplateColumns = 'repeat(3, 1fr)';
-                skillsGrid.style.gap = '8px';
-                skillsGrid.style.marginTop = '8px';
-            }
-            
-            // Compact skill categories
-            const skillCategories = clonedElement.querySelectorAll('.skill-category');
-            skillCategories.forEach(category => {
-                category.style.backgroundColor = 'transparent';
-                category.style.border = 'none';
-                category.style.padding = '4px 0';
-                category.style.borderRadius = '0';
-                category.style.marginBottom = '8px';
-                
-                const categoryHeader = category.querySelector('h3');
-                if (categoryHeader) {
-                    categoryHeader.style.color = '#2c3e50';
-                    categoryHeader.style.fontSize = '11px';
-                    categoryHeader.style.fontWeight = '600';
-                    categoryHeader.style.marginBottom = '3px';
-                    categoryHeader.style.textTransform = 'uppercase';
-                }
-            });
-            
-            // Highlighted metrics - modern style
-            const metrics = clonedElement.querySelectorAll('.metric');
-            metrics.forEach(metric => {
-                metric.style.color = '#3498db';
-                metric.style.backgroundColor = 'transparent';
-                metric.style.padding = '0';
-                metric.style.fontWeight = '700';
-                metric.style.borderRadius = '0';
-                metric.style.fontSize = '11px';
-            });
-            
-            // Compact job titles
-            const jobTitles = clonedElement.querySelectorAll('.job-title');
-            jobTitles.forEach(title => {
-                title.style.color = '#2c3e50';
-                title.style.fontSize = '12px';
-                title.style.fontWeight = '600';
-                title.style.marginBottom = '1px';
-            });
-            
-            // Company names - modern
-            const companies = clonedElement.querySelectorAll('.company');
-            companies.forEach(company => {
-                company.style.color = '#3498db';
-                company.style.fontSize = '11px';
-                company.style.fontWeight = '500';
-            });
-            
-            // Compact date styling
-            const dates = clonedElement.querySelectorAll('.date');
-            dates.forEach(date => {
-                date.style.color = '#95a5a6';
-                date.style.fontSize = '10px';
-                date.style.fontWeight = '400';
-            });
-            
-            // Modern links
-            const links = clonedElement.querySelectorAll('a');
-            links.forEach(link => {
-                link.style.color = '#3498db';
-                link.style.textDecoration = 'none';
-                link.style.fontWeight = '400';
-            });
-            
-            // All text elements - compact
-            const textElements = clonedElement.querySelectorAll('p, span, div, li, strong, em');
-            textElements.forEach(el => {
-                if (!el.classList.contains('metric') && !el.closest('.metric')) {
-                    el.style.color = '#2c3e50';
-                    el.style.background = 'none';
-                    el.style.backgroundColor = 'transparent';
-                }
-            });
-            
-            // Compact job descriptions
-            const jobDescriptions = clonedElement.querySelectorAll('.job-description');
-            jobDescriptions.forEach(desc => {
-                desc.style.color = '#7f8c8d';
-                desc.style.fontSize = '10px';
-                desc.style.marginBottom = '4px';
-                desc.style.fontStyle = 'normal';
-            });
-            
-            // Compact list styling
-            const lists = clonedElement.querySelectorAll('ul, ol');
-            lists.forEach(list => {
-                list.style.paddingLeft = '15px';
-                list.style.marginTop = '4px';
-                list.style.marginBottom = '4px';
-            });
-            
-            const listItems = clonedElement.querySelectorAll('li');
-            listItems.forEach(item => {
-                item.style.marginBottom = '2px';
-                item.style.color = '#2c3e50';
-                item.style.fontSize = '10px';
-                item.style.lineHeight = '1.3';
-            });
-            
-            // Hide download section
-            const downloadSection = clonedElement.querySelector('.download-section');
-            if (downloadSection) {
-                downloadSection.style.display = 'none';
-            }
+            // Create completely new compact HTML structure
+            const resumeHTML = `
+                <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 9px; line-height: 1.2; color: #333; max-width: 800px; margin: 0 auto; padding: 20px;">
+                    
+                    <!-- HEADER -->
+                    <div style="text-align: center; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #ddd;">
+                        <h1 style="font-size: 22px; font-weight: 700; margin: 0 0 4px 0; color: #2c3e50;">${name}</h1>
+                        <div style="font-size: 12px; color: #7f8c8d; margin-bottom: 8px;">${title}</div>
+                        <div style="font-size: 8px; color: #95a5a6;">
+                            📧 johnny.gladwin@outlook.com | 📱 +91-7702-549-262 | 📍 Vellore, India | 💼 linkedin.com/in/johnny-gladwin-821671a | 🐙 github.com/jglad20
+                        </div>
+                    </div>
+                    
+                    <!-- PROFESSIONAL SUMMARY -->
+                    <div style="margin-bottom: 12px;">
+                        <h2 style="font-size: 11px; font-weight: 700; color: #2c3e50; margin: 0 0 6px 0; text-transform: uppercase; border-bottom: 2px solid #3498db; padding-bottom: 2px; display: inline-block;">Professional Summary</h2>
+                        <div style="font-size: 9px; line-height: 1.3; margin-bottom: 8px;">
+                            Senior DevOps Engineer with <strong style="color: #3498db;">10+ years</strong> building enterprise infrastructure automation frameworks and managing cloud-native platforms at scale. Built <strong>JuliaHubInfrastructure</strong> - comprehensive infrastructure-as-code framework in Julia wrapping Terraform, Kubernetes, AWS, and Ansible. Managed production Kubernetes clusters serving <strong style="color: #3498db;">10M+ users</strong> with <strong style="color: #3498db;">99.99% uptime</strong> and <strong style="color: #3498db;">40% cost optimization</strong>.
+                        </div>
+                        <div style="font-size: 8px; color: #7f8c8d;"><strong>Core Technologies:</strong> Julia, Kubernetes/EKS, Terraform, Helm, ArgoCD, Docker, AWS, Infrastructure Automation</div>
+                    </div>
+                    
+                    <!-- TECHNICAL EXPERTISE -->
+                    <div style="margin-bottom: 12px;">
+                        <h2 style="font-size: 11px; font-weight: 700; color: #2c3e50; margin: 0 0 6px 0; text-transform: uppercase; border-bottom: 2px solid #3498db; padding-bottom: 2px; display: inline-block;">Technical Expertise</h2>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; font-size: 8px;">
+                            <div>
+                                <div style="font-weight: 600; color: #2c3e50; margin-bottom: 2px;">CLOUD PLATFORMS</div>
+                                <div style="color: #7f8c8d;">AWS (EKS, VPC, RDS, S3, CloudFront, Lambda, ALB, WAF, IAM, Cognito), Azure, GCP, DigitalOcean</div>
+                            </div>
+                            <div>
+                                <div style="font-weight: 600; color: #2c3e50; margin-bottom: 2px;">CONTAINER ORCHESTRATION</div>
+                                <div style="color: #7f8c8d;">Kubernetes/EKS, Karpenter, Helm, ArgoCD, KOTS, Cert-Manager, Docker, Podman</div>
+                            </div>
+                            <div>
+                                <div style="font-weight: 600; color: #2c3e50; margin-bottom: 2px;">INFRASTRUCTURE AS CODE</div>
+                                <div style="color: #7f8c8d;">Terraform, CloudFormation, Ansible, Pulumi, Nix, Packer, Custom Julia Framework</div>
+                            </div>
+                            <div>
+                                <div style="font-weight: 600; color: #2c3e50; margin-bottom: 2px;">CI/CD & GITOPS</div>
+                                <div style="color: #7f8c8d;">Jenkins, GitLab CI, GitHub Actions, ArgoCD, Flux, Tekton, Blue-Green Deployments</div>
+                            </div>
+                            <div>
+                                <div style="font-weight: 600; color: #2c3e50; margin-bottom: 2px;">MONITORING & OBSERVABILITY</div>
+                                <div style="color: #7f8c8d;">Prometheus, Grafana, Elasticsearch, Fluent Bit, OpenTelemetry, Jaeger, CloudWatch, New Relic</div>
+                            </div>
+                            <div>
+                                <div style="font-weight: 600; color: #2c3e50; margin-bottom: 2px;">PROGRAMMING & SCRIPTING</div>
+                                <div style="color: #7f8c8d;">Julia, Python, Go, Java, Bash/Shell, YAML, JSON, HCL</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- KEY ACHIEVEMENTS -->
+                    <div style="margin-bottom: 12px;">
+                        <h2 style="font-size: 11px; font-weight: 700; color: #2c3e50; margin: 0 0 6px 0; text-transform: uppercase; border-bottom: 2px solid #3498db; padding-bottom: 2px; display: inline-block;">Key Achievements</h2>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-size: 8px;">
+                            <div style="padding: 4px 0;">
+                                <div style="font-weight: 600; color: #2c3e50; margin-bottom: 1px;">Infrastructure Automation</div>
+                                <div style="color: #7f8c8d;">Developed Julia-based infrastructure automation platform managing 4-layer architecture with <strong style="color: #3498db;">22+ microservices</strong></div>
+                            </div>
+                            <div style="padding: 4px 0;">
+                                <div style="font-weight: 600; color: #2c3e50; margin-bottom: 1px;">Scale & Reliability</div>
+                                <div style="color: #7f8c8d;">Maintained <strong style="color: #3498db;">99.99% uptime</strong> for systems serving <strong style="color: #3498db;">10M+ users</strong>, processed <strong style="color: #3498db;">1TB+ daily logs</strong></div>
+                            </div>
+                            <div style="padding: 4px 0;">
+                                <div style="font-weight: 600; color: #2c3e50; margin-bottom: 1px;">Cost Optimization</div>
+                                <div style="color: #7f8c8d;">Orchestrated cost optimization achieving <strong style="color: #3498db;">40%</strong> operational expenditure reduction through strategic resource allocation</div>
+                            </div>
+                            <div style="padding: 4px 0;">
+                                <div style="font-weight: 600; color: #2c3e50; margin-bottom: 1px;">CI/CD Implementation</div>
+                                <div style="color: #7f8c8d;">Architected enterprise-grade CI/CD platforms accelerating deployment velocity by <strong style="color: #3498db;">75%</strong></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- PROFESSIONAL EXPERIENCE -->
+                    <div style="margin-bottom: 12px;">
+                        <h2 style="font-size: 11px; font-weight: 700; color: #2c3e50; margin: 0 0 6px 0; text-transform: uppercase; border-bottom: 2px solid #3498db; padding-bottom: 2px; display: inline-block;">Professional Experience</h2>
+                        
+                        <div style="margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid #ecf0f1;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2px;">
+                                <div style="font-weight: 600; font-size: 10px; color: #2c3e50;">Cloud Engineer</div>
+                                <div style="font-size: 8px; color: #95a5a6;">February 2023 – Present</div>
+                            </div>
+                            <div style="font-size: 9px; color: #3498db; margin-bottom: 3px;">JuliaHub, Bengaluru</div>
+                            <div style="font-size: 8px; color: #7f8c8d; font-style: italic; margin-bottom: 3px;">Build and maintain Julia computing platform serving 10M+ developers globally</div>
+                            <ul style="margin: 0; padding-left: 12px; font-size: 8px; line-height: 1.2;">
+                                <li style="margin-bottom: 1px;">Built <strong>JuliaHubInfrastructure</strong> automation platform with 4-layer architecture (account → cluster → platform → services) integrating Terraform, Kubernetes, Ansible, AWS</li>
+                                <li style="margin-bottom: 1px;">Deployed <strong style="color: #3498db;">20+ cluster components</strong>: EKS, VPC, Karpenter, Cert-Manager, EBS/EFS CSI drivers, AWS Load Balancer Controller, Grafana Cloud, Redpanda</li>
+                                <li style="margin-bottom: 1px;">Maintain infrastructure serving <strong style="color: #3498db;">40,000+ Julia packages</strong> and <strong style="color: #3498db;">10M+ developers</strong> with <strong style="color: #3498db;">99.99% uptime</strong></li>
+                                <li style="margin-bottom: 1px;">Develop operational runbooks covering security, compliance, incident response, CI, alerting, release management</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid #ecf0f1;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2px;">
+                                <div style="font-weight: 600; font-size: 10px; color: #2c3e50;">DevOps Engineer</div>
+                                <div style="font-size: 8px; color: #95a5a6;">July 2019 – February 2023</div>
+                            </div>
+                            <div style="font-size: 9px; color: #3498db; margin-bottom: 3px;">Squads (StackState Platform)</div>
+                            <div style="font-size: 8px; color: #7f8c8d; font-style: italic; margin-bottom: 3px;">Built enterprise observability platform processing 1TB+ daily logs for Fortune 500</div>
+                            <ul style="margin: 0; padding-left: 12px; font-size: 8px; line-height: 1.2;">
+                                <li style="margin-bottom: 1px;">Maintain <strong style="color: #3498db;">4 Kubernetes clusters</strong> with <strong style="color: #3498db;">100+ Helm chart deployments</strong> and ArgoCD GitOps</li>
+                                <li style="margin-bottom: 1px;">Develop E2E testing framework "Beest" with Terraform/Ansible automating <strong style="color: #3498db;">25+ test environments</strong></li>
+                                <li style="margin-bottom: 1px;">Build Docker infrastructure for <strong style="color: #3498db;">20+ services</strong> (elasticsearch, kafka, zookeeper, minio, envoy, hadoop)</li>
+                                <li style="margin-bottom: 1px;">Create Terraform modules for AWS/GCP deployments, automate AMI building reducing deployment time by <strong style="color: #3498db;">75%</strong></li>
+                            </ul>
+                        </div>
+                        
+                        <div style="margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid #ecf0f1;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2px;">
+                                <div style="font-weight: 600; font-size: 10px; color: #2c3e50;">DevOps Engineer</div>
+                                <div style="font-size: 8px; color: #95a5a6;">April 2018 – July 2019</div>
+                            </div>
+                            <div style="font-size: 9px; color: #3498db; margin-bottom: 3px;">Freelance</div>
+                            <ul style="margin: 0; padding-left: 12px; font-size: 8px; line-height: 1.2;">
+                                <li style="margin-bottom: 1px;">Built Jenkins CI/CD automation for multiple clients reducing deployment time by <strong style="color: #3498db;">60%</strong></li>
+                                <li style="margin-bottom: 1px;">Developed Terraform AWS modules, implemented Grafana/Prometheus achieving <strong style="color: #3498db;">99.95% availability</strong></li>
+                            </ul>
+                        </div>
+                        
+                        <div style="margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid #ecf0f1;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2px;">
+                                <div style="font-weight: 600; font-size: 10px; color: #2c3e50;">Senior Systems Engineer</div>
+                                <div style="font-size: 8px; color: #95a5a6;">January 2018 – April 2018</div>
+                            </div>
+                            <div style="font-size: 9px; color: #3498db; margin-bottom: 3px;">Quess Corp</div>
+                            <ul style="margin: 0; padding-left: 12px; font-size: 8px; line-height: 1.2;">
+                                <li style="margin-bottom: 1px;">Managed Kubernetes clusters for retail e-commerce serving <strong style="color: #3498db;">1M+ daily users</strong></li>
+                            </ul>
+                        </div>
+                        
+                        <div style="margin-bottom: 8px;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2px;">
+                                <div style="font-weight: 600; font-size: 10px; color: #2c3e50;">Senior Systems Engineer</div>
+                                <div style="font-size: 8px; color: #95a5a6;">April 2016 – December 2017</div>
+                            </div>
+                            <div style="font-size: 9px; color: #3498db; margin-bottom: 3px;">Cognizant</div>
+                            <ul style="margin: 0; padding-left: 12px; font-size: 8px; line-height: 1.2;">
+                                <li style="margin-bottom: 1px;">Led AWS infrastructure automation using CloudFormation, implemented load balancing reducing overhead by <strong style="color: #3498db;">75%</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- EDUCATION -->
+                    <div>
+                        <h2 style="font-size: 11px; font-weight: 700; color: #2c3e50; margin: 0 0 6px 0; text-transform: uppercase; border-bottom: 2px solid #3498db; padding-bottom: 2px; display: inline-block;">Education</h2>
+                        <div style="font-size: 9px;">
+                            <div style="font-weight: 600; color: #2c3e50;">B.E. Computer Science Engineering</div>
+                            <div style="color: #7f8c8d; font-size: 8px;">Sathyabama University, Chennai | 2014</div>
+                        </div>
+                    </div>
+                    
+                </div>
+            `;
             
             // Create temporary container
             const tempContainer = document.createElement('div');
             tempContainer.style.position = 'absolute';
             tempContainer.style.left = '-9999px';
-            tempContainer.appendChild(clonedElement);
+            tempContainer.innerHTML = resumeHTML;
             document.body.appendChild(tempContainer);
             
             // Configure PDF options
@@ -1187,7 +1120,7 @@
             };
 
             // Generate PDF from the beautiful styled element
-            html2pdf().set(opt).from(clonedElement).save().then(() => {
+            html2pdf().set(opt).from(tempContainer.firstElementChild).save().then(() => {
                 // Clean up
                 document.body.removeChild(tempContainer);
                 button.innerHTML = originalText;

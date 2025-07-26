@@ -1,98 +1,71 @@
 # Johnny Gladwin
 
-**Senior Cloud Platform Engineer | Kubernetes Expert | DevOps Leader**
+**Senior Cloud Platform Engineer**
 
-Hi, thanks for checking my profile out. I'm passionate about building scalable infrastructure and automation frameworks that power enterprise platforms.
+Senior DevOps Engineer with 10+ years building enterprise infrastructure automation frameworks and managing cloud-native platforms at scale. Built **JuliaHubInfrastructure** - comprehensive infrastructure-as-code framework in Julia wrapping Terraform, Kubernetes, AWS, and Ansible.
 
 ## 📞 Contact
 
-If you are interested in working together or discussing opportunities, feel free to reach out to me on [LinkedIn](https://linkedin.com/in/johnny-gladwin-821671a) or email me at johnny.gladwin@outlook.com. I'm always happy to chat about cloud infrastructure, Kubernetes, or Julia programming.
-
-You can also check out my code repositories on [GitHub](https://github.com/jglad20).
+- 📧 johnny.gladwin@outlook.com
+- 📱 +91-7702-549-262  
+- 📍 Vellore, India
+- 💼 [LinkedIn](https://linkedin.com/in/johnny-gladwin-821671a)
+- 🐙 [GitHub](https://github.com/jglad20)
 
 ## 💼 Work Experience
 
 ### **JuliaHub** - _February 2023 to Present_
+**Cloud Engineer**
 
-As a **Cloud Engineer**:
-
-* **Architected JHubInfrastructure** - enterprise automation platform with custom Julia REPL managing 4-layer architecture (account → cluster → platform → services)
-* **Built 20+ cluster components** including EKS, VPC, Karpenter auto-scaling, Cert-Manager, EBS/EFS CSI drivers, AWS Load Balancer Controller, and Grafana Cloud monitoring
-* **Designed platform layer** with RDS databases, WAF security, CloudFront CDN, ALB load balancing, and Cognito authentication systems
-* **Maintain production infrastructure** serving 40,000+ Julia packages and 10M+ developers with 99.99% uptime SLA
-* **Developed operational runbooks** covering security, compliance, incident response, and release management procedures
+* Built **JuliaHubInfrastructure** automation platform with 4-layer architecture integrating Terraform, Kubernetes, Ansible, AWS
+* Deployed 20+ cluster components: EKS, VPC, Karpenter, Cert-Manager, EBS/EFS CSI drivers, AWS Load Balancer Controller, Grafana Cloud, Redpanda
+* Maintain infrastructure serving 40,000+ Julia packages and 10M+ developers with 99.99% uptime
+* Develop operational runbooks covering security, compliance, incident response, CI, alerting, release management
 
 ### **Squads (StackState Platform)** - _July 2019 to February 2023_
+**DevOps Engineer**
 
-As a **DevOps Engineer**:
+* Maintain 4 Kubernetes clusters with 100+ Helm chart deployments and ArgoCD GitOps
+* Develop E2E testing framework "Beest" with Terraform/Ansible automating 25+ test environments
+* Build Docker infrastructure for 20+ services (elasticsearch, kafka, zookeeper, minio, envoy, hadoop)
+* Create Terraform modules for AWS/GCP deployments, automate AMI building reducing deployment time by 75%
 
-* **Maintained 4 Kubernetes clusters** running StackState agent testing with 100+ Helm chart deployments and ArgoCD GitOps
-* **Developed E2E testing framework "Beest"** with Terraform/Ansible automating 25+ test environments and Python pytest validation
-* **Built Docker infrastructure** for 20+ services (elasticsearch, kafka, zookeeper, minio, envoy, hadoop) with automated CI/CD
-* **Created Terraform modules** for AWS/GCP deployments supporting enterprise SaaS tenants with multi-cloud architecture
-* **Implemented observability stack** using Grafana dashboards, OpenTelemetry tracing, and Elasticsearch logging
-* **Automated AMI building** with Packer templates reducing deployment time by 75%
+### **Freelance** - _April 2018 to July 2019_
+**DevOps Engineer**
 
-### **Freelance DevOps Consultant** - _April 2018 to July 2019_
+* Built Jenkins CI/CD automation for multiple clients reducing deployment time by 60%
+* Developed Terraform AWS modules, implemented Grafana/Prometheus achieving 99.95% availability
 
-As a **DevOps Engineer**:
+### **Quess Corp** - _January 2018 to April 2018_
+**Senior Systems Engineer**
 
-* **Built Jenkins CI/CD automation** for multiple clients reducing deployment time by 60%
-* **Developed Terraform AWS modules** for infrastructure provisioning and Hadoop cluster automation
-* **Implemented monitoring solutions** using Grafana/Prometheus achieving 99.95% availability
-
-### **Guess Corp** - _January 2018 to April 2018_
-
-As a **Senior Systems Engineer**:
-
-* **Managed Kubernetes clusters** for retail e-commerce serving 1M+ daily users
-* **Automated multi-cloud deployment** (AWS/GCP) using Ansible and Docker containerization
+* Managed Kubernetes clusters for retail e-commerce serving 1M+ daily users
 
 ### **Cognizant** - _April 2016 to December 2017_
+**Senior Systems Engineer**
 
-As a **Senior Systems Engineer**:
+* Led AWS infrastructure automation using CloudFormation, implemented load balancing reducing overhead by 75%
 
-* **Led AWS infrastructure automation** for enterprise clients using CloudFormation and Auto Scaling
-* **Implemented load balancing** with HAProxy and reverse proxy architecture reducing overhead by 75%
+## 🎓 Education
 
-## 🎓 Education & Certifications
-
-**Education:**
-* B.E. Computer Science Engineering - Sathyabama University, Chennai (2014)
-
-**AWS Certifications:**
-* AWS Certified DevOps Engineer – Professional
-* AWS Certified Solutions Architect – Associate
-
-**Other Certifications:**
-* Certified Kubernetes Administrator (CKA)
-* Google Cloud Professional DevOps Engineer
-* HashiCorp Terraform Associate (In Progress)
-* Julia Programming Language Certification
+* **B.E. Computer Science Engineering** - Sathyabama University, Chennai (2014)
 
 ## 🏆 Key Achievements
 
-* **Architected JHubInfrastructure** - enterprise infrastructure automation platform with custom Julia REPL and comprehensive operational runbooks
-* **Manage production Kubernetes clusters** serving 10M+ users with 99.99% uptime
-* **Built observability platform** processing 1TB+ daily logs with Elasticsearch, Grafana, and custom monitoring solutions
-* **Reduced deployment time by 75%** through GitOps automation and Infrastructure as Code
-* **Optimized infrastructure costs by 40%** through intelligent resource allocation and auto-scaling
-* **Mentored 5+ junior engineers** in Kubernetes, Terraform, Julia programming, and cloud-native practices
+* Developed Julia-based infrastructure automation platform managing 4-layer architecture with 22+ microservices
+* Maintained 99.99% uptime for systems serving 10M+ users, processed 1TB+ daily logs
+* Orchestrated cost optimization achieving 40% operational expenditure reduction
+* Built enterprise-grade CI/CD platforms accelerating deployment velocity by 75%
 
 ## 💻 Technical Skills
 
-**Infrastructure Automation:** Julia REPL, Terraform, Ansible, Nix, Custom Framework Architecture  
-**Container Orchestration:** Kubernetes/EKS, Karpenter, Helm, ArgoCD, KOTS, Cert-Manager  
-**AWS Services:** EKS, VPC, RDS, S3, CloudFront, ALB, WAF, EC2, IAM, Cognito  
-**Observability:** Grafana Cloud, Prometheus, Elasticsearch, Redpanda, Alloy  
-**Development:** Julia, Python, Go, Bash, Docker, Tilt, GitOps, Nix  
-**Security & Compliance:** WAF, IAM Policies, SSO Integration, Security Runbooks
-
-## 📄 Resume Downloads
-
-- [📄 Visual Resume (PDF)](./Johnny_Gladwin_Resume.pdf)
-- [📝 ATS-Optimized Resume (TXT)](./Johnny_Gladwin_Resume_ATS.txt)
+**Cloud Platforms:** AWS (EKS, VPC, RDS, S3, CloudFront, Lambda, ALB, WAF, IAM, Cognito), Azure, GCP, DigitalOcean  
+**Container Orchestration:** Kubernetes/EKS, Karpenter, Helm, ArgoCD, KOTS, Cert-Manager, Docker, Podman  
+**Infrastructure as Code:** Terraform, CloudFormation, Ansible, Pulumi, Nix, Packer, Custom Julia Framework  
+**CI/CD & GitOps:** Jenkins, GitLab CI, GitHub Actions, ArgoCD, Flux, Tekton, Blue-Green Deployments  
+**Monitoring & Observability:** Prometheus, Grafana, Elasticsearch, Fluent Bit, OpenTelemetry, Jaeger, CloudWatch, New Relic  
+**Programming & Scripting:** Julia, Python, Go, Java, Bash/Shell, YAML, JSON, HCL
 
 ---
 
-*Passionate about building scalable infrastructure and automation frameworks. Open to senior DevOps/SRE roles at leading technology companies.* 
+*Visit my [complete resume](https://jglad20.github.io) for detailed experience and technical background.* 
