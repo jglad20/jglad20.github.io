@@ -927,164 +927,75 @@
             button.innerHTML = '<svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path d="M10 3a1 1 0 01.993.883L11 4v5.585l1.293-1.292a1 1 0 011.32-.083l.094.083a1 1 0 01.083 1.32l-.083.094-3 3a1 1 0 01-1.32.083l-.094-.083-3-3a1 1 0 011.32-1.497l.094.083L9 9.585V4a1 1 0 011-1zM5 13a1 1 0 01.993.883L6 14v1a1 1 0 00.883.993L7 16h6a1 1 0 00.993-.883L14 15v-1a1 1 0 011.993-.117L16 14v1a3 3 0 01-2.824 2.995L13 18H7a3 3 0 01-2.995-2.824L4 15v-1a1 1 0 011-1z"/></svg> Generating PDF...';
             button.disabled = true;
 
-            // Create a completely new dark-themed element for PDF
+            // Simple approach - clone and apply basic dark styling
             const originalElement = document.querySelector('.container');
-            
-            // Create a wrapper with dark background
-            const pdfWrapper = document.createElement('div');
-            pdfWrapper.style.cssText = `
-                background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-                color: #ffffff;
-                font-family: 'Inter', sans-serif;
-                padding: 60px;
-                min-height: 100vh;
-                width: 8.5in;
-            `;
-            
-            // Clone and style the content
             const clonedElement = originalElement.cloneNode(true);
             
-            // Force all text to be white and remove animations
+            // Apply basic styling directly to cloned element
+            clonedElement.style.backgroundColor = '#1a1a1a';
+            clonedElement.style.color = '#ffffff';
+            clonedElement.style.padding = '40px';
+            clonedElement.style.fontFamily = 'Inter, sans-serif';
+            
+            // Remove animations and problematic styles
             const allElements = clonedElement.querySelectorAll('*');
             allElements.forEach(el => {
-                el.style.color = '#ffffff';
                 el.style.animation = 'none';
                 el.style.transition = 'none';
-                el.style.boxShadow = 'none';
+                el.style.transform = 'none';
+                el.style.filter = 'none';
             });
             
-            // Style the main container
-            clonedElement.style.cssText = `
-                background: transparent;
-                color: #ffffff;
-                padding: 0;
-                box-shadow: none;
-            `;
+            // Make all text white
+            const textSelectors = 'h1, h2, h3, h4, h5, h6, p, span, div, li, a, strong, em';
+            const textElements = clonedElement.querySelectorAll(textSelectors);
+            textElements.forEach(el => {
+                el.style.color = '#ffffff';
+            });
             
-            // Style header with gradient
+            // Style header
             const header = clonedElement.querySelector('.header');
             if (header) {
-                header.style.cssText = `
-                    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-                    padding: 40px;
-                    border-radius: 16px;
-                    margin-bottom: 40px;
-                    border: none;
-                `;
+                header.style.background = 'linear-gradient(135deg, #6366f1, #8b5cf6)';
+                header.style.borderRadius = '12px';
+                header.style.padding = '32px';
+                header.style.marginBottom = '32px';
             }
-            
-            // Style the main title
-            const h1 = clonedElement.querySelector('h1');
-            if (h1) {
-                h1.style.cssText = `
-                    color: #ffffff;
-                    font-size: 48px;
-                    font-weight: 900;
-                    text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
-                    margin-bottom: 16px;
-                `;
-            }
-            
-            // Style subtitle
-            const subtitle = clonedElement.querySelector('.subtitle');
-            if (subtitle) {
-                subtitle.style.cssText = `
-                    color: rgba(255, 255, 255, 0.9);
-                    font-size: 20px;
-                    margin-bottom: 24px;
-                `;
-            }
-            
-            // Style section titles
-            const sectionTitles = clonedElement.querySelectorAll('.section-title');
-            sectionTitles.forEach(title => {
-                title.style.cssText = `
-                    color: #ffffff;
-                    font-size: 32px;
-                    font-weight: 700;
-                    margin-bottom: 24px;
-                    border-bottom: 3px solid #8b5cf6;
-                    padding-bottom: 8px;
-                `;
-            });
             
             // Style sections
             const sections = clonedElement.querySelectorAll('.section');
             sections.forEach(section => {
-                section.style.cssText = `
-                    background: rgba(255, 255, 255, 0.05);
-                    border: 1px solid rgba(255, 255, 255, 0.1);
-                    border-radius: 12px;
-                    padding: 32px;
-                    margin-bottom: 32px;
-                `;
+                section.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                section.style.borderRadius = '8px';
+                section.style.padding = '24px';
+                section.style.marginBottom = '24px';
+                section.style.border = '1px solid rgba(255, 255, 255, 0.2)';
             });
             
-            // Style achievement cards and experience items
-            const cards = clonedElement.querySelectorAll('.achievement-card, .experience-item');
-            cards.forEach(card => {
-                card.style.cssText = `
-                    background: rgba(255, 255, 255, 0.08);
-                    border: 1px solid rgba(255, 255, 255, 0.15);
-                    border-radius: 8px;
-                    padding: 24px;
-                    margin-bottom: 16px;
-                `;
-            });
-            
-            // Style paragraphs and text
-            const textElements = clonedElement.querySelectorAll('p, li, span, div');
-            textElements.forEach(el => {
-                if (!el.classList.contains('metric') && !el.querySelector('.metric')) {
-                    el.style.color = '#e5e5e5';
-                }
-            });
-            
-            // Style metrics with purple glow
+            // Style metrics
             const metrics = clonedElement.querySelectorAll('.metric');
             metrics.forEach(metric => {
-                metric.style.cssText = `
-                    color: #c084fc;
-                    font-weight: 800;
-                    text-shadow: 0 0 20px rgba(192, 132, 252, 0.6);
-                `;
+                metric.style.color = '#c084fc';
+                metric.style.fontWeight = 'bold';
             });
             
-            // Style links
-            const links = clonedElement.querySelectorAll('a');
-            links.forEach(link => {
-                link.style.cssText = `
-                    color: #a855f7;
-                    text-decoration: none;
-                `;
-            });
-            
-            // Style contact info
-            const contactSpans = clonedElement.querySelectorAll('.contact-info span');
-            contactSpans.forEach(span => {
-                span.style.color = 'rgba(255, 255, 255, 0.8)';
-            });
-            
-            // Hide download section
+            // Hide download button
             const downloadSection = clonedElement.querySelector('.download-section');
             if (downloadSection) {
                 downloadSection.style.display = 'none';
             }
             
-            // Add the styled content to the wrapper
-            pdfWrapper.appendChild(clonedElement);
-            
-            // Create temporary container for PDF generation
+            // Create temporary container
             const tempContainer = document.createElement('div');
             tempContainer.style.position = 'absolute';
             tempContainer.style.left = '-9999px';
-            tempContainer.style.top = '0';
-            tempContainer.appendChild(pdfWrapper);
+            tempContainer.style.backgroundColor = '#1a1a1a';
+            tempContainer.appendChild(clonedElement);
             document.body.appendChild(tempContainer);
             
             // Configure PDF options
             const opt = {
-                margin: [0, 0, 0, 0],
+                margin: [0.5, 0.5, 0.5, 0.5],
                 filename: 'Johnny_Gladwin_Resume.pdf',
                 image: { 
                     type: 'jpeg', 
@@ -1093,10 +1004,8 @@
                 html2canvas: { 
                     scale: 2,
                     useCORS: true,
-                    backgroundColor: '#0a0a0a',
-                    logging: false,
-                    width: 816, // 8.5 inches at 96 DPI
-                    height: 1056 // 11 inches at 96 DPI
+                    backgroundColor: '#1a1a1a',
+                    logging: false
                 },
                 jsPDF: { 
                     unit: 'in', 
@@ -1105,8 +1014,8 @@
                 }
             };
 
-            // Generate PDF from the wrapper element
-            html2pdf().set(opt).from(pdfWrapper).save().then(() => {
+            // Generate PDF from the cloned element
+            html2pdf().set(opt).from(clonedElement).save().then(() => {
                 // Clean up
                 document.body.removeChild(tempContainer);
                 button.innerHTML = originalText;
