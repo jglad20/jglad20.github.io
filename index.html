@@ -927,270 +927,152 @@
             button.innerHTML = '<svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path d="M10 3a1 1 0 01.993.883L11 4v5.585l1.293-1.292a1 1 0 011.32-.083l.094.083a1 1 0 01.083 1.32l-.083.094-3 3a1 1 0 01-1.32.083l-.094-.083-3-3a1 1 0 011.32-1.497l.094.083L9 9.585V4a1 1 0 011-1zM5 13a1 1 0 01.993.883L6 14v1a1 1 0 00.883.993L7 16h6a1 1 0 00.993-.883L14 15v-1a1 1 0 011.993-.117L16 14v1a3 3 0 01-2.824 2.995L13 18H7a3 3 0 01-2.995-2.824L4 15v-1a1 1 0 011-1z"/></svg> Generating PDF...';
             button.disabled = true;
 
-            // Create PROFESSIONAL, MODERN resume that will land you the job
+            // Create a WORKING, professional PDF - prioritize content over fancy design
             const originalElement = document.querySelector('.container');
             const clonedElement = originalElement.cloneNode(true);
             
-            // Premium professional styling
-            clonedElement.style.cssText = `
-                background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
-                color: #1e293b;
-                font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-                padding: 48px;
-                line-height: 1.6;
-                box-shadow: none;
-            `;
+            // Simple, reliable styling that html2pdf can handle
+            clonedElement.style.backgroundColor = '#ffffff';
+            clonedElement.style.color = '#333333';
+            clonedElement.style.fontFamily = 'Arial, sans-serif';
+            clonedElement.style.padding = '40px';
+            clonedElement.style.lineHeight = '1.5';
             
-            // Remove animations but keep professional layout
+            // Remove ALL problematic styles
             const allElements = clonedElement.querySelectorAll('*');
             allElements.forEach(el => {
+                // Strip out everything that could break PDF generation
                 el.style.animation = 'none';
                 el.style.transition = 'none';
+                el.style.transform = 'none';
+                el.style.filter = 'none';
+                el.style.backdropFilter = 'none';
+                el.style.boxShadow = 'none';
+                el.style.textShadow = 'none';
+                el.style.background = 'none';
+                el.style.backgroundImage = 'none';
+                el.style.borderRadius = '0px';
+                
+                // Ensure text is visible
+                el.style.color = '#333333';
             });
             
-            // STUNNING header with executive styling
+            // Clean header styling
             const header = clonedElement.querySelector('.header');
             if (header) {
-                header.style.cssText = `
-                    background: linear-gradient(135deg, #1e40af 0%, #3730a3 50%, #581c87 100%);
-                    color: #ffffff;
-                    padding: 48px 40px;
-                    text-align: center;
-                    margin: -48px -48px 40px -48px;
-                    position: relative;
-                `;
-                
-                // Add subtle pattern overlay
-                header.style.backgroundImage = `
-                    linear-gradient(135deg, #1e40af 0%, #3730a3 50%, #581c87 100%),
-                    radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 50%)
-                `;
+                header.style.backgroundColor = '#2563eb';
+                header.style.color = '#ffffff';
+                header.style.padding = '30px';
+                header.style.textAlign = 'center';
+                header.style.marginBottom = '30px';
+                header.style.border = 'none';
+                header.style.borderRadius = '0px';
             }
             
-            // Executive-level name styling
-            const h1 = clonedElement.querySelector('h1');
-            if (h1) {
-                h1.style.cssText = `
-                    color: #ffffff;
-                    font-size: 52px;
-                    font-weight: 800;
-                    letter-spacing: -1px;
-                    margin: 0 0 16px 0;
-                `;
-            }
-            
-            // Professional subtitle
-            const subtitle = clonedElement.querySelector('.subtitle');
-            if (subtitle) {
-                subtitle.style.cssText = `
-                    color: rgba(255,255,255,0.95);
-                    font-size: 22px;
-                    font-weight: 500;
-                    margin: 0 0 32px 0;
-                    letter-spacing: 0.5px;
-                `;
-            }
-            
-            // Elegant contact info
-            const contactInfo = clonedElement.querySelector('.contact-info');
-            if (contactInfo) {
-                contactInfo.style.cssText = `
-                    color: rgba(255,255,255,0.9);
-                    font-size: 15px;
-                    font-weight: 400;
-                    line-height: 1.8;
-                `;
-            }
-            
-            // Force all header text to be white
+            // Make header text white
             if (header) {
                 const headerElements = header.querySelectorAll('*');
                 headerElements.forEach(el => {
-                    if (!el.style.color || el.style.color === 'rgb(0, 0, 0)') {
-                        el.style.color = '#ffffff';
-                    }
+                    el.style.color = '#ffffff';
+                    el.style.fontWeight = 'bold';
                 });
             }
             
-            // Premium section styling
-            const sections = clonedElement.querySelectorAll('.section');
-            sections.forEach(section => {
-                section.style.cssText = `
-                    background: #ffffff;
-                    border: 1px solid #e2e8f0;
-                    border-left: 4px solid #3730a3;
-                    border-radius: 8px;
-                    padding: 32px;
-                    margin-bottom: 32px;
-                    box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.1);
-                `;
-            });
-            
-            // Executive section titles
-            const sectionTitles = clonedElement.querySelectorAll('.section-title');
-            sectionTitles.forEach(title => {
-                title.style.cssText = `
-                    color: #1e293b;
-                    font-size: 28px;
-                    font-weight: 700;
-                    margin: 0 0 24px 0;
-                    padding-bottom: 12px;
-                    border-bottom: 2px solid #e2e8f0;
-                    position: relative;
-                `;
-                
-                // Add accent line
-                const accent = document.createElement('div');
-                accent.style.cssText = `
-                    position: absolute;
-                    bottom: -2px;
-                    left: 0;
-                    width: 60px;
-                    height: 2px;
-                    background: linear-gradient(90deg, #3730a3, #581c87);
-                `;
-                title.appendChild(accent);
-            });
-            
-            // Professional achievement cards
-            const achievementCards = clonedElement.querySelectorAll('.achievement-card');
-            achievementCards.forEach(card => {
-                card.style.cssText = `
-                    background: linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%);
-                    border: 1px solid #e2e8f0;
-                    border-radius: 6px;
-                    padding: 24px;
-                    margin-bottom: 16px;
-                    position: relative;
-                `;
-                
-                // Add subtle left accent
-                const accent = document.createElement('div');
-                accent.style.cssText = `
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 3px;
-                    height: 100%;
-                    background: linear-gradient(180deg, #3730a3, #581c87);
-                    border-radius: 6px 0 0 6px;
-                `;
-                card.insertBefore(accent, card.firstChild);
-            });
-            
-            // Experience items styling
-            const experienceItems = clonedElement.querySelectorAll('.experience-item');
-            experienceItems.forEach(item => {
-                item.style.cssText = `
-                    background: #ffffff;
-                    border: 1px solid #e2e8f0;
-                    border-radius: 6px;
-                    padding: 28px;
-                    margin-bottom: 20px;
-                    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-                `;
-            });
-            
-            // Skills grid professional styling
-            const skillsGrid = clonedElement.querySelector('.skills-grid');
-            if (skillsGrid) {
-                skillsGrid.style.cssText = `
-                    display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                    gap: 20px;
-                    margin-top: 24px;
-                `;
+            // Make name bigger
+            const h1 = clonedElement.querySelector('h1');
+            if (h1) {
+                h1.style.fontSize = '36px';
+                h1.style.fontWeight = 'bold';
+                h1.style.color = '#ffffff';
+                h1.style.margin = '0 0 10px 0';
             }
             
-            // Skill category cards
-            const skillCategories = clonedElement.querySelectorAll('.skill-category');
-            skillCategories.forEach(category => {
-                category.style.cssText = `
-                    background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
-                    border: 1px solid #e2e8f0;
-                    border-radius: 6px;
-                    padding: 20px;
-                    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-                `;
-                
-                // Style category headers
-                const categoryHeader = category.querySelector('h3');
-                if (categoryHeader) {
-                    categoryHeader.style.cssText = `
-                        color: #3730a3;
-                        font-size: 16px;
-                        font-weight: 600;
-                        margin: 0 0 12px 0;
-                    `;
-                }
+            // Style subtitle
+            const subtitle = clonedElement.querySelector('.subtitle');
+            if (subtitle) {
+                subtitle.style.fontSize = '18px';
+                subtitle.style.color = '#ffffff';
+                subtitle.style.margin = '0 0 20px 0';
+            }
+            
+            // Clean section styling
+            const sections = clonedElement.querySelectorAll('.section');
+            sections.forEach((section, index) => {
+                section.style.backgroundColor = index % 2 === 0 ? '#f8f9fa' : '#ffffff';
+                section.style.border = '1px solid #dee2e6';
+                section.style.padding = '25px';
+                section.style.marginBottom = '20px';
+                section.style.borderRadius = '0px';
             });
             
-            // Premium metrics highlighting
+            // Clean section titles
+            const sectionTitles = clonedElement.querySelectorAll('.section-title');
+            sectionTitles.forEach(title => {
+                title.style.color = '#2563eb';
+                title.style.fontSize = '22px';
+                title.style.fontWeight = 'bold';
+                title.style.marginBottom = '15px';
+                title.style.borderBottom = '2px solid #2563eb';
+                title.style.paddingBottom = '5px';
+            });
+            
+            // Style cards simply
+            const cards = clonedElement.querySelectorAll('.achievement-card, .experience-item, .skill-category');
+            cards.forEach(card => {
+                card.style.backgroundColor = '#ffffff';
+                card.style.border = '1px solid #e0e0e0';
+                card.style.padding = '15px';
+                card.style.marginBottom = '10px';
+                card.style.borderRadius = '0px';
+            });
+            
+            // Highlight metrics
             const metrics = clonedElement.querySelectorAll('.metric');
             metrics.forEach(metric => {
-                metric.style.cssText = `
-                    color: #ffffff;
-                    background: linear-gradient(135deg, #3730a3, #581c87);
-                    font-weight: 700;
-                    padding: 3px 8px;
-                    border-radius: 4px;
-                    font-size: 0.95em;
-                `;
+                metric.style.color = '#ffffff';
+                metric.style.backgroundColor = '#2563eb';
+                metric.style.padding = '2px 6px';
+                metric.style.fontWeight = 'bold';
+                metric.style.borderRadius = '0px';
             });
             
-            // Professional links
-            const links = clonedElement.querySelectorAll('a');
-            links.forEach(link => {
-                if (!link.closest('.header')) {
-                    link.style.cssText = `
-                        color: #3730a3;
-                        text-decoration: none;
-                        font-weight: 500;
-                        border-bottom: 1px solid transparent;
-                    `;
-                }
-            });
-            
-            // Job titles and company names
+            // Make job titles stand out
             const jobTitles = clonedElement.querySelectorAll('.job-title');
             jobTitles.forEach(title => {
-                title.style.cssText = `
-                    color: #1e293b;
-                    font-size: 18px;
-                    font-weight: 600;
-                    margin-bottom: 4px;
-                `;
+                title.style.color = '#2563eb';
+                title.style.fontSize = '16px';
+                title.style.fontWeight = 'bold';
             });
             
+            // Company names
             const companies = clonedElement.querySelectorAll('.company');
             companies.forEach(company => {
-                company.style.cssText = `
-                    color: #3730a3;
-                    font-size: 16px;
-                    font-weight: 500;
-                `;
+                company.style.color = '#666666';
+                company.style.fontSize = '14px';
+                company.style.fontWeight = 'bold';
             });
             
-            // Dates styling
+            // Dates
             const dates = clonedElement.querySelectorAll('.date');
             dates.forEach(date => {
-                date.style.cssText = `
-                    color: #64748b;
-                    font-size: 14px;
-                    font-weight: 400;
-                `;
+                date.style.color = '#888888';
+                date.style.fontSize = '12px';
             });
             
-            // Make all text properly colored
-            const textElements = clonedElement.querySelectorAll('p, span, div, li, strong, em');
-            textElements.forEach(el => {
-                if (!el.closest('.header') && !el.classList.contains('metric') && !el.closest('.metric')) {
-                    el.style.color = '#374151';
-                }
+            // Links
+            const links = clonedElement.querySelectorAll('a');
+            links.forEach(link => {
+                link.style.color = '#2563eb';
+                link.style.textDecoration = 'underline';
             });
             
-            // Hide download section
+            // Skills grid - make it simple
+            const skillsGrid = clonedElement.querySelector('.skills-grid');
+            if (skillsGrid) {
+                skillsGrid.style.display = 'block';
+            }
+            
+            // Hide download button
             const downloadSection = clonedElement.querySelector('.download-section');
             if (downloadSection) {
                 downloadSection.style.display = 'none';
