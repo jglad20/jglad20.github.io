@@ -616,19 +616,19 @@
                 </div>
                 <div class="achievement-card">
                     <h3>Cost Optimization</h3>
-                    <p>Reduced infrastructure costs by <span class="metric">40%</span> through resource optimization, auto-scaling improvements, and efficient deployment strategies while maintaining performance standards.</p>
+                    <p>Orchestrated comprehensive cost optimization initiatives, achieving <span class="metric">40%</span> operational expenditure reduction through strategic resource allocation, dynamic scaling algorithms, and deployment workflow optimization while maintaining SLA compliance.</p>
                 </div>
                 <div class="achievement-card">
                     <h3>CI/CD Implementation</h3>
-                    <p>Built self-service CI/CD platforms enabling rapid deployments. Reduced deployment time by <span class="metric">75%</span> through automation and Infrastructure as Code practices.</p>
+                    <p>Architected enterprise-grade CI/CD platforms with self-service capabilities, accelerating deployment velocity by <span class="metric">75%</span> through comprehensive automation frameworks and Infrastructure as Code methodologies.</p>
                 </div>
                 <div class="achievement-card">
                     <h3>Team Collaboration</h3>
-                    <p>Worked effectively in cross-functional teams. Mentored junior engineers in Kubernetes, Terraform, and cloud-native practices. Contributed to engineering best practices.</p>
+                    <p>Established engineering excellence standards and mentored cross-functional teams in advanced Kubernetes orchestration, infrastructure automation, and cloud-native architectural patterns. Drove adoption of DevOps best practices across engineering organizations.</p>
                 </div>
                 <div class="achievement-card">
                     <h3>Security Implementation</h3>
-                    <p>Implemented security best practices including IAM policies, WAF rules, and automated patching. Maintained compliance with enterprise security standards.</p>
+                    <p>Designed and implemented comprehensive security frameworks encompassing IAM governance, WAF policies, and automated vulnerability remediation, ensuring adherence to enterprise compliance standards and regulatory requirements.</p>
             </div>
         </div>
         </section>
@@ -758,43 +758,76 @@
 
     <script>
         function downloadPDF() {
+            // Check if html2pdf is loaded
+            if (typeof html2pdf === 'undefined') {
+                alert('PDF library is still loading. Please wait a moment and try again.');
+                return;
+            }
+
             // Show loading state
             const button = event.target.closest('.download-btn');
             const originalText = button.innerHTML;
-            button.innerHTML = '<span>Generating PDF...</span>';
+            button.innerHTML = '<svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path d="M10 3a1 1 0 01.993.883L11 4v5.585l1.293-1.292a1 1 0 011.32-.083l.094.083a1 1 0 01.083 1.32l-.083.094-3 3a1 1 0 01-1.32.083l-.094-.083-3-3a1 1 0 011.32-1.497l.094.083L9 9.585V4a1 1 0 011-1zM5 13a1 1 0 01.993.883L6 14v1a1 1 0 00.883.993L7 16h6a1 1 0 00.993-.883L14 15v-1a1 1 0 011.993-.117L16 14v1a3 3 0 01-2.824 2.995L13 18H7a3 3 0 01-2.995-2.824L4 15v-1a1 1 0 011-1z"/></svg> Generating PDF...';
             button.disabled = true;
 
+            // Hide the download button temporarily for cleaner PDF
+            const downloadSection = document.querySelector('.download-section');
+            downloadSection.style.display = 'none';
+
             // Configure PDF options
-            const element = document.body;
+            const element = document.querySelector('.container');
             const opt = {
-                margin: [0.5, 0.5, 0.5, 0.5],
+                margin: [0.3, 0.3, 0.3, 0.3],
                 filename: 'Johnny_Gladwin_Resume.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
+                image: { 
+                    type: 'jpeg', 
+                    quality: 0.95 
+                },
                 html2canvas: { 
-                    scale: 2,
+                    scale: 1.5,
                     useCORS: true,
                     allowTaint: false,
-                    backgroundColor: '#050505'
+                    backgroundColor: '#050505',
+                    logging: false
                 },
                 jsPDF: { 
                     unit: 'in', 
-                    format: 'letter', 
-                    orientation: 'portrait' 
-                }
+                    format: 'a4', 
+                    orientation: 'portrait',
+                    compress: true
+                },
+                pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
             };
 
             // Generate PDF
             html2pdf().set(opt).from(element).save().then(() => {
+                // Show the download button again
+                downloadSection.style.display = 'flex';
                 // Reset button state
                 button.innerHTML = originalText;
                 button.disabled = false;
             }).catch((error) => {
                 console.error('PDF generation failed:', error);
+                // Show the download button again
+                downloadSection.style.display = 'flex';
                 button.innerHTML = originalText;
                 button.disabled = false;
-                alert('PDF generation failed. Please try again.');
+                alert('PDF generation failed. Please ensure you have a stable internet connection and try again.');
             });
         }
+
+        // Wait for the page to fully load before enabling PDF download
+        window.addEventListener('load', function() {
+            const downloadBtn = document.querySelector('.download-btn');
+            if (downloadBtn && typeof html2pdf === 'undefined') {
+                setTimeout(() => {
+                    if (typeof html2pdf === 'undefined') {
+                        downloadBtn.innerHTML = '<svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"/></svg> PDF Unavailable';
+                        downloadBtn.disabled = true;
+                    }
+                }, 3000);
+            }
+        });
     </script>
 </body>
 </html> 
