@@ -927,60 +927,96 @@
             button.innerHTML = '<svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path d="M10 3a1 1 0 01.993.883L11 4v5.585l1.293-1.292a1 1 0 011.32-.083l.094.083a1 1 0 01.083 1.32l-.083.094-3 3a1 1 0 01-1.32.083l-.094-.083-3-3a1 1 0 011.32-1.497l.094.083L9 9.585V4a1 1 0 011-1zM5 13a1 1 0 01.993.883L6 14v1a1 1 0 00.883.993L7 16h6a1 1 0 00.993-.883L14 15v-1a1 1 0 011.993-.117L16 14v1a3 3 0 01-2.824 2.995L13 18H7a3 3 0 01-2.995-2.824L4 15v-1a1 1 0 011-1z"/></svg> Generating PDF...';
             button.disabled = true;
 
-            // Switch to PDF-friendly light theme
-            document.body.classList.add('pdf-mode');
+            // Clone the container for PDF generation
+            const element = document.querySelector('.container');
+            const clonedElement = element.cloneNode(true);
+            
+            // Apply inline styles to the cloned element
+            clonedElement.style.backgroundColor = '#ffffff';
+            clonedElement.style.color = '#000000';
+            
+            // Remove animations and effects from clone
+            const allElements = clonedElement.querySelectorAll('*');
+            allElements.forEach(el => {
+                el.style.color = '#000000';
+                el.style.backgroundColor = 'transparent';
+                el.style.animation = 'none';
+                el.style.transition = 'none';
+                el.style.boxShadow = 'none';
+                el.style.textShadow = 'none';
+            });
+            
+            // Style specific elements
+            const headers = clonedElement.querySelectorAll('h1, h2, h3, h4, h5, h6');
+            headers.forEach(h => {
+                h.style.color = '#000000';
+                h.style.fontWeight = 'bold';
+            });
+            
+            const paragraphs = clonedElement.querySelectorAll('p, li, span, div');
+            paragraphs.forEach(p => {
+                p.style.color = '#000000';
+            });
+            
+            const links = clonedElement.querySelectorAll('a');
+            links.forEach(a => {
+                a.style.color = '#1d4ed8';
+            });
+            
+            const metrics = clonedElement.querySelectorAll('.metric');
+            metrics.forEach(m => {
+                m.style.color = '#1d4ed8';
+                m.style.fontWeight = 'bold';
+            });
+            
+            // Hide download section in clone
+            const downloadSection = clonedElement.querySelector('.download-section');
+            if (downloadSection) {
+                downloadSection.style.display = 'none';
+            }
+            
+            // Create temporary container for PDF generation
+            const tempContainer = document.createElement('div');
+            tempContainer.style.position = 'absolute';
+            tempContainer.style.left = '-9999px';
+            tempContainer.style.backgroundColor = '#ffffff';
+            tempContainer.appendChild(clonedElement);
+            document.body.appendChild(tempContainer);
+            
+            // Configure PDF options
+            const opt = {
+                margin: [0.5, 0.5, 0.5, 0.5],
+                filename: 'Johnny_Gladwin_Resume.pdf',
+                image: { 
+                    type: 'jpeg', 
+                    quality: 0.98 
+                },
+                html2canvas: { 
+                    scale: 2,
+                    useCORS: true,
+                    backgroundColor: '#ffffff',
+                    logging: false
+                },
+                jsPDF: { 
+                    unit: 'in', 
+                    format: 'letter', 
+                    orientation: 'portrait'
+                }
+            };
 
-            // Force styles to update immediately
-            document.body.offsetHeight; // Force reflow
-
-            // Longer delay to ensure CSS changes are fully applied
-            setTimeout(() => {
-                // Double-check that pdf-mode is applied
-                console.log('PDF mode active:', document.body.classList.contains('pdf-mode'));
-                
-                // Configure PDF options
-                const element = document.querySelector('.container');
-                const opt = {
-                    margin: [0.5, 0.5, 0.5, 0.5],
-                    filename: 'Johnny_Gladwin_Resume.pdf',
-                    image: { 
-                        type: 'jpeg', 
-                        quality: 1.0 
-                    },
-                    html2canvas: { 
-                        scale: 3,
-                        useCORS: true,
-                        allowTaint: false,
-                        backgroundColor: '#ffffff',
-                        logging: true,
-                        letterRendering: true,
-                        dpi: 300,
-                        foreignObjectRendering: true
-                    },
-                    jsPDF: { 
-                        unit: 'in', 
-                        format: 'a4', 
-                        orientation: 'portrait',
-                        compress: true
-                    },
-                    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-                };
-
-                // Generate PDF
-                html2pdf().set(opt).from(element).save().then(() => {
-                    // Restore original theme
-                    document.body.classList.remove('pdf-mode');
-                    button.innerHTML = originalText;
-                    button.disabled = false;
-                }).catch((error) => {
-                    console.error('PDF generation failed:', error);
-                    // Restore original theme
-                    document.body.classList.remove('pdf-mode');
-                    button.innerHTML = originalText;
-                    button.disabled = false;
-                    alert('PDF generation failed. Please ensure you have a stable internet connection and try again.');
-                });
-            }, 500);
+            // Generate PDF from the cloned element
+            html2pdf().set(opt).from(clonedElement).save().then(() => {
+                // Clean up
+                document.body.removeChild(tempContainer);
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }).catch((error) => {
+                console.error('PDF generation failed:', error);
+                document.body.removeChild(tempContainer);
+                button.innerHTML = originalText;
+                button.disabled = false;
+                alert('PDF generation failed. Please try again.');
+            });
         }
 
         // Wait for the page to fully load before enabling PDF download
