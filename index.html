@@ -44,6 +44,113 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
+        /* PDF-specific styles */
+        @media print {
+            :root {
+                --bg-primary: #ffffff;
+                --bg-secondary: #f8f9fa;
+                --bg-card: rgba(0, 0, 0, 0.03);
+                --bg-card-hover: rgba(0, 0, 0, 0.05);
+                --text-primary: #1a1a1a;
+                --text-secondary: #4a4a4a;
+                --text-muted: #666666;
+                --border-color: rgba(0, 0, 0, 0.12);
+                --accent-primary: #2563eb;
+                --accent-secondary: #7c3aed;
+                --glow: rgba(37, 99, 235, 0.2);
+            }
+
+            body::before,
+            body::after {
+                display: none;
+            }
+
+            .download-section {
+                display: none !important;
+            }
+
+            .container {
+                background: white;
+                box-shadow: none;
+            }
+
+            .header {
+                background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+                border: 1px solid #dee2e6;
+            }
+
+            .section {
+                border: 1px solid #dee2e6;
+                background: #ffffff;
+            }
+
+            .achievement-card,
+            .experience-item {
+                border: 1px solid #dee2e6;
+                background: #f8f9fa;
+            }
+
+            .metric {
+                color: #2563eb;
+                font-weight: 700;
+            }
+
+            a {
+                color: #2563eb;
+                text-decoration: underline;
+            }
+        }
+
+        /* PDF generation class */
+        .pdf-mode {
+            --bg-primary: #ffffff !important;
+            --bg-secondary: #f8f9fa !important;
+            --bg-card: rgba(0, 0, 0, 0.03) !important;
+            --bg-card-hover: rgba(0, 0, 0, 0.05) !important;
+            --text-primary: #1a1a1a !important;
+            --text-secondary: #4a4a4a !important;
+            --text-muted: #666666 !important;
+            --border-color: rgba(0, 0, 0, 0.12) !important;
+            --accent-primary: #2563eb !important;
+            --accent-secondary: #7c3aed !important;
+            --glow: rgba(37, 99, 235, 0.2) !important;
+        }
+
+        .pdf-mode body::before,
+        .pdf-mode body::after {
+            display: none !important;
+        }
+
+        .pdf-mode .container {
+            background: white !important;
+            box-shadow: none !important;
+        }
+
+        .pdf-mode .header {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) !important;
+            border: 1px solid #dee2e6 !important;
+        }
+
+        .pdf-mode .section {
+            border: 1px solid #dee2e6 !important;
+            background: #ffffff !important;
+        }
+
+        .pdf-mode .achievement-card,
+        .pdf-mode .experience-item {
+            border: 1px solid #dee2e6 !important;
+            background: #f8f9fa !important;
+        }
+
+        .pdf-mode .metric {
+            color: #2563eb !important;
+            font-weight: 700 !important;
+        }
+
+        .pdf-mode a {
+            color: #2563eb !important;
+        }
+
         /* Background Effects */
         body::before {
             content: '';
@@ -770,50 +877,57 @@
             button.innerHTML = '<svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path d="M10 3a1 1 0 01.993.883L11 4v5.585l1.293-1.292a1 1 0 011.32-.083l.094.083a1 1 0 01.083 1.32l-.083.094-3 3a1 1 0 01-1.32.083l-.094-.083-3-3a1 1 0 011.32-1.497l.094.083L9 9.585V4a1 1 0 011-1zM5 13a1 1 0 01.993.883L6 14v1a1 1 0 00.883.993L7 16h6a1 1 0 00.993-.883L14 15v-1a1 1 0 011.993-.117L16 14v1a3 3 0 01-2.824 2.995L13 18H7a3 3 0 01-2.995-2.824L4 15v-1a1 1 0 011-1z"/></svg> Generating PDF...';
             button.disabled = true;
 
+            // Switch to PDF-friendly light theme
+            document.body.classList.add('pdf-mode');
+            
             // Hide the download button temporarily for cleaner PDF
             const downloadSection = document.querySelector('.download-section');
             downloadSection.style.display = 'none';
 
-            // Configure PDF options
-            const element = document.querySelector('.container');
-            const opt = {
-                margin: [0.3, 0.3, 0.3, 0.3],
-                filename: 'Johnny_Gladwin_Resume.pdf',
-                image: { 
-                    type: 'jpeg', 
-                    quality: 0.95 
-                },
-                html2canvas: { 
-                    scale: 1.5,
-                    useCORS: true,
-                    allowTaint: false,
-                    backgroundColor: '#050505',
-                    logging: false
-                },
-                jsPDF: { 
-                    unit: 'in', 
-                    format: 'a4', 
-                    orientation: 'portrait',
-                    compress: true
-                },
-                pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-            };
+            // Small delay to ensure CSS changes are applied
+            setTimeout(() => {
+                // Configure PDF options
+                const element = document.querySelector('.container');
+                const opt = {
+                    margin: [0.3, 0.3, 0.3, 0.3],
+                    filename: 'Johnny_Gladwin_Resume.pdf',
+                    image: { 
+                        type: 'jpeg', 
+                        quality: 0.98 
+                    },
+                    html2canvas: { 
+                        scale: 2,
+                        useCORS: true,
+                        allowTaint: false,
+                        backgroundColor: '#ffffff',
+                        logging: false
+                    },
+                    jsPDF: { 
+                        unit: 'in', 
+                        format: 'a4', 
+                        orientation: 'portrait',
+                        compress: true
+                    },
+                    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+                };
 
-            // Generate PDF
-            html2pdf().set(opt).from(element).save().then(() => {
-                // Show the download button again
-                downloadSection.style.display = 'flex';
-                // Reset button state
-                button.innerHTML = originalText;
-                button.disabled = false;
-            }).catch((error) => {
-                console.error('PDF generation failed:', error);
-                // Show the download button again
-                downloadSection.style.display = 'flex';
-                button.innerHTML = originalText;
-                button.disabled = false;
-                alert('PDF generation failed. Please ensure you have a stable internet connection and try again.');
-            });
+                // Generate PDF
+                html2pdf().set(opt).from(element).save().then(() => {
+                    // Restore original theme and show download button
+                    document.body.classList.remove('pdf-mode');
+                    downloadSection.style.display = 'flex';
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                }).catch((error) => {
+                    console.error('PDF generation failed:', error);
+                    // Restore original theme and show download button
+                    document.body.classList.remove('pdf-mode');
+                    downloadSection.style.display = 'flex';
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                    alert('PDF generation failed. Please ensure you have a stable internet connection and try again.');
+                });
+            }, 100);
         }
 
         // Wait for the page to fully load before enabling PDF download
