@@ -158,6 +158,49 @@
             padding: 0 !important;
         }
 
+        /* Force all text to be dark in PDF mode */
+        .pdf-mode h1,
+        .pdf-mode h2,
+        .pdf-mode h3,
+        .pdf-mode h4,
+        .pdf-mode h5,
+        .pdf-mode h6,
+        .pdf-mode p,
+        .pdf-mode span,
+        .pdf-mode div,
+        .pdf-mode li,
+        .pdf-mode .summary,
+        .pdf-mode .job-title,
+        .pdf-mode .company,
+        .pdf-mode .date,
+        .pdf-mode .job-description,
+        .pdf-mode .tech-used {
+            color: #000000 !important;
+        }
+
+        .pdf-mode .subtitle,
+        .pdf-mode .section-title,
+        .pdf-mode .achievement-card h3,
+        .pdf-mode .experience-item h3 {
+            color: #000000 !important;
+        }
+
+        .pdf-mode .contact-info span,
+        .pdf-mode .contact-info a {
+            color: #333333 !important;
+        }
+
+        .pdf-mode .highlight,
+        .pdf-mode .metric {
+            color: #1d4ed8 !important;
+            font-weight: 800 !important;
+        }
+
+        .pdf-mode strong {
+            color: #000000 !important;
+            font-weight: 700 !important;
+        }
+
         /* Background Effects */
         body::before {
             content: '';
@@ -887,24 +930,32 @@
             // Switch to PDF-friendly light theme
             document.body.classList.add('pdf-mode');
 
-            // Small delay to ensure CSS changes are applied
+            // Force styles to update immediately
+            document.body.offsetHeight; // Force reflow
+
+            // Longer delay to ensure CSS changes are fully applied
             setTimeout(() => {
+                // Double-check that pdf-mode is applied
+                console.log('PDF mode active:', document.body.classList.contains('pdf-mode'));
+                
                 // Configure PDF options
                 const element = document.querySelector('.container');
                 const opt = {
-                    margin: [0.4, 0.4, 0.4, 0.4],
+                    margin: [0.5, 0.5, 0.5, 0.5],
                     filename: 'Johnny_Gladwin_Resume.pdf',
                     image: { 
                         type: 'jpeg', 
                         quality: 1.0 
                     },
                     html2canvas: { 
-                        scale: 2,
+                        scale: 3,
                         useCORS: true,
                         allowTaint: false,
                         backgroundColor: '#ffffff',
-                        logging: false,
-                        letterRendering: true
+                        logging: true,
+                        letterRendering: true,
+                        dpi: 300,
+                        foreignObjectRendering: true
                     },
                     jsPDF: { 
                         unit: 'in', 
@@ -929,7 +980,7 @@
                     button.disabled = false;
                     alert('PDF generation failed. Please ensure you have a stable internet connection and try again.');
                 });
-            }, 200);
+            }, 500);
         }
 
         // Wait for the page to fully load before enabling PDF download
