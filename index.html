@@ -927,70 +927,102 @@
             button.innerHTML = '<svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path d="M10 3a1 1 0 01.993.883L11 4v5.585l1.293-1.292a1 1 0 011.32-.083l.094.083a1 1 0 01.083 1.32l-.083.094-3 3a1 1 0 01-1.32.083l-.094-.083-3-3a1 1 0 011.32-1.497l.094.083L9 9.585V4a1 1 0 011-1zM5 13a1 1 0 01.993.883L6 14v1a1 1 0 00.883.993L7 16h6a1 1 0 00.993-.883L14 15v-1a1 1 0 011.993-.117L16 14v1a3 3 0 01-2.824 2.995L13 18H7a3 3 0 01-2.995-2.824L4 15v-1a1 1 0 011-1z"/></svg> Generating PDF...';
             button.disabled = true;
 
-            // Simple approach - clone and apply basic dark styling
+            // Create completely clean PDF from scratch
             const originalElement = document.querySelector('.container');
-            const clonedElement = originalElement.cloneNode(true);
             
-            // Apply basic styling directly to cloned element
-            clonedElement.style.backgroundColor = '#1a1a1a';
-            clonedElement.style.color = '#ffffff';
-            clonedElement.style.padding = '40px';
-            clonedElement.style.fontFamily = 'Inter, sans-serif';
+            // Create fresh PDF container
+            const pdfContainer = document.createElement('div');
+            pdfContainer.style.cssText = `
+                background: #ffffff;
+                color: #2d3748;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                line-height: 1.5;
+                padding: 40px;
+                max-width: 800px;
+                margin: 0 auto;
+            `;
             
-            // Remove animations and problematic styles
-            const allElements = clonedElement.querySelectorAll('*');
-            allElements.forEach(el => {
-                el.style.animation = 'none';
-                el.style.transition = 'none';
-                el.style.transform = 'none';
-                el.style.filter = 'none';
-            });
+            // Extract content from original
+            const originalH1 = originalElement.querySelector('h1')?.textContent || 'Johnny Gladwin';
+            const originalSubtitle = originalElement.querySelector('.subtitle')?.textContent || 'Senior Cloud Platform Engineer';
+            const originalContactInfo = originalElement.querySelector('.contact-info')?.textContent || '';
             
-            // Make all text white
-            const textSelectors = 'h1, h2, h3, h4, h5, h6, p, span, div, li, a, strong, em';
-            const textElements = clonedElement.querySelectorAll(textSelectors);
-            textElements.forEach(el => {
-                el.style.color = '#ffffff';
-            });
+            // Create clean header
+            const header = document.createElement('div');
+            header.style.cssText = `
+                text-align: center;
+                margin-bottom: 40px;
+                padding-bottom: 30px;
+                border-bottom: 3px solid #3182ce;
+            `;
             
-            // Style header
-            const header = clonedElement.querySelector('.header');
-            if (header) {
-                header.style.background = 'linear-gradient(135deg, #6366f1, #8b5cf6)';
-                header.style.borderRadius = '12px';
-                header.style.padding = '32px';
-                header.style.marginBottom = '32px';
-            }
+            header.innerHTML = `
+                <h1 style="font-size: 36px; font-weight: 700; color: #2d3748; margin: 0 0 8px 0;">${originalH1}</h1>
+                <p style="font-size: 18px; color: #4a5568; margin: 0 0 20px 0;">${originalSubtitle}</p>
+                <div style="color: #718096; font-size: 14px;">
+                    📧 johnny.gladwin@outlook.com | 📱 +91-7702-549-262 | 📍 Vellore, India<br>
+                    💼 LinkedIn: linkedin.com/in/johnny-gladwin-821671a | 🐙 GitHub: github.com/jglad20
+                </div>
+            `;
             
-            // Style sections
-            const sections = clonedElement.querySelectorAll('.section');
+            pdfContainer.appendChild(header);
+            
+            // Extract and recreate each section cleanly
+            const sections = originalElement.querySelectorAll('.section');
             sections.forEach(section => {
-                section.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-                section.style.borderRadius = '8px';
-                section.style.padding = '24px';
-                section.style.marginBottom = '24px';
-                section.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+                const title = section.querySelector('.section-title')?.textContent;
+                if (!title || title.includes('Download')) return;
+                
+                const newSection = document.createElement('div');
+                newSection.style.cssText = `
+                    margin-bottom: 35px;
+                `;
+                
+                // Section title
+                const sectionTitle = document.createElement('h2');
+                sectionTitle.style.cssText = `
+                    font-size: 22px;
+                    font-weight: 600;
+                    color: #2d3748;
+                    margin: 0 0 20px 0;
+                    padding-bottom: 8px;
+                    border-bottom: 2px solid #3182ce;
+                `;
+                sectionTitle.textContent = title;
+                newSection.appendChild(sectionTitle);
+                
+                // Section content
+                const content = document.createElement('div');
+                content.style.cssText = `
+                    color: #4a5568;
+                    line-height: 1.6;
+                `;
+                
+                // Get text content and clean it up
+                const sectionText = section.textContent
+                    .replace(title, '')
+                    .replace(/\s+/g, ' ')
+                    .trim();
+                
+                content.innerHTML = sectionText
+                    .replace(/(\d+[\+\%]?\s*(?:years|users|microservices|uptime|packages|daily|clusters|environments|services|TB))/gi, 
+                             '<strong style="color: #3182ce; font-weight: 600;">$1</strong>')
+                    .replace(/\n\n/g, '</p><p style="margin: 12px 0;">')
+                    .replace(/\n/g, '<br>');
+                
+                if (!content.innerHTML.startsWith('<p')) {
+                    content.innerHTML = '<p style="margin: 12px 0;">' + content.innerHTML + '</p>';
+                }
+                
+                newSection.appendChild(content);
+                pdfContainer.appendChild(newSection);
             });
-            
-            // Style metrics
-            const metrics = clonedElement.querySelectorAll('.metric');
-            metrics.forEach(metric => {
-                metric.style.color = '#c084fc';
-                metric.style.fontWeight = 'bold';
-            });
-            
-            // Hide download button
-            const downloadSection = clonedElement.querySelector('.download-section');
-            if (downloadSection) {
-                downloadSection.style.display = 'none';
-            }
             
             // Create temporary container
             const tempContainer = document.createElement('div');
             tempContainer.style.position = 'absolute';
             tempContainer.style.left = '-9999px';
-            tempContainer.style.backgroundColor = '#1a1a1a';
-            tempContainer.appendChild(clonedElement);
+            tempContainer.appendChild(pdfContainer);
             document.body.appendChild(tempContainer);
             
             // Configure PDF options
@@ -1004,7 +1036,7 @@
                 html2canvas: { 
                     scale: 2,
                     useCORS: true,
-                    backgroundColor: '#1a1a1a',
+                    backgroundColor: '#ffffff',
                     logging: false
                 },
                 jsPDF: { 
@@ -1014,8 +1046,8 @@
                 }
             };
 
-            // Generate PDF from the cloned element
-            html2pdf().set(opt).from(clonedElement).save().then(() => {
+            // Generate PDF from the clean container
+            html2pdf().set(opt).from(pdfContainer).save().then(() => {
                 // Clean up
                 document.body.removeChild(tempContainer);
                 button.innerHTML = originalText;
