@@ -628,10 +628,107 @@
         </section>
     </div>
 
-    <script src="generate-pdf.js"></script>
     <script>
         function downloadPDF() {
-            generateDarkPDF();
+            console.log('Starting PDF generation...');
+            
+            // Check if html2pdf is loaded
+            if (typeof html2pdf === 'undefined') {
+                alert('PDF library is still loading. Please try again in a moment.');
+                return;
+            }
+            
+            // Create the resume content
+            const resumeHTML = `
+                <div style="width: 816px; background: #1a1a1a; color: #ffffff; font-family: 'Inter', Arial, sans-serif; padding: 40px;">
+                    <!-- Header -->
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <h1 style="font-size: 36px; margin: 0 0 10px 0; color: #ffffff;">Johnny Gladwin</h1>
+                        <p style="font-size: 18px; margin: 0 0 20px 0; color: #a8a8a8;">Senior Cloud Platform Engineer | Kubernetes Expert | DevOps Leader</p>
+                        <p style="font-size: 14px; margin: 0; color: #a8a8a8;">
+                            📧 johnny.gladwin@outlook.com • 📱 +91-7702-549-262 • 📍 Vellore, India<br>
+                            💼 linkedin.com/in/johnny-gladwin-821671a • 🐙 github.com/jglad20
+                        </p>
+                    </div>
+                    
+                    <!-- Summary -->
+                    <div style="background: rgba(99, 102, 241, 0.1); padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+                        <p style="font-size: 15px; line-height: 1.8; color: #d1d5db; margin: 0;">
+                            Senior DevOps Engineer with <strong style="color: #fbbf24;">10+ years</strong> building enterprise infrastructure automation frameworks and managing cloud-native platforms at scale. 
+                            Architected <strong style="color: #fbbf24;">JuliaHubInfrastructure</strong> - a comprehensive infrastructure-as-code framework in Julia wrapping Terraform, Kubernetes, AWS, and Ansible. 
+                            Managed production Kubernetes clusters serving <strong style="color: #fbbf24;">10M+ users</strong> with <strong style="color: #fbbf24;">99.99% uptime</strong> and 
+                            <strong style="color: #fbbf24;">40% cost optimization</strong>.
+                        </p>
+                    </div>
+                    
+                    <!-- Technical Skills -->
+                    <h2 style="font-size: 24px; color: #8b5cf6; margin: 0 0 20px 0; padding-bottom: 10px; border-bottom: 2px solid #8b5cf6;">Technical Expertise</h2>
+                    <div style="margin-bottom: 30px;">
+                        <div style="margin-bottom: 10px; background: rgba(139, 92, 246, 0.1); padding: 15px; border-radius: 6px;">
+                            <strong style="color: #8b5cf6;">Infrastructure Automation:</strong> <span style="color: #d1d5db;">Julia REPL, Terraform, Ansible, Nix</span>
+                        </div>
+                        <div style="margin-bottom: 10px; background: rgba(139, 92, 246, 0.1); padding: 15px; border-radius: 6px;">
+                            <strong style="color: #8b5cf6;">Container Orchestration:</strong> <span style="color: #d1d5db;">Kubernetes/EKS, Karpenter, Helm, ArgoCD</span>
+                        </div>
+                        <div style="margin-bottom: 10px; background: rgba(139, 92, 246, 0.1); padding: 15px; border-radius: 6px;">
+                            <strong style="color: #8b5cf6;">AWS Services:</strong> <span style="color: #d1d5db;">EKS, VPC, RDS, S3, CloudFront, ALB, WAF, EC2</span>
+                        </div>
+                        <div style="background: rgba(139, 92, 246, 0.1); padding: 15px; border-radius: 6px;">
+                            <strong style="color: #8b5cf6;">Observability:</strong> <span style="color: #d1d5db;">Grafana, Prometheus, Elasticsearch, Redpanda</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience -->
+                    <h2 style="font-size: 24px; color: #8b5cf6; margin: 0 0 20px 0; padding-bottom: 10px; border-bottom: 2px solid #8b5cf6;">Professional Experience</h2>
+                    
+                    <div style="background: rgba(139, 92, 246, 0.05); padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                        <div style="margin-bottom: 10px;">
+                            <h3 style="font-size: 20px; margin: 0; color: #ffffff;">Cloud Engineer</h3>
+                            <p style="font-size: 16px; margin: 5px 0; color: #8b5cf6;">JuliaHub, Bengaluru | Feb 2023 - Present</p>
+                        </div>
+                        <p style="font-style: italic; color: #9ca3af; margin-bottom: 15px;">Architect and maintain Julia computing platform serving 10M+ developers globally</p>
+                        <ul style="list-style: none; padding: 0; margin: 0;">
+                            <li style="margin-bottom: 10px; color: #d1d5db;">▸ Architected JuliaHubInfrastructure with 4-layer architecture</li>
+                            <li style="margin-bottom: 10px; color: #d1d5db;">▸ Built 20+ cluster components achieving 70% better resource utilization</li>
+                            <li style="margin-bottom: 10px; color: #d1d5db;">▸ Achieved 99.99% uptime with RTO < 15 minutes</li>
+                            <li style="color: #d1d5db;">▸ Optimized costs by 40% ($2M+ annually)</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+            
+            // Create container
+            const container = document.createElement('div');
+            container.innerHTML = resumeHTML;
+            container.style.position = 'absolute';
+            container.style.left = '-9999px';
+            container.style.top = '0';
+            document.body.appendChild(container);
+            
+            // Generate PDF
+            const opt = {
+                margin:       0,
+                filename:     'Johnny_Gladwin_Resume.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { 
+                    scale: 2,
+                    backgroundColor: '#1a1a1a',
+                    logging: false,
+                    useCORS: true
+                },
+                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            
+            html2pdf().set(opt).from(container.firstElementChild).save()
+                .then(() => {
+                    console.log('PDF generated successfully');
+                    document.body.removeChild(container);
+                })
+                .catch((error) => {
+                    console.error('PDF generation failed:', error);
+                    alert('Error generating PDF: ' + error.message);
+                    document.body.removeChild(container);
+                });
         }
     </script>
 </body>
