@@ -6,18 +6,28 @@
     <meta name="description" content="Johnny Gladwin - Senior Cloud Platform Engineer specializing in Kubernetes, DevOps, and infrastructure automation.">
     <title>Johnny Gladwin - Senior Cloud Platform Engineer</title>
     
-    <!-- Inter Font - The FAANG favorite -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Modern Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* Modern Minimalist Design - FAANG Ready */
+        /* Dark Modern Design */
         :root {
-            --text-primary: #1a1a1a;
-            --text-secondary: #666666;
-            --border-light: #e5e5e5;
-            --accent-blue: #0066cc;
-            --bg-white: #ffffff;
-            --bg-gray: #f8f9fa;
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: #a8a8a8;
+            --text-muted: #666666;
+            --accent: #6366f1;
+            --accent-light: #818cf8;
+            --accent-glow: rgba(99, 102, 241, 0.4);
+            --border: rgba(255, 255, 255, 0.1);
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
         }
 
         * {
@@ -26,377 +36,525 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             font-size: 16px;
             line-height: 1.6;
             color: var(--text-primary);
-            background: var(--bg-gray);
+            background: var(--bg-primary);
+            overflow-x: hidden;
+            position: relative;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Animated Background */
+        .bg-particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            background: 
+                radial-gradient(ellipse at top left, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom right, rgba(245, 158, 11, 0.15) 0%, transparent 50%);
+        }
+
+        .bg-particles::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 80%, transparent 20%, rgba(120, 119, 198, 0.3) 50%, transparent 80%),
+                radial-gradient(circle at 80% 20%, transparent 20%, rgba(255, 192, 203, 0.3) 50%, transparent 80%);
+            animation: moveGradient 20s ease infinite;
+        }
+
+        @keyframes moveGradient {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-30px, -30px); }
+        }
+
+        /* Glow Lines */
+        .glow-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .glow-line {
+            position: absolute;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+            animation: glowMove 10s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes glowMove {
+            from { transform: translateX(-100vw); }
+            to { transform: translateX(100vw); }
         }
 
         /* Container */
-        .page-container {
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 60px 0;
         }
 
-        .resume-wrapper {
-            width: 100%;
-            max-width: 850px;
-            background: var(--bg-white);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            border-radius: 0;
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
         }
 
-        /* Resume Content */
-        .resume {
-            padding: 60px 60px 40px;
+        /* Name Animation */
+        .hero-name {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #818cf8 50%, #fff 100%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+            letter-spacing: -0.02em;
         }
 
-        /* Header */
-        .header {
-            margin-bottom: 40px;
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
 
-        .name {
-            font-size: 32px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            margin-bottom: 8px;
-        }
-
-        .title {
-            font-size: 18px;
+        .hero-title {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
             color: var(--text-secondary);
-            margin-bottom: 16px;
+            margin-bottom: 30px;
+            font-weight: 400;
         }
 
-        .contact-info {
+        /* Stats */
+        .stats-container {
             display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
             flex-wrap: wrap;
-            gap: 24px;
-            font-size: 14px;
-            color: var(--text-secondary);
         }
 
-        .contact-info a {
-            color: var(--accent-blue);
-            text-decoration: none;
+        .stat-item {
+            text-align: center;
         }
 
-        .contact-info a:hover {
-            text-decoration: underline;
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-light);
+            display: block;
+            text-shadow: 0 0 20px var(--accent-glow);
         }
 
-        /* Sections */
-        .section {
-            margin-bottom: 32px;
-        }
-
-        .section-title {
-            font-size: 16px;
-            font-weight: 700;
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 16px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid var(--text-primary);
-        }
-
-        /* Summary */
-        .summary {
-            color: var(--text-primary);
-            margin-bottom: 24px;
-        }
-
-        /* Experience */
-        .experience-item {
-            margin-bottom: 24px;
-        }
-
-        .job-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 8px;
-        }
-
-        .job-title {
-            font-weight: 600;
-            font-size: 16px;
-        }
-
-        .job-date {
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-
-        .company-location {
-            font-size: 14px;
-            color: var(--text-secondary);
-            margin-bottom: 12px;
-        }
-
-        .achievements {
-            list-style: none;
-            padding: 0;
-        }
-
-        .achievements li {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 8px;
-            font-size: 15px;
-            line-height: 1.7;
-        }
-
-        .achievements li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: var(--text-primary);
-        }
-
-        /* Skills */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
-        }
-
-        .skill-category {
-            font-size: 15px;
-        }
-
-        .skill-category strong {
-            display: inline;
-        }
-
-        /* Education */
-        .education-item {
-            font-size: 15px;
+            letter-spacing: 0.1em;
         }
 
         /* Download Button */
-        .download-section {
-            text-align: center;
-            padding: 40px;
-            background: var(--bg-gray);
-            border-top: 1px solid var(--border-light);
+        .download-container {
+            margin: 60px 0;
         }
 
         .download-btn {
+            position: relative;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            background: var(--text-primary);
+            gap: 12px;
+            padding: 18px 40px;
+            background: var(--gradient-1);
             color: white;
             border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: 500;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
             cursor: pointer;
             text-decoration: none;
-            transition: background 0.2s;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.5s ease;
         }
 
         .download-btn:hover {
-            background: #000000;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 30px var(--accent-glow);
+        }
+
+        .download-btn:hover::before {
+            left: 100%;
         }
 
         .download-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Contact Links */
+        .contact-section {
+            margin-top: 60px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .contact-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--accent-light);
+        }
+
+        .contact-link:hover::after {
+            width: 100%;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            margin-top: 80px;
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tech-item {
+            text-align: center;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .tech-item i {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .tech-item span {
+            font-size: 0.9rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .tech-item:hover {
+            color: var(--accent-light);
+            transform: translateY(-5px);
+        }
+
+        .tech-item:hover i {
+            text-shadow: 0 0 20px currentColor;
+        }
+
+        /* Loading Animation */
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .spinner {
+            display: inline-block;
             width: 20px;
             height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
         }
 
-        /* Print Styles */
-        @media print {
-            body {
-                background: white;
-            }
-            
-            .page-container {
-                padding: 0;
-            }
-            
-            .resume-wrapper {
-                box-shadow: none;
-            }
-            
-            .resume {
-                padding: 0;
-            }
-            
-            .download-section {
-                display: none;
-            }
+        /* Resume Hidden Content for PDF */
+        .resume-content {
+            display: none;
         }
 
-        /* Mobile */
+        /* Responsive */
         @media (max-width: 768px) {
-            .resume {
-                padding: 40px 20px;
+            .stats-container {
+                gap: 30px;
             }
             
-            .job-header {
+            .contact-links {
                 flex-direction: column;
+                align-items: center;
+                gap: 20px;
             }
             
-            .contact-info {
-                flex-direction: column;
-                gap: 8px;
+            .tech-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="page-container">
-        <div class="resume-wrapper">
-            <!-- Resume Content -->
-            <div class="resume" id="resume-content">
-                <!-- Header -->
-                <header class="header">
-                    <h1 class="name">Johnny Gladwin</h1>
-                    <div class="title">Senior Cloud Platform Engineer</div>
-                    <div class="contact-info">
-                        <span>Vellore, India</span>
-                        <span>+91-7702-549-262</span>
-                        <a href="mailto:johnny.gladwin@outlook.com">johnny.gladwin@outlook.com</a>
-                        <a href="https://linkedin.com/in/johnny-gladwin-821671a" target="_blank">linkedin.com/in/johnny-gladwin-821671a</a>
-                        <a href="https://github.com/jglad20" target="_blank">github.com/jglad20</a>
+    <!-- Background Effects -->
+    <div class="bg-particles"></div>
+    <div class="glow-lines">
+        <div class="glow-line" style="left: 20%; animation-delay: 0s;"></div>
+        <div class="glow-line" style="left: 40%; animation-delay: 2s;"></div>
+        <div class="glow-line" style="left: 60%; animation-delay: 4s;"></div>
+        <div class="glow-line" style="left: 80%; animation-delay: 6s;"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-name">Johnny Gladwin</h1>
+                <p class="hero-title">Senior Cloud Platform Engineer | Kubernetes Expert | DevOps Leader</p>
+                
+                <!-- Stats -->
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <span class="stat-number">10M+</span>
+                        <span class="stat-label">Users Served</span>
                     </div>
-                </header>
-
-                <!-- Professional Summary -->
-                <section class="section">
-                    <h2 class="section-title">Professional Summary</h2>
-                    <p class="summary">
-                        Senior DevOps Engineer with 10+ years of experience building enterprise infrastructure automation frameworks and managing cloud-native platforms at scale. Architected JuliaHubInfrastructure - a comprehensive infrastructure-as-code framework in Julia wrapping Terraform, Kubernetes, AWS, and Ansible. Currently managing production Kubernetes clusters serving 10M+ users with 99.99% uptime and achieved 40% cost optimization through intelligent resource management.
-                    </p>
-                </section>
-
-                <!-- Professional Experience -->
-                <section class="section">
-                    <h2 class="section-title">Professional Experience</h2>
-                    
-                    <div class="experience-item">
-                        <div class="job-header">
-                            <div class="job-title">Cloud Engineer</div>
-                            <div class="job-date">February 2023 – Present</div>
-                        </div>
-                        <div class="company-location">JuliaHub | Bengaluru, India</div>
-                        <ul class="achievements">
-                            <li>Architected JuliaHubInfrastructure - enterprise automation platform with custom Julia REPL managing 4-layer architecture (account → cluster → platform → services) integrating Terraform, Kubernetes, Ansible, and AWS</li>
-                            <li>Built 20+ cluster components including EKS, VPC, Karpenter auto-scaling, Cert-Manager, EBS/EFS CSI drivers, achieving 70% better resource utilization</li>
-                            <li>Designed high-availability platform with RDS databases, WAF security (blocking 99.9% malicious traffic), CloudFront CDN (reducing latency by 65%), and Cognito authentication</li>
-                            <li>Maintained production infrastructure serving 40,000+ Julia packages and 10M+ developers with zero-downtime deployments and 99.99% uptime SLA</li>
-                            <li>Reduced infrastructure costs by 40% ($2M+ annually) through intelligent resource allocation and auto-scaling strategies</li>
-                            <li>Developed comprehensive operational runbooks covering security, compliance, incident response, CI/CD, and release management</li>
-                        </ul>
+                    <div class="stat-item">
+                        <span class="stat-number">99.99%</span>
+                        <span class="stat-label">Uptime SLA</span>
                     </div>
-
-                    <div class="experience-item">
-                        <div class="job-header">
-                            <div class="job-title">DevOps Engineer</div>
-                            <div class="job-date">July 2019 – February 2023</div>
-                        </div>
-                        <div class="company-location">Squads (StackState Platform) | Remote</div>
-                        <ul class="achievements">
-                            <li>Built enterprise observability platform processing 1TB+ daily logs with real-time analytics for Fortune 500 monitoring infrastructure</li>
-                            <li>Maintained 4 Kubernetes clusters running StackState agent testing with 100+ Helm chart deployments and ArgoCD GitOps</li>
-                            <li>Developed "Beest" E2E testing framework with Terraform/Ansible, automating 25+ test environments and reducing testing cycle from 3 days to 4 hours</li>
-                            <li>Containerized 20+ microservices (Elasticsearch, Kafka, Zookeeper, Hadoop) with multi-stage Docker builds, reducing image sizes by 60%</li>
-                            <li>Implemented multi-cloud architecture across AWS, GCP, and Azure achieving 35% cost reduction through reserved instances and spot fleet optimization</li>
-                            <li>Automated AMI building with Packer templates reducing deployment time by 75%</li>
-                        </ul>
+                    <div class="stat-item">
+                        <span class="stat-number">10+</span>
+                        <span class="stat-label">Years Experience</span>
                     </div>
-
-                    <div class="experience-item">
-                        <div class="job-header">
-                            <div class="job-title">DevOps Engineer</div>
-                            <div class="job-date">April 2018 – July 2019</div>
-                        </div>
-                        <div class="company-location">Freelance | Remote</div>
-                        <ul class="achievements">
-                            <li>Built Jenkins CI/CD automation for 5+ clients reducing average deployment time by 60%</li>
-                            <li>Developed Terraform AWS modules library with 50+ reusable components for infrastructure provisioning</li>
-                            <li>Implemented Grafana/Prometheus monitoring achieving 99.95% availability across client infrastructures</li>
-                        </ul>
+                    <div class="stat-item">
+                        <span class="stat-number">40%</span>
+                        <span class="stat-label">Cost Reduced</span>
                     </div>
+                </div>
 
-                    <div class="experience-item">
-                        <div class="job-header">
-                            <div class="job-title">Senior Systems Engineer</div>
-                            <div class="job-date">January 2018 – April 2018</div>
-                        </div>
-                        <div class="company-location">Guess Corp | Bengaluru, India</div>
-                        <ul class="achievements">
-                            <li>Managed Kubernetes clusters for retail e-commerce platform serving 1M+ daily users</li>
-                            <li>Automated multi-cloud deployment (AWS/GCP) using Ansible and Docker containerization</li>
-                        </ul>
+                <!-- Download Button -->
+                <div class="download-container">
+                    <button class="download-btn" onclick="downloadResume()">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        Download Resume
+                    </button>
+                </div>
+
+                <!-- Contact Links -->
+                <div class="contact-section">
+                    <div class="contact-links">
+                        <a href="mailto:johnny.gladwin@outlook.com" class="contact-link">
+                            <i class="fas fa-envelope"></i>
+                            johnny.gladwin@outlook.com
+                        </a>
+                        <a href="https://linkedin.com/in/johnny-gladwin-821671a" target="_blank" class="contact-link">
+                            <i class="fab fa-linkedin"></i>
+                            LinkedIn
+                        </a>
+                        <a href="https://github.com/jglad20" target="_blank" class="contact-link">
+                            <i class="fab fa-github"></i>
+                            GitHub
+                        </a>
                     </div>
+                </div>
 
-                    <div class="experience-item">
-                        <div class="job-header">
-                            <div class="job-title">Senior Systems Engineer</div>
-                            <div class="job-date">April 2016 – December 2017</div>
+                <!-- Tech Stack -->
+                <div class="tech-stack">
+                    <div class="tech-grid">
+                        <div class="tech-item">
+                            <i class="fab fa-aws"></i>
+                            <span>AWS</span>
                         </div>
-                        <div class="company-location">Cognizant | Chennai, India</div>
-                        <ul class="achievements">
-                            <li>Led AWS infrastructure automation for enterprise clients using CloudFormation and Auto Scaling</li>
-                            <li>Implemented HAProxy load balancing and reverse proxy architecture reducing request latency by 75%</li>
-                        </ul>
-                    </div>
-                </section>
-
-                <!-- Technical Skills -->
-                <section class="section">
-                    <h2 class="section-title">Technical Skills</h2>
-                    <div class="skills-grid">
-                        <div class="skill-category">
-                            <strong>Infrastructure:</strong> Julia REPL, Terraform, Ansible, Nix, GitOps
+                        <div class="tech-item">
+                            <i class="fas fa-dharmachakra"></i>
+                            <span>Kubernetes</span>
                         </div>
-                        <div class="skill-category">
-                            <strong>Orchestration:</strong> Kubernetes/EKS, Docker, Helm, ArgoCD, Karpenter
+                        <div class="tech-item">
+                            <i class="fab fa-docker"></i>
+                            <span>Docker</span>
                         </div>
-                        <div class="skill-category">
-                            <strong>Cloud:</strong> AWS (EKS, VPC, RDS, S3, CloudFront, ALB, WAF), GCP, Azure
+                        <div class="tech-item">
+                            <i class="fas fa-cube"></i>
+                            <span>Terraform</span>
                         </div>
-                        <div class="skill-category">
-                            <strong>Observability:</strong> Grafana, Prometheus, Elasticsearch, OpenTelemetry
+                        <div class="tech-item">
+                            <i class="fab fa-python"></i>
+                            <span>Python</span>
                         </div>
-                        <div class="skill-category">
-                            <strong>Languages:</strong> Julia, Python, Go, Bash, TypeScript
-                        </div>
-                        <div class="skill-category">
-                            <strong>CI/CD:</strong> Jenkins, GitLab CI, GitHub Actions, ArgoCD
+                        <div class="tech-item">
+                            <i class="fas fa-infinity"></i>
+                            <span>Julia</span>
                         </div>
                     </div>
-                </section>
+                </div>
+            </div>
+        </section>
+    </div>
 
-                <!-- Education -->
-                <section class="section">
-                    <h2 class="section-title">Education</h2>
-                    <div class="education-item">
-                        <strong>B.E. Computer Science Engineering</strong> - Sathyabama University, Chennai (2014)
-                    </div>
-                </section>
+    <!-- Hidden Resume Content for PDF Generation -->
+    <div class="resume-content" id="resume-content">
+        <div style="font-family: 'Arial', sans-serif; max-width: 8.5in; margin: 0 auto; padding: 0.75in; background: white; color: #000;">
+            <!-- Header -->
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h1 style="font-size: 28px; margin-bottom: 10px; color: #1a1a1a; font-weight: 700;">JOHNNY GLADWIN</h1>
+                <p style="font-size: 16px; color: #444; margin-bottom: 15px;">Senior Cloud Platform Engineer | Kubernetes Expert | DevOps Leader</p>
+                <div style="font-size: 14px; color: #666;">
+                    Vellore, India • +91-7702-549-262 • johnny.gladwin@outlook.com<br>
+                    linkedin.com/in/johnny-gladwin-821671a • github.com/jglad20
+                </div>
             </div>
 
-            <!-- Download Section -->
-            <div class="download-section">
-                <button class="download-btn" onclick="downloadResume()">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    Download Resume
-                </button>
+            <!-- Professional Summary -->
+            <div style="margin-bottom: 30px;">
+                <h2 style="font-size: 18px; color: #000; border-bottom: 2px solid #333; padding-bottom: 5px; margin-bottom: 15px;">PROFESSIONAL SUMMARY</h2>
+                <p style="font-size: 14px; line-height: 1.6; color: #333;">
+                    Senior DevOps Engineer with 10+ years of experience building enterprise infrastructure automation frameworks and managing cloud-native platforms at scale. Architected JuliaHubInfrastructure - a comprehensive infrastructure-as-code framework in Julia wrapping Terraform, Kubernetes, AWS, and Ansible. Currently managing production Kubernetes clusters serving 10M+ users with 99.99% uptime and achieved 40% cost optimization through intelligent resource management.
+                </p>
+            </div>
+
+            <!-- Technical Skills -->
+            <div style="margin-bottom: 30px;">
+                <h2 style="font-size: 18px; color: #000; border-bottom: 2px solid #333; padding-bottom: 5px; margin-bottom: 15px;">TECHNICAL SKILLS</h2>
+                <table style="width: 100%; font-size: 14px;">
+                    <tr>
+                        <td style="padding: 5px 0;"><strong>Infrastructure:</strong></td>
+                        <td style="padding: 5px 0;">Julia REPL, Terraform, Ansible, Nix, GitOps, Infrastructure as Code</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px 0;"><strong>Orchestration:</strong></td>
+                        <td style="padding: 5px 0;">Kubernetes/EKS, Docker, Helm, ArgoCD, Karpenter, KOTS, Cert-Manager</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px 0;"><strong>Cloud Platforms:</strong></td>
+                        <td style="padding: 5px 0;">AWS (EKS, VPC, RDS, S3, CloudFront, ALB, WAF), GCP, Azure</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px 0;"><strong>Monitoring:</strong></td>
+                        <td style="padding: 5px 0;">Grafana, Prometheus, Elasticsearch, OpenTelemetry, Redpanda</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px 0;"><strong>Languages:</strong></td>
+                        <td style="padding: 5px 0;">Julia, Python, Go, Bash, TypeScript</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Professional Experience -->
+            <div style="margin-bottom: 30px;">
+                <h2 style="font-size: 18px; color: #000; border-bottom: 2px solid #333; padding-bottom: 5px; margin-bottom: 15px;">PROFESSIONAL EXPERIENCE</h2>
+                
+                <!-- JuliaHub -->
+                <div style="margin-bottom: 25px;">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px;">
+                        <h3 style="font-size: 16px; color: #000; margin: 0;">Cloud Engineer | JuliaHub, Bengaluru</h3>
+                        <span style="font-size: 14px; color: #666;">February 2023 – Present</span>
+                    </div>
+                    <ul style="margin: 10px 0; padding-left: 20px; font-size: 14px; line-height: 1.6;">
+                        <li style="margin-bottom: 8px;">Architected JuliaHubInfrastructure - enterprise automation platform with custom Julia REPL managing 4-layer architecture (account → cluster → platform → services) integrating Terraform, Kubernetes, Ansible, and AWS</li>
+                        <li style="margin-bottom: 8px;">Built 20+ cluster components including EKS, VPC, Karpenter auto-scaling, Cert-Manager, EBS/EFS CSI drivers, achieving 70% better resource utilization</li>
+                        <li style="margin-bottom: 8px;">Designed high-availability platform with RDS databases, WAF security (blocking 99.9% malicious traffic), CloudFront CDN (reducing latency by 65%), and Cognito authentication</li>
+                        <li style="margin-bottom: 8px;">Maintained production infrastructure serving 40,000+ Julia packages and 10M+ developers with zero-downtime deployments and 99.99% uptime SLA</li>
+                        <li style="margin-bottom: 8px;">Reduced infrastructure costs by 40% ($2M+ annually) through intelligent resource allocation and auto-scaling strategies</li>
+                    </ul>
+                </div>
+
+                <!-- StackState -->
+                <div style="margin-bottom: 25px;">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px;">
+                        <h3 style="font-size: 16px; color: #000; margin: 0;">DevOps Engineer | Squads (StackState Platform), Remote</h3>
+                        <span style="font-size: 14px; color: #666;">July 2019 – February 2023</span>
+                    </div>
+                    <ul style="margin: 10px 0; padding-left: 20px; font-size: 14px; line-height: 1.6;">
+                        <li style="margin-bottom: 8px;">Built enterprise observability platform processing 1TB+ daily logs with real-time analytics for Fortune 500 monitoring infrastructure</li>
+                        <li style="margin-bottom: 8px;">Maintained 4 Kubernetes clusters running StackState agent testing with 100+ Helm chart deployments and ArgoCD GitOps</li>
+                        <li style="margin-bottom: 8px;">Developed "Beest" E2E testing framework with Terraform/Ansible, automating 25+ test environments and reducing testing cycle from 3 days to 4 hours</li>
+                        <li style="margin-bottom: 8px;">Containerized 20+ microservices (Elasticsearch, Kafka, Zookeeper, Hadoop) with multi-stage Docker builds, reducing image sizes by 60%</li>
+                        <li style="margin-bottom: 8px;">Implemented multi-cloud architecture across AWS, GCP, and Azure achieving 35% cost reduction</li>
+                    </ul>
+                </div>
+
+                <!-- Other Experience -->
+                <div style="margin-bottom: 20px;">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px;">
+                        <h3 style="font-size: 16px; color: #000; margin: 0;">DevOps Engineer | Freelance</h3>
+                        <span style="font-size: 14px; color: #666;">April 2018 – July 2019</span>
+                    </div>
+                    <ul style="margin: 10px 0; padding-left: 20px; font-size: 14px; line-height: 1.6;">
+                        <li>Built Jenkins CI/CD automation for 5+ clients reducing average deployment time by 60%</li>
+                        <li>Developed Terraform AWS modules library with 50+ reusable components</li>
+                        <li>Implemented Grafana/Prometheus monitoring achieving 99.95% availability</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div>
+                <h2 style="font-size: 18px; color: #000; border-bottom: 2px solid #333; padding-bottom: 5px; margin-bottom: 15px;">EDUCATION</h2>
+                <p style="font-size: 14px;"><strong>B.E. Computer Science Engineering</strong> - Sathyabama University, Chennai (2014)</p>
             </div>
         </div>
     </div>
@@ -406,19 +564,32 @@
     <script>
         async function downloadResume() {
             const button = event.currentTarget;
+            const originalHTML = button.innerHTML;
+            button.innerHTML = '<div class="spinner"></div> Generating...';
             button.disabled = true;
-            button.innerHTML = '<svg class="animate-spin" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" opacity="0.25"></circle><path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Generating...';
 
             try {
-                const element = document.getElementById('resume-content');
+                // Get the hidden resume content
+                const resumeElement = document.getElementById('resume-content');
+                resumeElement.style.display = 'block';
+                resumeElement.style.position = 'absolute';
+                resumeElement.style.left = '-9999px';
+                resumeElement.style.top = '0';
+
+                // Wait for content to render
+                await new Promise(resolve => setTimeout(resolve, 100));
+
+                // Configure PDF options
                 const opt = {
-                    margin: 0.5,
+                    margin: 0,
                     filename: 'Johnny_Gladwin_Resume.pdf',
                     image: { type: 'jpeg', quality: 0.98 },
                     html2canvas: { 
                         scale: 2,
                         useCORS: true,
-                        backgroundColor: '#ffffff'
+                        backgroundColor: '#ffffff',
+                        windowWidth: 850,
+                        windowHeight: 1100
                     },
                     jsPDF: { 
                         unit: 'in', 
@@ -427,66 +598,44 @@
                     }
                 };
 
-                // Clone element and apply print styles
-                const clonedElement = element.cloneNode(true);
-                clonedElement.style.padding = '0';
-                
-                // Create temporary container
-                const container = document.createElement('div');
-                container.style.position = 'absolute';
-                container.style.left = '-9999px';
-                container.appendChild(clonedElement);
-                document.body.appendChild(container);
-
                 // Generate PDF
                 const { jsPDF } = window.jspdf;
                 const doc = new jsPDF(opt.jsPDF);
                 
-                await html2canvas(clonedElement, opt.html2canvas).then(canvas => {
+                await html2canvas(resumeElement.firstElementChild, opt.html2canvas).then(canvas => {
                     const imgData = canvas.toDataURL('image/jpeg', opt.image.quality);
                     const imgWidth = 8.5;
                     const pageHeight = 11;
                     const imgHeight = (canvas.height * imgWidth) / canvas.width;
-                    let heightLeft = imgHeight;
-                    let position = 0;
-
-                    doc.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
-                    heightLeft -= pageHeight;
-
-                    while (heightLeft >= 0) {
-                        position = heightLeft - imgHeight;
-                        doc.addPage();
-                        doc.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
-                        heightLeft -= pageHeight;
+                    
+                    doc.addImage(imgData, 'JPEG', 0, 0, imgWidth, Math.min(imgHeight, pageHeight));
+                    
+                    if (imgHeight > pageHeight) {
+                        let heightLeft = imgHeight - pageHeight;
+                        let position = -pageHeight;
+                        
+                        while (heightLeft > 0) {
+                            doc.addPage();
+                            doc.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+                            heightLeft -= pageHeight;
+                            position -= pageHeight;
+                        }
                     }
-
+                    
                     doc.save(opt.filename);
                 });
 
-                // Cleanup
-                document.body.removeChild(container);
+                // Hide resume content again
+                resumeElement.style.display = 'none';
 
             } catch (error) {
                 console.error('Error generating PDF:', error);
                 alert('Error generating PDF. Please try again.');
             } finally {
+                button.innerHTML = originalHTML;
                 button.disabled = false;
-                button.innerHTML = '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg> Download Resume';
             }
         }
-
-        // Add spinning animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes spin {
-                from { transform: rotate(0deg); }
-                to { transform: rotate(360deg); }
-            }
-            .animate-spin {
-                animation: spin 1s linear infinite;
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>
