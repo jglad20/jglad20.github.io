@@ -630,151 +630,122 @@
 
     <script>
         function downloadPDF() {
-            // Create a custom element for PDF with dark modern theme
-            const pdfContainer = document.createElement('div');
-            pdfContainer.style.cssText = `
+            // Use the existing content from the page
+            const element = document.querySelector('.container');
+            
+            // Clone and prepare for PDF
+            const clonedElement = element.cloneNode(true);
+            
+            // Create a wrapper with dark theme
+            const pdfWrapper = document.createElement('div');
+            pdfWrapper.style.cssText = `
                 width: 8.5in;
-                padding: 0.5in;
-                background: #1a1a1a;
-                font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-                color: #e5e5e5;
-                line-height: 1.6;
+                min-height: 11in;
+                padding: 0;
+                margin: 0;
+                background-color: #0a0a0a;
+                position: relative;
             `;
-
-            // Create PDF content with modern dark theme
-            pdfContainer.innerHTML = `
-                <div style="margin-bottom: 30px; text-align: center;">
-                    <h1 style="font-size: 36px; font-weight: 800; background: linear-gradient(135deg, #ffffff 0%, #a8a8a8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 10px;">Johnny Gladwin</h1>
-                    <p style="font-size: 18px; color: #a8a8a8; margin-bottom: 20px;">Senior Cloud Platform Engineer | Kubernetes Expert | DevOps Leader</p>
-                    <div style="font-size: 14px; color: #a8a8a8;">
-                        📧 johnny.gladwin@outlook.com • 📱 +91-7702-549-262 • 📍 Vellore, India<br>
-                        💼 linkedin.com/in/johnny-gladwin-821671a • 🐙 github.com/jglad20
-                    </div>
-                </div>
-
-                <div style="background: rgba(99, 102, 241, 0.1); border-radius: 8px; padding: 20px; margin-bottom: 30px;">
-                    <p style="font-size: 16px; line-height: 1.8; color: #d1d5db;">
-                        Senior DevOps Engineer with <span style="color: #fbbf24; font-weight: 600;">10+ years</span> building enterprise infrastructure automation frameworks and managing cloud-native platforms at scale. Architected <span style="color: #fbbf24; font-weight: 600;">JuliaHubInfrastructure</span> - a comprehensive infrastructure-as-code framework in Julia wrapping Terraform, Kubernetes, AWS, and Ansible. Managed production Kubernetes clusters serving <span style="color: #fbbf24; font-weight: 600;">10M+ users</span> with <span style="color: #fbbf24; font-weight: 600;">99.99% uptime</span> and <span style="color: #fbbf24; font-weight: 600;">40% cost optimization</span>.
-                    </p>
-                </div>
-
-                <h2 style="font-size: 24px; color: #8b5cf6; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #8b5cf6;">Technical Expertise</h2>
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 30px;">
-                    ${['Infrastructure Automation: Julia REPL, Terraform, Ansible, Nix', 
-                       'Container Orchestration: Kubernetes/EKS, Karpenter, Helm, ArgoCD',
-                       'AWS Services: EKS, VPC, RDS, S3, CloudFront, ALB, WAF, EC2',
-                       'Observability: Grafana, Prometheus, Elasticsearch, Redpanda',
-                       'Development: Julia, Python, Go, Bash, Docker, GitOps',
-                       'Security & Compliance: WAF, IAM, SSO, Security Runbooks'].map(skill => 
-                        `<div style="background: rgba(139, 92, 246, 0.1); padding: 12px; border-radius: 6px; border: 1px solid rgba(139, 92, 246, 0.3);">
-                            <p style="font-size: 14px; color: #d1d5db;">${skill}</p>
-                        </div>`
-                    ).join('')}
-                </div>
-
-                <h2 style="font-size: 24px; color: #8b5cf6; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #8b5cf6;">Professional Experience</h2>
-                
-                <div style="background: rgba(139, 92, 246, 0.05); padding: 20px; border-radius: 8px; border: 1px solid rgba(139, 92, 246, 0.2); margin-bottom: 25px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                        <div>
-                            <h3 style="font-size: 20px; color: #ffffff; margin: 0;">Cloud Engineer</h3>
-                            <p style="font-size: 16px; color: #8b5cf6; margin: 5px 0;">JuliaHub, Bengaluru</p>
-                        </div>
-                        <span style="background: rgba(139, 92, 246, 0.2); color: #a78bfa; padding: 6px 16px; border-radius: 20px; font-size: 14px;">Feb 2023 - Present</span>
-                    </div>
-                    <p style="font-style: italic; color: #9ca3af; margin-bottom: 15px;">Architect and maintain Julia computing platform serving 10M+ developers globally with enterprise-grade infrastructure</p>
-                    <ul style="list-style: none; padding: 0; color: #d1d5db;">
-                        <li style="margin-bottom: 12px; padding-left: 20px; position: relative;">
-                            <span style="position: absolute; left: 0; color: #8b5cf6;">▸</span>
-                            Architected <strong>JuliaHubInfrastructure</strong> with <span style="background: rgba(251, 191, 36, 0.2); color: #fbbf24; padding: 2px 6px; border-radius: 4px; font-weight: 600;">4-layer architecture</span> managing Terraform, Kubernetes, AWS
-                        </li>
-                        <li style="margin-bottom: 12px; padding-left: 20px; position: relative;">
-                            <span style="position: absolute; left: 0; color: #8b5cf6;">▸</span>
-                            Built <span style="background: rgba(251, 191, 36, 0.2); color: #fbbf24; padding: 2px 6px; border-radius: 4px; font-weight: 600;">20+ cluster components</span> achieving <span style="background: rgba(251, 191, 36, 0.2); color: #fbbf24; padding: 2px 6px; border-radius: 4px; font-weight: 600;">70% better resource utilization</span>
-                        </li>
-                        <li style="margin-bottom: 12px; padding-left: 20px; position: relative;">
-                            <span style="position: absolute; left: 0; color: #8b5cf6;">▸</span>
-                            Achieved <span style="background: rgba(251, 191, 36, 0.2); color: #fbbf24; padding: 2px 6px; border-radius: 4px; font-weight: 600;">99.99% uptime</span> with <span style="background: rgba(251, 191, 36, 0.2); color: #fbbf24; padding: 2px 6px; border-radius: 4px; font-weight: 600;">RTO < 15 minutes</span>
-                        </li>
-                        <li style="padding-left: 20px; position: relative;">
-                            <span style="position: absolute; left: 0; color: #8b5cf6;">▸</span>
-                            Optimized costs by <span style="background: rgba(251, 191, 36, 0.2); color: #fbbf24; padding: 2px 6px; border-radius: 4px; font-weight: 600;">40% ($2M+ annually)</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div style="background: rgba(139, 92, 246, 0.05); padding: 20px; border-radius: 8px; border: 1px solid rgba(139, 92, 246, 0.2); margin-bottom: 25px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                        <div>
-                            <h3 style="font-size: 20px; color: #ffffff; margin: 0;">DevOps Engineer</h3>
-                            <p style="font-size: 16px; color: #8b5cf6; margin: 5px 0;">StackState (via Squads), Remote</p>
-                        </div>
-                        <span style="background: rgba(139, 92, 246, 0.2); color: #a78bfa; padding: 6px 16px; border-radius: 20px; font-size: 14px;">Jul 2019 - Feb 2023</span>
-                    </div>
-                    <p style="font-style: italic; color: #9ca3af; margin-bottom: 15px;">Built enterprise observability platform processing 1TB+ daily logs for Fortune 500 monitoring infrastructure</p>
-                    <ul style="list-style: none; padding: 0; color: #d1d5db;">
-                        <li style="margin-bottom: 12px; padding-left: 20px; position: relative;">
-                            <span style="position: absolute; left: 0; color: #8b5cf6;">▸</span>
-                            Architected platform processing <span style="background: rgba(251, 191, 36, 0.2); color: #fbbf24; padding: 2px 6px; border-radius: 4px; font-weight: 600;">1TB+ daily logs</span>
-                        </li>
-                        <li style="margin-bottom: 12px; padding-left: 20px; position: relative;">
-                            <span style="position: absolute; left: 0; color: #8b5cf6;">▸</span>
-                            Created E2E framework reducing testing from <span style="background: rgba(251, 191, 36, 0.2); color: #fbbf24; padding: 2px 6px; border-radius: 4px; font-weight: 600;">3 days to 4 hours</span>
-                        </li>
-                        <li style="padding-left: 20px; position: relative;">
-                            <span style="position: absolute; left: 0; color: #8b5cf6;">▸</span>
-                            Achieved <span style="background: rgba(251, 191, 36, 0.2); color: #fbbf24; padding: 2px 6px; border-radius: 4px; font-weight: 600;">35% multi-cloud cost reduction</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <h2 style="font-size: 24px; color: #8b5cf6; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #8b5cf6;">Key Achievements</h2>
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 30px;">
-                    ${[
-                        {icon: '🏗️', title: 'Infrastructure Innovation', desc: 'Architected JHubInfrastructure - enterprise automation platform'},
-                        {icon: '📈', title: 'Scale & Reliability', desc: 'Managing 10M+ users with 99.99% uptime'},
-                        {icon: '🚀', title: 'Performance', desc: 'Reduced deployment time by 75% through automation'},
-                        {icon: '💰', title: 'Cost Optimization', desc: 'Saved $2M+ annually through resource optimization'}
-                    ].map(achievement => 
-                        `<div style="background: rgba(139, 92, 246, 0.1); padding: 15px; border-radius: 6px; border: 1px solid rgba(139, 92, 246, 0.3);">
-                            <h4 style="color: #8b5cf6; margin: 0 0 8px 0; font-size: 16px;">${achievement.icon} ${achievement.title}</h4>
-                            <p style="color: #d1d5db; margin: 0; font-size: 14px;">${achievement.desc}</p>
-                        </div>`
-                    ).join('')}
-                </div>
-
-                <div style="display: flex; gap: 30px; font-size: 14px; color: #9ca3af;">
-                    <div><strong style="color: #d1d5db;">Education:</strong> B.E. Computer Science, Sathyabama University (2014)</div>
-                    <div><strong style="color: #d1d5db;">Languages:</strong> English (Fluent), Tamil (Native), Hindi (Conversational)</div>
-                </div>
+            
+            // Apply dark theme styles to cloned content
+            clonedElement.style.cssText = `
+                background-color: #0a0a0a !important;
+                color: #e5e5e5 !important;
+                padding: 0.5in !important;
+                width: 100% !important;
+                max-width: none !important;
+                box-sizing: border-box !important;
             `;
-
-            // Append to body temporarily
-            pdfContainer.style.position = 'absolute';
-            pdfContainer.style.left = '-9999px';
-            document.body.appendChild(pdfContainer);
-
-            // Generate PDF options
+            
+            // Remove elements we don't want in PDF
+            const downloadSection = clonedElement.querySelector('.download-section');
+            if (downloadSection) {
+                downloadSection.remove();
+            }
+            
+            // Apply inline styles for PDF rendering
+            const styles = `
+                * { box-sizing: border-box !important; }
+                body { margin: 0 !important; padding: 0 !important; }
+                h1 { color: #ffffff !important; font-size: 32px !important; }
+                h2 { color: #8b5cf6 !important; font-size: 20px !important; }
+                h3 { color: #ffffff !important; font-size: 16px !important; }
+                p, li, span { color: #d1d5db !important; }
+                a { color: #8b5cf6 !important; }
+                .section-title { color: #8b5cf6 !important; }
+                .section-title::after { background: #8b5cf6 !important; }
+                .highlight { background-color: rgba(251, 191, 36, 0.2) !important; color: #fbbf24 !important; }
+                .metric { background-color: rgba(251, 191, 36, 0.2) !important; color: #fbbf24 !important; }
+                .skill-category, .experience-item, .achievement-card { 
+                    background-color: rgba(139, 92, 246, 0.1) !important; 
+                    border: 1px solid rgba(139, 92, 246, 0.3) !important; 
+                }
+                .header { background-color: #1a1a1a !important; }
+                .header h1, .header .subtitle, .header .contact-info { color: #ffffff !important; }
+                .header .contact-info a { color: #8b5cf6 !important; }
+                .summary { 
+                    background-color: rgba(99, 102, 241, 0.1) !important; 
+                    border: 1px solid rgba(99, 102, 241, 0.3) !important;
+                }
+                .education-item, .language-item { 
+                    background-color: rgba(139, 92, 246, 0.1) !important; 
+                }
+                .date { 
+                    background-color: rgba(139, 92, 246, 0.2) !important;
+                    color: #a78bfa !important;
+                }
+                .company { color: #8b5cf6 !important; }
+                .job-description { color: #9ca3af !important; }
+            `;
+            
+            const styleElement = document.createElement('style');
+            styleElement.textContent = styles;
+            clonedElement.prepend(styleElement);
+            
+            // Add the content to wrapper
+            pdfWrapper.appendChild(clonedElement);
+            
+            // Temporarily add to document
+            pdfWrapper.style.position = 'fixed';
+            pdfWrapper.style.left = '0';
+            pdfWrapper.style.top = '0';
+            pdfWrapper.style.zIndex = '-9999';
+            document.body.appendChild(pdfWrapper);
+            
+            // PDF generation options
             const opt = {
                 margin:       0,
                 filename:     'Johnny_Gladwin_Resume.pdf',
-                image:        { type: 'jpeg', quality: 0.98 },
+                image:        { 
+                    type: 'jpeg', 
+                    quality: 1 
+                },
                 html2canvas:  { 
                     scale: 2,
                     useCORS: true,
-                    letterRendering: true,
-                    backgroundColor: '#1a1a1a'
+                    logging: false,
+                    backgroundColor: '#0a0a0a',
+                    onclone: function(clonedDoc) {
+                        clonedDoc.querySelector('body').style.margin = '0';
+                        clonedDoc.querySelector('body').style.padding = '0';
+                    }
                 },
                 jsPDF:        { 
                     unit: 'in', 
                     format: 'letter', 
-                    orientation: 'portrait'
-                }
+                    orientation: 'portrait',
+                    compress: true
+                },
+                pagebreak: { mode: 'avoid-all' }
             };
-
+            
             // Generate PDF
-            html2pdf().set(opt).from(pdfContainer).save().then(() => {
-                document.body.removeChild(pdfContainer);
+            html2pdf().set(opt).from(pdfWrapper).save().then(() => {
+                document.body.removeChild(pdfWrapper);
+            }).catch(err => {
+                console.error('PDF generation error:', err);
+                document.body.removeChild(pdfWrapper);
+                alert('Error generating PDF. Please try again.');
             });
         }
     </script>
