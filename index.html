@@ -934,161 +934,175 @@
             const name = original.querySelector('h1')?.textContent || 'Johnny Gladwin';
             const title = original.querySelector('.subtitle')?.textContent || 'Senior Cloud Platform Engineer';
             
-            // Create READABLE, PROFESSIONAL resume exactly like the template
+            // Create KICKRESUME-STYLE LEFT-RIGHT PANEL layout
             const resumeHTML = `
-                <div style="font-family: 'Arial', 'Helvetica', sans-serif; font-size: 12px; line-height: 1.4; color: #333; max-width: 750px; margin: 0 auto; padding: 40px;">
+                <div style="font-family: 'Arial', 'Helvetica', sans-serif; display: flex; min-height: 100vh; margin: 0; padding: 0; background: white;">
                     
-                    <!-- HEADER -->
-                    <div style="text-align: center; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid #ddd;">
-                        <h1 style="font-size: 26px; font-weight: 700; margin: 0 0 8px 0; color: #2c3e50; letter-spacing: 1px;">${name}</h1>
-                        <div style="font-size: 16px; color: #7f8c8d; margin-bottom: 12px; font-weight: 400;">${title}</div>
-                        <div style="font-size: 11px; color: #95a5a6; line-height: 1.3;">
-                            📧 johnny.gladwin@outlook.com &nbsp;&nbsp;|&nbsp;&nbsp; 📱 +91-7702-549-262 &nbsp;&nbsp;|&nbsp;&nbsp; 📍 Vellore, India<br>
-                            💼 linkedin.com/in/johnny-gladwin-821671a &nbsp;&nbsp;|&nbsp;&nbsp; 🐙 github.com/jglad20
-                        </div>
-                    </div>
-                    
-                    <!-- PROFESSIONAL SUMMARY -->
-                    <div style="margin-bottom: 20px;">
-                        <h2 style="font-size: 14px; font-weight: 700; color: #2c3e50; margin: 0 0 10px 0; text-transform: uppercase; border-bottom: 2px solid #3498db; padding-bottom: 3px; display: inline-block;">Professional Summary</h2>
-                        <div style="font-size: 12px; line-height: 1.5; margin-bottom: 12px; text-align: justify;">
-                            Senior DevOps Engineer with <strong style="color: #3498db;">10+ years</strong> building enterprise infrastructure automation frameworks and managing cloud-native platforms at scale. Built <strong>JuliaHubInfrastructure</strong> - comprehensive infrastructure-as-code framework in Julia wrapping Terraform, Kubernetes, AWS, and Ansible. Managed production Kubernetes clusters serving <strong style="color: #3498db;">10M+ users</strong> with <strong style="color: #3498db;">99.99% uptime</strong> and <strong style="color: #3498db;">40% cost optimization</strong>.
-                        </div>
-                        <div style="font-size: 11px; color: #666;"><strong>Core Technologies:</strong> Julia, Kubernetes/EKS, Terraform, Helm, ArgoCD, Docker, AWS, Infrastructure Automation</div>
-                    </div>
-                    
-                    <!-- TECHNICAL EXPERTISE -->
-                    <div style="margin-bottom: 20px;">
-                        <h2 style="font-size: 14px; font-weight: 700; color: #2c3e50; margin: 0 0 10px 0; text-transform: uppercase; border-bottom: 2px solid #3498db; padding-bottom: 3px; display: inline-block;">Technical Expertise</h2>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; font-size: 11px;">
-                            <div>
-                                <div style="font-weight: 600; color: #2c3e50; margin-bottom: 5px; text-transform: uppercase; font-size: 10px;">Cloud Platforms</div>
-                                <div style="color: #666; line-height: 1.3;">AWS (EKS, VPC, RDS, S3, CloudFront, Lambda, ALB, WAF, IAM, Cognito), Azure, GCP, DigitalOcean</div>
-                            </div>
-                            <div>
-                                <div style="font-weight: 600; color: #2c3e50; margin-bottom: 5px; text-transform: uppercase; font-size: 10px;">Container Orchestration</div>
-                                <div style="color: #666; line-height: 1.3;">Kubernetes/EKS, Karpenter, Helm, ArgoCD, KOTS, Cert-Manager, Docker, Podman</div>
-                            </div>
-                            <div>
-                                <div style="font-weight: 600; color: #2c3e50; margin-bottom: 5px; text-transform: uppercase; font-size: 10px;">Infrastructure as Code</div>
-                                <div style="color: #666; line-height: 1.3;">Terraform, CloudFormation, Ansible, Pulumi, Nix, Packer, Custom Julia Framework</div>
-                            </div>
-                            <div>
-                                <div style="font-weight: 600; color: #2c3e50; margin-bottom: 5px; text-transform: uppercase; font-size: 10px;">CI/CD & GitOps</div>
-                                <div style="color: #666; line-height: 1.3;">Jenkins, GitLab CI, GitHub Actions, ArgoCD, Flux, Tekton, Blue-Green Deployments</div>
-                            </div>
-                            <div>
-                                <div style="font-weight: 600; color: #2c3e50; margin-bottom: 5px; text-transform: uppercase; font-size: 10px;">Monitoring & Observability</div>
-                                <div style="color: #666; line-height: 1.3;">Prometheus, Grafana, Elasticsearch, Fluent Bit, OpenTelemetry, Jaeger, CloudWatch, New Relic</div>
-                            </div>
-                            <div>
-                                <div style="font-weight: 600; color: #2c3e50; margin-bottom: 5px; text-transform: uppercase; font-size: 10px;">Programming & Scripting</div>
-                                <div style="color: #666; line-height: 1.3;">Julia, Python, Go, Java, Bash/Shell, YAML, JSON, HCL</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- KEY ACHIEVEMENTS -->
-                    <div style="margin-bottom: 20px;">
-                        <h2 style="font-size: 14px; font-weight: 700; color: #2c3e50; margin: 0 0 10px 0; text-transform: uppercase; border-bottom: 2px solid #3498db; padding-bottom: 3px; display: inline-block;">Key Achievements</h2>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 11px;">
-                            <div style="padding: 8px 0;">
-                                <div style="font-weight: 600; color: #2c3e50; margin-bottom: 4px;">Infrastructure Automation</div>
-                                <div style="color: #666; line-height: 1.4;">Developed Julia-based infrastructure automation platform managing 4-layer architecture with <strong style="color: #3498db;">22+ microservices</strong></div>
-                            </div>
-                            <div style="padding: 8px 0;">
-                                <div style="font-weight: 600; color: #2c3e50; margin-bottom: 4px;">Scale & Reliability</div>
-                                <div style="color: #666; line-height: 1.4;">Maintained <strong style="color: #3498db;">99.99% uptime</strong> for systems serving <strong style="color: #3498db;">10M+ users</strong>, processed <strong style="color: #3498db;">1TB+ daily logs</strong></div>
-                            </div>
-                            <div style="padding: 8px 0;">
-                                <div style="font-weight: 600; color: #2c3e50; margin-bottom: 4px;">Cost Optimization</div>
-                                <div style="color: #666; line-height: 1.4;">Orchestrated cost optimization achieving <strong style="color: #3498db;">40%</strong> operational expenditure reduction through strategic resource allocation</div>
-                            </div>
-                            <div style="padding: 8px 0;">
-                                <div style="font-weight: 600; color: #2c3e50; margin-bottom: 4px;">CI/CD Implementation</div>
-                                <div style="color: #666; line-height: 1.4;">Built enterprise-grade CI/CD platforms accelerating deployment velocity by <strong style="color: #3498db;">75%</strong></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- PROFESSIONAL EXPERIENCE -->
-                    <div style="margin-bottom: 20px;">
-                        <h2 style="font-size: 14px; font-weight: 700; color: #2c3e50; margin: 0 0 10px 0; text-transform: uppercase; border-bottom: 2px solid #3498db; padding-bottom: 3px; display: inline-block;">Professional Experience</h2>
+                    <!-- LEFT PANEL - Black with Yellow/Green Accents -->
+                    <div style="width: 300px; background: #1a1a1a; color: white; padding: 30px 25px; box-sizing: border-box;">
                         
-                        <div style="margin-bottom: 15px; padding-bottom: 12px; border-bottom: 1px solid #eee;">
-                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px;">
-                                <div style="font-weight: 600; font-size: 13px; color: #2c3e50;">Cloud Engineer</div>
-                                <div style="font-size: 11px; color: #95a5a6;">February 2023 – Present</div>
-                            </div>
-                            <div style="font-size: 12px; color: #3498db; margin-bottom: 6px; font-weight: 500;">JuliaHub, Bengaluru</div>
-                            <div style="font-size: 11px; color: #666; font-style: italic; margin-bottom: 6px;">Build and maintain Julia computing platform serving 10M+ developers globally</div>
-                            <ul style="margin: 0; padding-left: 20px; font-size: 11px; line-height: 1.4;">
-                                <li style="margin-bottom: 4px;">Built <strong>JuliaHubInfrastructure</strong> automation platform with 4-layer architecture (account → cluster → platform → services) integrating Terraform, Kubernetes, Ansible, AWS</li>
-                                <li style="margin-bottom: 4px;">Deployed <strong style="color: #3498db;">20+ cluster components</strong>: EKS, VPC, Karpenter, Cert-Manager, EBS/EFS CSI drivers, AWS Load Balancer Controller, Grafana Cloud, Redpanda</li>
-                                <li style="margin-bottom: 4px;">Maintain infrastructure serving <strong style="color: #3498db;">40,000+ Julia packages</strong> and <strong style="color: #3498db;">10M+ developers</strong> with <strong style="color: #3498db;">99.99% uptime</strong></li>
-                                <li style="margin-bottom: 4px;">Develop operational runbooks covering security, compliance, incident response, CI, alerting, release management</li>
-                            </ul>
+                        <!-- NAME & TITLE -->
+                        <div style="margin-bottom: 25px;">
+                            <h1 style="font-size: 28px; font-weight: 700; margin: 0 0 8px 0; color: white; text-transform: uppercase; letter-spacing: 3px;">${name}</h1>
+                            <div style="font-size: 16px; color: #00ff88; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">${title}</div>
                         </div>
                         
-                        <div style="margin-bottom: 15px; padding-bottom: 12px; border-bottom: 1px solid #eee;">
-                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px;">
-                                <div style="font-weight: 600; font-size: 13px; color: #2c3e50;">DevOps Engineer</div>
-                                <div style="font-size: 11px; color: #95a5a6;">July 2019 – February 2023</div>
+                        <!-- CONTACT -->
+                        <div style="margin-bottom: 25px;">
+                            <h3 style="font-size: 14px; font-weight: 700; color: #ffdd00; margin: 0 0 12px 0; text-transform: uppercase; letter-spacing: 1px;">Contact</h3>
+                            <div style="font-size: 11px; line-height: 1.6; color: #e0e0e0;">
+                                📧 johnny.gladwin@outlook.com<br>
+                                📱 +91-7702-549-262<br>
+                                📍 Vellore, India<br>
+                                💼 linkedin.com/in/johnny-gladwin-821671a<br>
+                                🐙 github.com/jglad20
                             </div>
-                            <div style="font-size: 12px; color: #3498db; margin-bottom: 6px; font-weight: 500;">Squads (StackState Platform)</div>
-                            <div style="font-size: 11px; color: #666; font-style: italic; margin-bottom: 6px;">Built enterprise observability platform processing 1TB+ daily logs for Fortune 500</div>
-                            <ul style="margin: 0; padding-left: 20px; font-size: 11px; line-height: 1.4;">
-                                <li style="margin-bottom: 4px;">Maintain <strong style="color: #3498db;">4 Kubernetes clusters</strong> with <strong style="color: #3498db;">100+ Helm chart deployments</strong> and ArgoCD GitOps</li>
-                                <li style="margin-bottom: 4px;">Develop E2E testing framework "Beest" with Terraform/Ansible automating <strong style="color: #3498db;">25+ test environments</strong></li>
-                                <li style="margin-bottom: 4px;">Build Docker infrastructure for <strong style="color: #3498db;">20+ services</strong> (elasticsearch, kafka, zookeeper, minio, envoy, hadoop)</li>
-                                <li style="margin-bottom: 4px;">Create Terraform modules for AWS/GCP deployments, automate AMI building reducing deployment time by <strong style="color: #3498db;">75%</strong></li>
-                            </ul>
                         </div>
                         
-                        <div style="margin-bottom: 15px; padding-bottom: 12px; border-bottom: 1px solid #eee;">
-                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px;">
-                                <div style="font-weight: 600; font-size: 13px; color: #2c3e50;">DevOps Engineer</div>
-                                <div style="font-size: 11px; color: #95a5a6;">April 2018 – July 2019</div>
+                        <!-- PROFILE -->
+                        <div style="margin-bottom: 25px;">
+                            <h3 style="font-size: 14px; font-weight: 700; color: #ffdd00; margin: 0 0 12px 0; text-transform: uppercase; letter-spacing: 1px;">Profile</h3>
+                            <div style="font-size: 11px; line-height: 1.5; color: #e0e0e0; text-align: justify;">
+                                Senior DevOps Engineer with <strong style="color: #00ff88;">10+ years</strong> building enterprise infrastructure automation frameworks. Built <strong style="color: #00ff88;">JuliaHubInfrastructure</strong> - comprehensive infrastructure-as-code framework in Julia wrapping Terraform, Kubernetes, AWS, and Ansible. Managing cloud-native platforms serving <strong style="color: #00ff88;">10M+ users</strong> with <strong style="color: #00ff88;">99.99% uptime</strong>.
                             </div>
-                            <div style="font-size: 12px; color: #3498db; margin-bottom: 6px; font-weight: 500;">Freelance</div>
-                            <ul style="margin: 0; padding-left: 20px; font-size: 11px; line-height: 1.4;">
-                                <li style="margin-bottom: 4px;">Built Jenkins CI/CD automation for multiple clients reducing deployment time by <strong style="color: #3498db;">60%</strong></li>
-                                <li style="margin-bottom: 4px;">Developed Terraform AWS modules, implemented Grafana/Prometheus achieving <strong style="color: #3498db;">99.95% availability</strong></li>
-                            </ul>
                         </div>
                         
-                        <div style="margin-bottom: 15px; padding-bottom: 12px; border-bottom: 1px solid #eee;">
-                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px;">
-                                <div style="font-weight: 600; font-size: 13px; color: #2c3e50;">Senior Systems Engineer</div>
-                                <div style="font-size: 11px; color: #95a5a6;">January 2018 – April 2018</div>
+                        <!-- TECHNICAL SKILLS -->
+                        <div style="margin-bottom: 25px;">
+                            <h3 style="font-size: 14px; font-weight: 700; color: #ffdd00; margin: 0 0 12px 0; text-transform: uppercase; letter-spacing: 1px;">Skills</h3>
+                            
+                            <div style="margin-bottom: 15px;">
+                                <div style="font-size: 11px; font-weight: 600; color: #00ff88; margin-bottom: 4px; text-transform: uppercase;">Cloud Infrastructure</div>
+                                <div style="font-size: 10px; color: #c0c0c0; line-height: 1.4;">AWS, Azure, GCP, Kubernetes/EKS, Docker, Terraform</div>
                             </div>
-                            <div style="font-size: 12px; color: #3498db; margin-bottom: 6px; font-weight: 500;">Quess Corp</div>
-                            <ul style="margin: 0; padding-left: 20px; font-size: 11px; line-height: 1.4;">
-                                <li style="margin-bottom: 4px;">Managed Kubernetes clusters for retail e-commerce serving <strong style="color: #3498db;">1M+ daily users</strong></li>
-                            </ul>
+                            
+                            <div style="margin-bottom: 15px;">
+                                <div style="font-size: 11px; font-weight: 600; color: #00ff88; margin-bottom: 4px; text-transform: uppercase;">Automation & DevOps</div>
+                                <div style="font-size: 10px; color: #c0c0c0; line-height: 1.4;">Jenkins, GitLab CI, ArgoCD, Ansible, Helm, KOTS</div>
+                            </div>
+                            
+                            <div style="margin-bottom: 15px;">
+                                <div style="font-size: 11px; font-weight: 600; color: #00ff88; margin-bottom: 4px; text-transform: uppercase;">Programming</div>
+                                <div style="font-size: 10px; color: #c0c0c0; line-height: 1.4;">Julia, Python, Go, Java, Bash/Shell</div>
+                            </div>
+                            
+                            <div style="margin-bottom: 15px;">
+                                <div style="font-size: 11px; font-weight: 600; color: #00ff88; margin-bottom: 4px; text-transform: uppercase;">Monitoring</div>
+                                <div style="font-size: 10px; color: #c0c0c0; line-height: 1.4;">Prometheus, Grafana, Elasticsearch, OpenTelemetry</div>
+                            </div>
                         </div>
                         
-                        <div style="margin-bottom: 15px;">
-                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px;">
-                                <div style="font-weight: 600; font-size: 13px; color: #2c3e50;">Senior Systems Engineer</div>
-                                <div style="font-size: 11px; color: #95a5a6;">April 2016 – December 2017</div>
+                        <!-- KEY ACHIEVEMENTS -->
+                        <div style="margin-bottom: 25px;">
+                            <h3 style="font-size: 14px; font-weight: 700; color: #ffdd00; margin: 0 0 12px 0; text-transform: uppercase; letter-spacing: 1px;">Key Achievements</h3>
+                            
+                            <div style="margin-bottom: 12px;">
+                                <div style="font-size: 11px; font-weight: 600; color: #00ff88; margin-bottom: 3px;">Infrastructure Automation</div>
+                                <div style="font-size: 10px; color: #c0c0c0; line-height: 1.4;">Built Julia-based automation platform with <strong style="color: #00ff88;">22+ microservices</strong></div>
                             </div>
-                            <div style="font-size: 12px; color: #3498db; margin-bottom: 6px; font-weight: 500;">Cognizant</div>
-                            <ul style="margin: 0; padding-left: 20px; font-size: 11px; line-height: 1.4;">
-                                <li style="margin-bottom: 4px;">Led AWS infrastructure automation using CloudFormation, implemented load balancing reducing overhead by <strong style="color: #3498db;">75%</strong></li>
-                            </ul>
+                            
+                            <div style="margin-bottom: 12px;">
+                                <div style="font-size: 11px; font-weight: 600; color: #00ff88; margin-bottom: 3px;">Cost Optimization</div>
+                                <div style="font-size: 10px; color: #c0c0c0; line-height: 1.4;">Achieved <strong style="color: #00ff88;">40%</strong> operational cost reduction</div>
+                            </div>
+                            
+                            <div style="margin-bottom: 12px;">
+                                <div style="font-size: 11px; font-weight: 600; color: #00ff88; margin-bottom: 3px;">Deployment Velocity</div>
+                                <div style="font-size: 10px; color: #c0c0c0; line-height: 1.4;">Accelerated deployment speed by <strong style="color: #00ff88;">75%</strong></div>
+                            </div>
+                        </div>
+                        
+                        <!-- EDUCATION -->
+                        <div>
+                            <h3 style="font-size: 14px; font-weight: 700; color: #ffdd00; margin: 0 0 12px 0; text-transform: uppercase; letter-spacing: 1px;">Education</h3>
+                            <div style="font-size: 11px; font-weight: 600; color: #00ff88; margin-bottom: 2px;">B.E. Computer Science</div>
+                            <div style="font-size: 10px; color: #c0c0c0;">Sathyabama University, 2014</div>
                         </div>
                     </div>
                     
-                    <!-- EDUCATION -->
-                    <div>
-                        <h2 style="font-size: 14px; font-weight: 700; color: #2c3e50; margin: 0 0 10px 0; text-transform: uppercase; border-bottom: 2px solid #3498db; padding-bottom: 3px; display: inline-block;">Education</h2>
-                        <div style="font-size: 12px;">
-                            <div style="font-weight: 600; color: #2c3e50; margin-bottom: 2px;">B.E. Computer Science Engineering</div>
-                            <div style="color: #666; font-size: 11px;">Sathyabama University, Chennai | 2014</div>
+                    <!-- RIGHT PANEL - White with Professional Experience -->
+                    <div style="flex: 1; background: white; padding: 30px 35px; box-sizing: border-box;">
+                        
+                        <!-- PROFESSIONAL EXPERIENCE -->
+                        <div>
+                            <h2 style="font-size: 18px; font-weight: 700; color: #1a1a1a; margin: 0 0 25px 0; text-transform: uppercase; letter-spacing: 1px; border-bottom: 3px solid #ffdd00; padding-bottom: 8px;">Work Experience</h2>
+                            
+                            <!-- JuliaHub -->
+                            <div style="margin-bottom: 25px;">
+                                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px;">
+                                    <h3 style="font-size: 16px; font-weight: 700; color: #2c3e50; margin: 0;">Cloud Engineer</h3>
+                                    <div style="font-size: 11px; color: #7f8c8d; font-weight: 500;">February 2023 – Present</div>
+                                </div>
+                                                                 <div style="font-size: 14px; color: #00ff88; margin-bottom: 8px; font-weight: 600;">JuliaHub, Bengaluru</div>
+                                <div style="font-size: 11px; color: #7f8c8d; margin-bottom: 10px; font-style: italic;">Build and maintain Julia computing platform serving 10M+ developers globally</div>
+                                <ul style="margin: 0; padding-left: 18px; font-size: 11px; line-height: 1.5; color: #2c3e50;">
+                                    <li style="margin-bottom: 6px;">Built <strong>JuliaHubInfrastructure</strong> automation platform with 4-layer architecture (account → cluster → platform → services) integrating Terraform, Kubernetes, Ansible, AWS</li>
+                                                                         <li style="margin-bottom: 6px;">Deployed <strong style="color: #00ff88;">20+ cluster components</strong> including EKS, VPC, Karpenter auto-scaling, Cert-Manager, EBS/EFS CSI drivers, AWS Load Balancer Controller, and Grafana Cloud monitoring</li>
+                                     <li style="margin-bottom: 6px;">Designed platform layer with RDS databases, WAF security, CloudFront CDN, ALB load balancing, and Cognito authentication systems</li>
+                                     <li style="margin-bottom: 6px;">Maintain production infrastructure serving <strong style="color: #00ff88;">40,000+ Julia packages</strong> and <strong style="color: #00ff88;">10M+ developers</strong> with <strong style="color: #00ff88;">99.99% uptime</strong> SLA</li>
+                                    <li style="margin-bottom: 6px;">Developed operational runbooks covering security, compliance, incident response, continuous integration, alerting, and release management procedures</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- StackState -->
+                            <div style="margin-bottom: 25px;">
+                                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px;">
+                                    <h3 style="font-size: 16px; font-weight: 700; color: #2c3e50; margin: 0;">DevOps Engineer</h3>
+                                    <div style="font-size: 11px; color: #7f8c8d; font-weight: 500;">July 2019 – February 2023</div>
+                                </div>
+                                                                 <div style="font-size: 14px; color: #00ff88; margin-bottom: 8px; font-weight: 600;">Squads (StackState Platform)</div>
+                                 <div style="font-size: 11px; color: #7f8c8d; margin-bottom: 10px; font-style: italic;">Built enterprise observability platform processing 1TB+ daily logs for Fortune 500</div>
+                                 <ul style="margin: 0; padding-left: 18px; font-size: 11px; line-height: 1.5; color: #2c3e50;">
+                                     <li style="margin-bottom: 6px;">Maintained <strong style="color: #00ff88;">4 Kubernetes clusters</strong> running StackState agent testing with <strong style="color: #00ff88;">100+ Helm chart deployments</strong> and ArgoCD GitOps</li>
+                                     <li style="margin-bottom: 6px;">Developed E2E testing framework "Beest" with Terraform/Ansible automating <strong style="color: #00ff88;">25+ test environments</strong> and Python pytest validation</li>
+                                     <li style="margin-bottom: 6px;">Built Docker infrastructure for <strong style="color: #00ff88;">20+ services</strong> (stackstate, elasticsearch, kafka, zookeeper, minio, envoy, hadoop) with automated CI/CD</li>
+                                     <li style="margin-bottom: 6px;">Created Terraform modules for AWS/GCP deployments supporting enterprise SaaS tenants with multi-cloud architecture</li>
+                                     <li style="margin-bottom: 6px;">Implemented observability stack using Grafana dashboards, OpenTelemetry tracing, and Elasticsearch logging for platform monitoring</li>
+                                     <li style="margin-bottom: 6px;">Automated AMI building with Packer templates reducing deployment time by <strong style="color: #00ff88;">75%</strong></li>
+                                 </ul>
+                             </div>
+                             
+                             <!-- Freelance -->
+                             <div style="margin-bottom: 25px;">
+                                 <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px;">
+                                     <h3 style="font-size: 16px; font-weight: 700; color: #2c3e50; margin: 0;">DevOps Engineer</h3>
+                                     <div style="font-size: 11px; color: #7f8c8d; font-weight: 500;">April 2018 – July 2019</div>
+                                 </div>
+                                 <div style="font-size: 14px; color: #00ff88; margin-bottom: 8px; font-weight: 600;">Freelance</div>
+                                 <ul style="margin: 0; padding-left: 18px; font-size: 11px; line-height: 1.5; color: #2c3e50;">
+                                     <li style="margin-bottom: 6px;">Built Jenkins CI/CD automation for multiple clients reducing deployment time by <strong style="color: #00ff88;">60%</strong></li>
+                                     <li style="margin-bottom: 6px;">Developed Terraform AWS modules for infrastructure provisioning and Hadoop cluster automation</li>
+                                     <li style="margin-bottom: 6px;">Implemented monitoring solutions using Grafana/Prometheus achieving <strong style="color: #00ff88;">99.95% availability</strong></li>
+                                 </ul>
+                             </div>
+                             
+                             <!-- Quess Corp -->
+                             <div style="margin-bottom: 25px;">
+                                 <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px;">
+                                     <h3 style="font-size: 16px; font-weight: 700; color: #2c3e50; margin: 0;">Senior Systems Engineer</h3>
+                                     <div style="font-size: 11px; color: #7f8c8d; font-weight: 500;">January 2018 – April 2018</div>
+                                 </div>
+                                 <div style="font-size: 14px; color: #00ff88; margin-bottom: 8px; font-weight: 600;">Quess Corp</div>
+                                 <ul style="margin: 0; padding-left: 18px; font-size: 11px; line-height: 1.5; color: #2c3e50;">
+                                     <li style="margin-bottom: 6px;">Managed Kubernetes clusters for retail e-commerce serving <strong style="color: #00ff88;">1M+ daily users</strong></li>
+                                     <li style="margin-bottom: 6px;">Automated multi-cloud deployment (AWS/GCP) using Ansible and Docker containerization</li>
+                                 </ul>
+                             </div>
+                             
+                             <!-- Cognizant -->
+                             <div>
+                                 <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px;">
+                                     <h3 style="font-size: 16px; font-weight: 700; color: #2c3e50; margin: 0;">Senior Systems Engineer</h3>
+                                     <div style="font-size: 11px; color: #7f8c8d; font-weight: 500;">April 2016 – December 2017</div>
+                                 </div>
+                                 <div style="font-size: 14px; color: #00ff88; margin-bottom: 8px; font-weight: 600;">Cognizant</div>
+                                 <ul style="margin: 0; padding-left: 18px; font-size: 11px; line-height: 1.5; color: #2c3e50;">
+                                     <li style="margin-bottom: 6px;">Led AWS infrastructure automation for enterprise clients using CloudFormation and Auto Scaling</li>
+                                     <li style="margin-bottom: 6px;">Implemented load balancing with HAProxy and reverse proxy architecture reducing overhead by <strong style="color: #00ff88;">75%</strong></li>
+                                 </ul>
+                             </div>
                         </div>
                     </div>
-                    
                 </div>
             `;
             
