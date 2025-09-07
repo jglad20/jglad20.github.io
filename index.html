@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Johnny Gladwin - Senior Cloud Platform Engineer</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         :root {
             --bg-primary: #050505;
@@ -407,15 +406,54 @@
             transform: translateY(-2px);
         }
 
-        /* Hidden PDF Content */
-        #pdf-content {
-            position: absolute;
-            left: -9999px;
-            width: 816px;
-            background: #1a1a1a;
-            color: #ffffff;
-            padding: 40px;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        /* Print Styles */
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+            
+            body {
+                background: #0f0f0f !important;
+                color: #ffffff !important;
+            }
+            
+            body::before, body::after {
+                display: none !important;
+            }
+            
+            .download-section {
+                display: none !important;
+            }
+            
+            .container {
+                max-width: 100% !important;
+                padding: 0.5in !important;
+            }
+            
+            .skill-category,
+            .experience-item,
+            .achievement-card,
+            .education-item,
+            .language-item {
+                background: rgba(99, 102, 241, 0.1) !important;
+                border: 1px solid rgba(99, 102, 241, 0.3) !important;
+                -webkit-print-color-adjust: exact !important;
+            }
+            
+            .section {
+                page-break-inside: avoid !important;
+            }
+            
+            .experience-item {
+                page-break-inside: avoid !important;
+            }
+            
+            @page {
+                size: letter;
+                margin: 0.5in;
+            }
         }
 
         /* Responsive */
@@ -601,19 +639,19 @@
             <h2 class="section-title">Key Achievements & Impact</h2>
             <div class="achievements-grid">
                 <div class="achievement-card">
-                    <h3>Infrastructure Innovation</h3>
-                    <p>Architected JHubInfrastructure - enterprise infrastructure automation platform with custom Julia REPL, 4-layer architecture, and comprehensive operational runbooks</p>
+                    <h3>🏗️ Infrastructure Innovation</h3>
+                    <p>Architected JuliaHubInfrastructure - enterprise infrastructure automation platform with custom Julia REPL, 4-layer architecture, and comprehensive operational runbooks</p>
                 </div>
                 <div class="achievement-card">
-                    <h3>Scale & Reliability</h3>
+                    <h3>📈 Scale & Reliability</h3>
                     <p>Manage production Kubernetes clusters serving <span class="metric">10M+ users</span> with <span class="metric">99.99% uptime</span>. Built observability platform processing <span class="metric">1TB+ daily logs</span></p>
                 </div>
                 <div class="achievement-card">
-                    <h3>Performance & Efficiency</h3>
+                    <h3>🚀 Performance & Efficiency</h3>
                     <p>Reduced deployment time by <span class="metric">75%</span> through GitOps automation. Optimized infrastructure costs by <span class="metric">40%</span> through intelligent resource allocation</p>
                 </div>
                 <div class="achievement-card">
-                    <h3>Team Leadership</h3>
+                    <h3>👥 Team Leadership</h3>
                     <p>Mentored <span class="metric">5+ junior engineers</span> in Kubernetes, Terraform, Julia programming, and cloud-native practices</p>
                 </div>
             </div>
@@ -639,16 +677,16 @@
         </section>
     </div>
 
-    <!-- Hidden PDF Content -->
-    <div id="pdf-content">
-        <!-- PDF content will be generated here -->
-    </div>
-
-    <script src="pdf-generator-enhanced.js"></script>
     <script>
         function generatePDF() {
-            generateEnhancedPDF();
+            // Use the browser's print dialog
+            window.print();
         }
+        
+        // Optional: Show instructions after clicking
+        window.addEventListener('beforeprint', function() {
+            console.log('Printing...');
+        });
     </script>
 </body>
 </html>
