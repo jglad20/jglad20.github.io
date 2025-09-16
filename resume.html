@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Johnny Gladwin - Senior Cloud Platform Engineer Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-sidebar: #f3f4f6;
+            --accent: #3b82f6;
+            --success: #10b981;
+            --border-color: #e5e7eb;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.5;
+            background: white;
+            font-size: 11pt;
+        }
+        
+        .resume-container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            display: flex;
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Left Sidebar */
+        .sidebar {
+            width: 320px;
+            background: var(--bg-sidebar);
+            padding: 40px 30px;
+        }
+        
+        .profile-section {
+            text-align: center;
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .profile-section h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+        
+        .profile-section .title {
+            font-size: 14px;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info {
+            text-align: left;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 11px;
+            color: var(--text-light);
+        }
+        
+        .contact-item svg {
+            width: 16px;
+            height: 16px;
+            margin-right: 10px;
+            flex-shrink: 0;
+            color: var(--primary-color);
+        }
+        
+        .contact-item a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .contact-item a:hover {
+            color: var(--primary-color);
+        }
+        
+        .section-sidebar {
+            margin-bottom: 30px;
+        }
+        
+        .section-sidebar h2 {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        /* Skills with Rating */
+        .skill-item {
+            margin-bottom: 14px;
+        }
+        
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+        
+        .skill-name {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        
+        .skill-level {
+            font-size: 10px;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+        
+        .skill-bar {
+            height: 6px;
+            background: #e5e7eb;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent));
+            border-radius: 3px;
+            transition: width 0.3s;
+        }
+        
+        /* Technology Pills */
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        
+        .tech-tag {
+            padding: 4px 10px;
+            background: white;
+            color: var(--text-dark);
+            font-size: 10px;
+            border-radius: 12px;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+        }
+        
+        /* Languages Section */
+        .language-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 11px;
+        }
+        
+        .language-name {
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        
+        .language-level {
+            color: var(--text-light);
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            background: white;
+        }
+        
+        .section-main {
+            margin-bottom: 30px;
+        }
+        
+        .section-main h2 {
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        /* Professional Summary */
+        .summary {
+            font-size: 11px;
+            color: var(--text-dark);
+            line-height: 1.7;
+            text-align: justify;
+        }
+        
+        .summary .highlight {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        /* Experience Items */
+        .experience-item {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .experience-item:last-child {
+            border-bottom: none;
+        }
+        
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+        
+        .exp-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        .exp-date {
+            font-size: 11px;
+            color: var(--text-light);
+            white-space: nowrap;
+        }
+        
+        .exp-company {
+            font-size: 12px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .exp-description {
+            font-size: 10px;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        
+        .achievements {
+            list-style: none;
+            font-size: 10px;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        .achievements li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+        }
+        
+        .achievements li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .metric {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        /* Key Achievements Grid */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .achievement-card {
+            padding: 12px;
+            background: var(--bg-light);
+            border-radius: 6px;
+            border-left: 3px solid var(--primary-color);
+        }
+        
+        .achievement-card h3 {
+            font-size: 11px;
+            color: var(--primary-color);
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        
+        .achievement-card p {
+            font-size: 10px;
+            color: var(--text-dark);
+            line-height: 1.5;
+        }
+        
+        /* Education */
+        .education-item {
+            margin-bottom: 15px;
+        }
+        
+        .education-item h3 {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 3px;
+        }
+        
+        .education-item p {
+            font-size: 10px;
+            color: var(--text-light);
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+                background: white;
+            }
+            
+            .resume-container {
+                max-width: 100%;
+                box-shadow: none;
+                margin: 0;
+                display: flex;
+                min-height: 100vh;
+            }
+            
+            .sidebar {
+                background: #f8f9fa !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                width: 35%;
+                padding: 30px 20px;
+            }
+            
+            .main-content {
+                flex: 1;
+                padding: 30px 25px;
+            }
+            
+            .section-main {
+                margin-bottom: 20px;
+            }
+            
+            .experience-item {
+                margin-bottom: 18px;
+                padding-bottom: 15px;
+            }
+            
+            .achievements li {
+                margin-bottom: 5px;
+                font-size: 9.5pt;
+            }
+            
+            .profile-section h1 {
+                font-size: 22px;
+            }
+            
+            .section-sidebar h2,
+            .section-main h2 {
+                font-size: 13px;
+                margin-bottom: 12px;
+            }
+            
+            .skill-bar,
+            .skill-progress {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .tech-tag {
+                background: white !important;
+                border: 1px solid #ddd !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .achievement-card {
+                background: #f8f9fa !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            /* Ensure it fits on standard paper */
+            @page {
+                size: letter;
+                margin: 0;
+            }
+        }
+        
+        /* Download Button */
+        .download-btn-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        @media print {
+            .download-btn-container {
+                display: none !important;
+            }
+        }
+        
+        .download-btn {
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 10px rgba(37, 99, 235, 0.3);
+        }
+        
+        .download-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <!-- Download Button -->
+    <div class="download-btn-container">
+        <button onclick="window.print()" class="download-btn">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 12a1 1 0 01-.707-.293l-3-3a1 1 0 011.414-1.414L9 8.586V3a1 1 0 012 0v5.586l1.293-1.293a1 1 0 011.414 1.414l-3 3A1 1 0 0110 12z"/>
+                <path d="M16 16a1 1 0 011 1v1a2 2 0 01-2 2H5a2 2 0 01-2-2v-1a1 1 0 012 0v1h10v-1a1 1 0 011-1z"/>
+            </svg>
+            Download PDF
+        </button>
+    </div>
+    
+    <div class="resume-container">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <div class="profile-section">
+                <h1>Johnny Gladwin</h1>
+                <div class="title">Senior Cloud Platform Engineer</div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                        </svg>
+                        <a href="mailto:johnny.gladwin@outlook.com">johnny.gladwin@outlook.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                        </svg>
+                        <span>+91-7702-549-262</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>Vellore, India</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>8+ Years Experience</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                        </svg>
+                        <a href="https://linkedin.com/in/johnny-gladwin-821671a">LinkedIn</a>
+                    </div>
+                    <div class="contact-item">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        <a href="https://github.com/jglad20">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-sidebar">
+                <h2>Core Skills</h2>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">Kubernetes & EKS</span>
+                        <span class="skill-level">Expert</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">Terraform & IaC</span>
+                        <span class="skill-level">Expert</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">AWS Cloud Services</span>
+                        <span class="skill-level">Expert</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">Julia Programming</span>
+                        <span class="skill-level">Advanced</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">CI/CD & GitOps</span>
+                        <span class="skill-level">Expert</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">Observability</span>
+                        <span class="skill-level">Advanced</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-sidebar">
+                <h2>Technologies</h2>
+                <div class="tech-tags">
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">Helm</span>
+                    <span class="tech-tag">ArgoCD</span>
+                    <span class="tech-tag">Ansible</span>
+                    <span class="tech-tag">Grafana</span>
+                    <span class="tech-tag">Prometheus</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Go</span>
+                    <span class="tech-tag">Bash</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                    <span class="tech-tag">Redis</span>
+                    <span class="tech-tag">Karpenter</span>
+                </div>
+            </div>
+            
+            <div class="section-sidebar">
+                <h2>Languages</h2>
+                <div class="language-item">
+                    <span class="language-name">English</span>
+                    <span class="language-level">Fluent</span>
+                </div>
+                <div class="language-item">
+                    <span class="language-name">Tamil</span>
+                    <span class="language-level">Native</span>
+                </div>
+                <div class="language-item">
+                    <span class="language-name">Hindi</span>
+                    <span class="language-level">Conversational</span>
+                </div>
+            </div>
+            
+            <div class="section-sidebar">
+                <h2>Education</h2>
+                <div class="education-item">
+                    <h3>B.E. Computer Science</h3>
+                    <p>Sathyabama University, Chennai</p>
+                    <p>2014</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="section-main">
+                <h2>Professional Summary</h2>
+                <p class="summary">
+                    Senior Cloud Platform Engineer with <span class="highlight">8+ years</span> of experience architecting and operating enterprise-scale infrastructure. Currently leading infrastructure for <span class="highlight">JuliaHub</span>, a multi-tenant cloud computing platform serving <span class="highlight">11,000+ Julia packages</span> to developers at <span class="highlight">10,000+ companies</span> and <span class="highlight">1,500+ universities</span>. Expert in Kubernetes orchestration, infrastructure automation, and building developer platforms at scale. Proven track record of maintaining <span class="highlight">99.99% uptime</span> while managing complex multi-cloud environments and reducing operational costs by 40%.
+                </p>
+            </div>
+            
+            <div class="section-main">
+                <h2>Professional Experience</h2>
+                
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <span class="exp-title">Cloud Engineer - Infrastructure Lead</span>
+                        <span class="exp-date">Feb 2023 – Present</span>
+                    </div>
+                    <div class="exp-company">JuliaHub, Bengaluru</div>
+                    <div class="exp-description">
+                        Lead platform infrastructure for multi-tenant Julia computing platform serving global enterprise and academic users
+                    </div>
+                    <ul class="achievements">
+                        <li>Architected <strong>JuliaHubInfrastructure</strong> - custom Julia REPL framework managing <span class="metric">35+ AWS accounts</span> and <span class="metric">147+ configurations</span> with 4-layer architecture integrating Terraform, Kubernetes, Ansible</li>
+                        <li>Maintain production infrastructure serving <span class="metric">11,000+ Julia packages</span> to developers at <span class="metric">10,000+ companies</span> and <span class="metric">1,500+ universities</span> with <span class="metric">99.99% uptime</span></li>
+                        <li>Built <span class="metric">20+ Kubernetes components</span> including Karpenter auto-scaling, Cert-Manager, AWS Load Balancer Controller, EBS/EFS CSI drivers</li>
+                        <li>Implemented observability with Grafana Cloud, Prometheus, Alloy, and Redpanda processing <span class="metric">1TB+ daily logs</span></li>
+                        <li>Designed platform security with AWS WAF, CloudFront CDN, RDS PostgreSQL, and Cognito SSO authentication</li>
+                        <li>Automated customer onboarding with GitOps workflows and Terraform modules for multi-tenant isolation</li>
+                    </ul>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <span class="exp-title">DevOps Engineer</span>
+                        <span class="exp-date">Jul 2019 – Feb 2023</span>
+                    </div>
+                    <div class="exp-company">Squads (StackState Platform)</div>
+                    <div class="exp-description">
+                        Built enterprise StackState observability platform processing 1TB+ daily telemetry for Fortune 500 clients
+                    </div>
+                    <ul class="achievements">
+                        <li>Maintained <span class="metric">4 Kubernetes clusters</span> running StackState with <span class="metric">100+ Helm deployments</span> and ArgoCD GitOps</li>
+                        <li>Developed <strong>"Beest"</strong> E2E testing framework with Terraform/Ansible automating <span class="metric">25+ test environments</span></li>
+                        <li>Built Docker infrastructure for <span class="metric">20+ microservices</span> with automated CI/CD pipelines</li>
+                        <li>Implemented StackState observability with Grafana, OpenTelemetry, and centralized logging</li>
+                        <li>Created Terraform modules for AWS/GCP multi-cloud deployments</li>
+                        <li>Automated AMI building with Packer reducing deployment time by <span class="metric">75%</span></li>
+                    </ul>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <span class="exp-title">DevOps Engineer</span>
+                        <span class="exp-date">Apr 2018 – Jul 2019</span>
+                    </div>
+                    <div class="exp-company">Freelance</div>
+                    <ul class="achievements">
+                        <li>Built Jenkins CI/CD automation reducing deployment time by <span class="metric">60%</span></li>
+                        <li>Developed Terraform AWS modules for infrastructure provisioning</li>
+                        <li>Implemented Grafana/Prometheus monitoring achieving <span class="metric">99.95% availability</span></li>
+                    </ul>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <span class="exp-title">Senior Systems Engineer</span>
+                        <span class="exp-date">Jan 2018 – Apr 2018</span>
+                    </div>
+                    <div class="exp-company">Guess Corp</div>
+                    <ul class="achievements">
+                        <li>Managed Kubernetes clusters for e-commerce serving <span class="metric">1M+ daily users</span></li>
+                        <li>Automated multi-cloud deployment using Ansible and Docker</li>
+                    </ul>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <span class="exp-title">Senior Systems Engineer</span>
+                        <span class="exp-date">Apr 2016 – Dec 2017</span>
+                    </div>
+                    <div class="exp-company">Cognizant</div>
+                    <ul class="achievements">
+                        <li>Led AWS infrastructure automation using CloudFormation and Auto Scaling</li>
+                        <li>Implemented HAProxy load balancing reducing overhead by <span class="metric">75%</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="section-main">
+                <h2>Key Achievements</h2>
+                <div class="achievements-grid">
+                    <div class="achievement-card">
+                        <h3>Platform Scale</h3>
+                        <p>Lead infrastructure serving <span class="metric">11,000+ packages</span> to <span class="metric">10,000+ companies</span> with custom Julia automation framework</p>
+                    </div>
+                    <div class="achievement-card">
+                        <h3>Enterprise Reliability</h3>
+                        <p>Maintain <span class="metric">147+ configurations</span> with <span class="metric">99.99% uptime</span> processing <span class="metric">1TB+ daily telemetry</span></p>
+                    </div>
+                    <div class="achievement-card">
+                        <h3>Performance & Efficiency</h3>
+                        <p>Reduced deployment time by <span class="metric">75%</span> and optimized costs by <span class="metric">40%</span> through automation</p>
+                    </div>
+                    <div class="achievement-card">
+                        <h3>Team Leadership</h3>
+                        <p>Mentored <span class="metric">5+ engineers</span> in Kubernetes, Terraform, and cloud-native practices</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
