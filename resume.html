@@ -13,23 +13,25 @@
         }
         
         :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --text-dark: #1f2937;
-            --text-light: #6b7280;
-            --bg-light: #f9fafb;
-            --bg-sidebar: #f3f4f6;
-            --accent: #3b82f6;
-            --success: #10b981;
-            --border-color: #e5e7eb;
+            --primary-color: #fbbf24;
+            --secondary-color: #f59e0b;
+            --text-dark: #000000;
+            --text-light: #525252;
+            --bg-light: #fef3c7;
+            --bg-sidebar: #111111;
+            --accent: #fde047;
+            --success: #84cc16;
+            --border-color: #404040;
+            --yellow-gradient: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
         }
         
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             color: var(--text-dark);
             line-height: 1.5;
-            background: white;
+            background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
             font-size: 11pt;
+            min-height: 100vh;
         }
         
         .resume-container {
@@ -38,7 +40,19 @@
             background: white;
             display: flex;
             min-height: 100vh;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            box-shadow: 0 0 30px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        .resume-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 320px;
+            width: 5px;
+            height: 100%;
+            background: var(--yellow-gradient);
+            z-index: 10;
         }
         
         /* Left Sidebar */
@@ -46,19 +60,20 @@
             width: 320px;
             background: var(--bg-sidebar);
             padding: 40px 30px;
+            color: #ffffff;
         }
         
         .profile-section {
             text-align: center;
             margin-bottom: 35px;
             padding-bottom: 25px;
-            border-bottom: 2px solid var(--border-color);
+            border-bottom: 2px solid var(--primary-color);
         }
         
         .profile-section h1 {
             font-size: 26px;
             font-weight: 700;
-            color: var(--text-dark);
+            color: #ffffff;
             margin-bottom: 8px;
             letter-spacing: -0.5px;
         }
@@ -66,8 +81,10 @@
         .profile-section .title {
             font-size: 14px;
             color: var(--primary-color);
-            font-weight: 500;
+            font-weight: 600;
             margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .contact-info {
@@ -80,7 +97,7 @@
             align-items: center;
             margin-bottom: 12px;
             font-size: 11px;
-            color: var(--text-light);
+            color: #a3a3a3;
         }
         
         .contact-item svg {
@@ -89,10 +106,11 @@
             margin-right: 10px;
             flex-shrink: 0;
             color: var(--primary-color);
+            filter: drop-shadow(0 0 3px rgba(251, 191, 36, 0.5));
         }
         
         .contact-item a {
-            color: var(--text-light);
+            color: #a3a3a3;
             text-decoration: none;
             transition: color 0.2s;
         }
@@ -130,27 +148,28 @@
         .skill-name {
             font-size: 11px;
             font-weight: 500;
-            color: var(--text-dark);
+            color: #ffffff;
         }
         
         .skill-level {
             font-size: 10px;
-            color: var(--text-light);
-            font-weight: 400;
+            color: var(--primary-color);
+            font-weight: 500;
         }
         
         .skill-bar {
             height: 6px;
-            background: #e5e7eb;
+            background: #333333;
             border-radius: 3px;
             overflow: hidden;
         }
         
         .skill-progress {
             height: 100%;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent));
+            background: var(--yellow-gradient);
             border-radius: 3px;
             transition: width 0.3s;
+            box-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
         }
         
         /* Technology Pills */
@@ -162,12 +181,18 @@
         
         .tech-tag {
             padding: 4px 10px;
-            background: white;
-            color: var(--text-dark);
+            background: transparent;
+            color: var(--primary-color);
             font-size: 10px;
             border-radius: 12px;
             font-weight: 500;
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--primary-color);
+            transition: all 0.2s;
+        }
+        
+        .tech-tag:hover {
+            background: var(--primary-color);
+            color: #000000;
         }
         
         /* Languages Section */
@@ -179,12 +204,13 @@
         }
         
         .language-name {
-            color: var(--text-dark);
+            color: #ffffff;
             font-weight: 500;
         }
         
         .language-level {
-            color: var(--text-light);
+            color: var(--primary-color);
+            font-weight: 500;
         }
         
         /* Main Content */
@@ -203,10 +229,21 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: var(--primary-color);
+            color: var(--text-dark);
             margin-bottom: 20px;
             padding-bottom: 8px;
-            border-bottom: 2px solid var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+            position: relative;
+        }
+        
+        .section-main h2::before {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--text-dark);
         }
         
         /* Professional Summary */
@@ -218,15 +255,35 @@
         }
         
         .summary .highlight {
-            color: var(--primary-color);
-            font-weight: 600;
+            color: var(--text-dark);
+            font-weight: 700;
+            background: var(--yellow-gradient);
+            padding: 2px 6px;
+            border-radius: 4px;
         }
         
         /* Experience Items */
         .experience-item {
             margin-bottom: 25px;
             padding-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid #f0f0f0;
+            position: relative;
+        }
+        
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -40px;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--yellow-gradient);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .experience-item:hover::before {
+            opacity: 1;
         }
         
         .experience-item:last-child {
@@ -242,21 +299,26 @@
         
         .exp-title {
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--text-dark);
         }
         
         .exp-date {
             font-size: 11px;
-            color: var(--text-light);
+            color: #ffffff;
+            background: var(--text-dark);
+            padding: 4px 12px;
+            border-radius: 20px;
             white-space: nowrap;
+            font-weight: 500;
+            border: 1px solid var(--primary-color);
         }
         
         .exp-company {
             font-size: 12px;
-            color: var(--primary-color);
+            color: var(--secondary-color);
             margin-bottom: 10px;
-            font-weight: 500;
+            font-weight: 600;
         }
         
         .exp-description {
@@ -280,16 +342,21 @@
         }
         
         .achievements li::before {
-            content: '▸';
+            content: '●';
             position: absolute;
             left: 0;
             color: var(--primary-color);
             font-weight: bold;
+            font-size: 8px;
+            top: 5px;
         }
         
         .metric {
-            color: var(--primary-color);
-            font-weight: 600;
+            color: var(--secondary-color);
+            font-weight: 700;
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(245, 158, 11, 0.1));
+            padding: 1px 6px;
+            border-radius: 4px;
         }
         
         /* Key Achievements Grid */
@@ -301,9 +368,16 @@
         
         .achievement-card {
             padding: 12px;
-            background: var(--bg-light);
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.05));
             border-radius: 6px;
             border-left: 3px solid var(--primary-color);
+            transition: all 0.3s;
+        }
+        
+        .achievement-card:hover {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(245, 158, 11, 0.1));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(251, 191, 36, 0.2);
         }
         
         .achievement-card h3 {
@@ -327,13 +401,13 @@
         .education-item h3 {
             font-size: 12px;
             font-weight: 600;
-            color: var(--text-dark);
+            color: #ffffff;
             margin-bottom: 3px;
         }
         
         .education-item p {
             font-size: 10px;
-            color: var(--text-light);
+            color: #a3a3a3;
         }
         
         /* Print Styles */
@@ -353,7 +427,8 @@
             }
             
             .sidebar {
-                background: #f8f9fa !important;
+                background: #111111 !important;
+                color: #ffffff !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
                 width: 35%;
@@ -396,14 +471,16 @@
             }
             
             .tech-tag {
-                background: white !important;
-                border: 1px solid #ddd !important;
+                background: transparent !important;
+                border: 1px solid #fbbf24 !important;
+                color: #fbbf24 !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
             
             .achievement-card {
-                background: #f8f9fa !important;
+                background: rgba(251, 191, 36, 0.1) !important;
+                border-left: 3px solid #fbbf24 !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
@@ -431,24 +508,24 @@
         
         .download-btn {
             padding: 10px 20px;
-            background: var(--primary-color);
-            color: white;
+            background: var(--yellow-gradient);
+            color: #000000;
             border: none;
             border-radius: 6px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.2s;
             font-size: 14px;
             display: flex;
             align-items: center;
             gap: 8px;
-            box-shadow: 0 2px 10px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 2px 10px rgba(251, 191, 36, 0.4);
         }
         
         .download-btn:hover {
-            background: var(--secondary-color);
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
             transform: translateY(-1px);
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+            box-shadow: 0 4px 20px rgba(251, 191, 36, 0.6);
         }
     </style>
 </head>
