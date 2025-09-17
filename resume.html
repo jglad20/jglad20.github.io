@@ -30,7 +30,7 @@
             color: var(--text-dark);
             line-height: 1.5;
             background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
-            font-size: 11pt;
+            font-size: 12pt;
             min-height: 100vh;
         }
         
@@ -96,7 +96,7 @@
             display: flex;
             align-items: center;
             margin-bottom: 12px;
-            font-size: 11px;
+            font-size: 12px;
             color: #a3a3a3;
         }
         
@@ -144,7 +144,7 @@
         }
         
         .skill-subcategory {
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 600;
             color: var(--primary-color);
             margin-bottom: 8px;
@@ -158,7 +158,7 @@
         }
         
         .skill-list li {
-            font-size: 11px;
+            font-size: 12px;
             color: #e0e0e0;
             margin-bottom: 6px;
             padding-left: 12px;
@@ -185,7 +185,7 @@
             padding: 4px 10px;
             background: transparent;
             color: var(--primary-color);
-            font-size: 10px;
+            font-size: 11px;
             border-radius: 12px;
             font-weight: 500;
             border: 1px solid var(--primary-color);
@@ -250,7 +250,7 @@
         
         /* Professional Summary */
         .summary {
-            font-size: 11px;
+            font-size: 12px;
             color: var(--text-dark);
             line-height: 1.7;
             text-align: justify;
@@ -306,7 +306,7 @@
         }
         
         .exp-date {
-            font-size: 11px;
+            font-size: 12px;
             color: #ffffff;
             background: var(--text-dark);
             padding: 4px 12px;
@@ -324,7 +324,7 @@
         }
         
         .exp-description {
-            font-size: 10px;
+            font-size: 11px;
             color: var(--text-light);
             margin-bottom: 10px;
             font-style: italic;
@@ -332,7 +332,7 @@
         
         .achievements {
             list-style: none;
-            font-size: 10px;
+            font-size: 11px;
             color: var(--text-dark);
             line-height: 1.6;
         }
@@ -390,7 +390,7 @@
         }
         
         .achievement-card p {
-            font-size: 10px;
+            font-size: 11px;
             color: var(--text-dark);
             line-height: 1.5;
         }
@@ -408,8 +408,36 @@
         }
         
         .education-item p {
-            font-size: 10px;
+            font-size: 11px;
             color: #a3a3a3;
+        }
+        
+        /* Certifications */
+        .certifications-list {
+            margin-top: 10px;
+        }
+        
+        .certification-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 8px 10px;
+            background: rgba(251, 191, 36, 0.1);
+            border-radius: 6px;
+            border-left: 3px solid var(--primary-color);
+        }
+        
+        .cert-name {
+            font-size: 11px;
+            color: #e0e0e0;
+            font-weight: 500;
+        }
+        
+        .cert-year {
+            font-size: 10px;
+            color: var(--primary-color);
+            font-weight: 600;
         }
         
         /* Print Styles */
@@ -573,7 +601,7 @@
                         <svg fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
                         </svg>
-                        <span>8+ Years Experience</span>
+                        <span>10+ Years Experience</span>
                     </div>
                     <div class="contact-item">
                         <svg fill="currentColor" viewBox="0 0 24 24">
@@ -608,7 +636,7 @@
                             <li>Terraform</li>
                             <li>Ansible</li>
                             <li>CloudFormation</li>
-                            <li>GitOps & ArgoCD</li>
+                            <li>GitOps (ArgoCD, FluxCD)</li>
                         </ul>
                     </div>
                     <div class="skill-category-item">
@@ -626,6 +654,7 @@
                             <li>Python</li>
                             <li>Bash/Shell</li>
                             <li>Go</li>
+                            <li>Nix</li>
                         </ul>
                     </div>
                     <div class="skill-category-item">
@@ -637,6 +666,15 @@
                             <li>GitHub Actions</li>
                         </ul>
                     </div>
+                    <div class="skill-category-item">
+                        <h3 class="skill-subcategory">Testing & Development</h3>
+                        <ul class="skill-list">
+                            <li>Molecule</li>
+                            <li>Tilt</li>
+                            <li>Packer</li>
+                            <li>Pytest</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             
@@ -646,12 +684,17 @@
                     <span class="tech-tag">Docker</span>
                     <span class="tech-tag">Helm</span>
                     <span class="tech-tag">ArgoCD</span>
+                    <span class="tech-tag">FluxCD</span>
                     <span class="tech-tag">Ansible</span>
+                    <span class="tech-tag">Molecule</span>
                     <span class="tech-tag">Grafana</span>
                     <span class="tech-tag">Prometheus</span>
+                    <span class="tech-tag">Julia</span>
                     <span class="tech-tag">Python</span>
                     <span class="tech-tag">Go</span>
                     <span class="tech-tag">Bash</span>
+                    <span class="tech-tag">Nix</span>
+                    <span class="tech-tag">Tilt</span>
                     <span class="tech-tag">PostgreSQL</span>
                     <span class="tech-tag">Redis</span>
                     <span class="tech-tag">Karpenter</span>
@@ -682,6 +725,24 @@
                     <p>2014</p>
                 </div>
             </div>
+            
+            <div class="section-sidebar">
+                <h2>Certifications</h2>
+                <div class="certifications-list">
+                    <div class="certification-item">
+                        <span class="cert-name">ITIL V3 Foundation</span>
+                        <span class="cert-year">2014</span>
+                    </div>
+                    <div class="certification-item">
+                        <span class="cert-name">Cambridge ESOL Level 1</span>
+                        <span class="cert-year">2014</span>
+                    </div>
+                    <div class="certification-item">
+                        <span class="cert-name">NIIT C and C++</span>
+                        <span class="cert-year">2010</span>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <!-- Main Content -->
@@ -689,7 +750,7 @@
             <div class="section-main">
                 <h2>Professional Summary</h2>
                 <p class="summary">
-                    Senior Cloud Platform Engineer with <span class="highlight">8+ years</span> of experience building and operating enterprise-scale infrastructure. Currently working on <span class="highlight">JuliaHub</span>, a multi-tenant cloud computing platform serving <span class="highlight">11,000+ Julia packages</span> to developers at <span class="highlight">10,000+ companies</span> and <span class="highlight">1,500+ universities</span>. Strong experience in Kubernetes, Terraform automation, AWS cloud services, and building developer platforms. Proven track record of maintaining <span class="highlight">99.99% uptime</span> while managing complex cloud environments and reducing operational costs by 40%.
+                    Senior Cloud Platform Engineer with <span class="highlight">10+ years</span> of experience building and operating enterprise-scale infrastructure. Currently working on <span class="highlight">JuliaHub</span> platform infrastructure supporting enterprise Julia computing workloads, with access to the Julia ecosystem's <span class="highlight">11,000+ packages</span>. Strong experience in Kubernetes, Terraform automation, AWS cloud services, and building developer platforms. Proven track record of maintaining <span class="highlight">99.99% uptime</span> while managing complex cloud environments and reducing operational costs by 40%.
                 </p>
             </div>
             
@@ -703,15 +764,20 @@
                     </div>
                     <div class="exp-company">JuliaHub, Bengaluru</div>
                     <div class="exp-description">
-                        Working on platform infrastructure for multi-tenant Julia computing platform serving global enterprise and academic users
+                        Working on platform infrastructure for multi-tenant Julia computing platform supporting enterprise and academic customers
                     </div>
                     <ul class="achievements">
                         <li>Architected <strong>JuliaHubInfrastructure</strong> - custom Julia REPL framework managing <span class="metric">35+ AWS accounts</span> and <span class="metric">147+ configurations</span> with 4-layer architecture integrating Terraform, Kubernetes, Ansible</li>
-                        <li>Maintain production infrastructure serving <span class="metric">11,000+ Julia packages</span> to developers at <span class="metric">10,000+ companies</span> and <span class="metric">1,500+ universities</span> with <span class="metric">99.99% uptime</span></li>
-                        <li>Built <span class="metric">20+ Kubernetes components</span> including Karpenter auto-scaling, Cert-Manager, AWS Load Balancer Controller, EBS/EFS CSI drivers</li>
-                        <li>Implemented observability with Grafana Cloud, Prometheus, Alloy, and Redpanda processing <span class="metric">1TB+ daily logs</span></li>
-                        <li>Designed platform security with AWS WAF, CloudFront CDN, RDS PostgreSQL, and Cognito SSO authentication</li>
-                        <li>Automated customer onboarding with GitOps workflows and Terraform modules for multi-tenant isolation</li>
+                        <li>Automated entire EKS cluster upgrade flow from <span class="metric">1.24 to 1.33</span> achieving zero-downtime migrations across all customer clusters</li>
+                        <li>Migrated Karpenter from <span class="metric">v0.19.0 to v1.50</span> implementing custom NodePools and EC2NodeClasses for optimized Julia workloads</li>
+                        <li>Setup <strong>Grafana Alloy</strong> collectors and <strong>AWS EFS CSI driver addon</strong> for persistent volume management across multi-region deployments</li>
+                        <li>Deployed <strong>Stakater Reloader</strong> for zero-downtime certificate rotation across <span class="metric">50+ production services</span></li>
+                        <li>Built <strong>Replicated/KOTS</strong> deployment pipelines for air-gapped enterprise installations with offline package bundle support</li>
+                        <li>Integrated Grafana Cloud with Prometheus and Alloy processing <span class="metric">1TB+ daily telemetry</span> from <span class="metric">35+ customer environments</span></li>
+                        <li>Developed <strong>PostgreSQL credential rotation</strong> system using AWS Secrets Manager and Lambda functions for automated security</li>
+                        <li>Created <strong>Tilt development environment</strong> enabling developers to run entire JuliaHub platform locally with Kind clusters</li>
+                        <li>Built <strong>GitHub Actions workflows</strong> for platform-instance-tests automating E2E validation across environments</li>
+                        <li>Engineered <strong>custom AMI pipelines</strong> with Packer optimizing Julia runtime and reducing cold start by <span class="metric">60%</span></li>
                     </ul>
                 </div>
                 
@@ -720,17 +786,25 @@
                         <span class="exp-title">DevOps Engineer</span>
                         <span class="exp-date">Jul 2019 – Feb 2023</span>
                     </div>
-                    <div class="exp-company">Squads (StackState Platform)</div>
+                    <div class="exp-company">Squads</div>
                     <div class="exp-description">
-                        Built enterprise StackState observability platform processing 1TB+ daily telemetry for Fortune 500 clients
+                        <strong>Project 1: StackState</strong> (www.stackstate.com) - Enterprise observability platform processing 1TB+ daily telemetry
                     </div>
                     <ul class="achievements">
-                        <li>Maintained <span class="metric">4 Kubernetes clusters</span> running StackState with <span class="metric">100+ Helm deployments</span> and ArgoCD GitOps</li>
-                        <li>Developed <strong>"Beest"</strong> E2E testing framework with Terraform/Ansible automating <span class="metric">25+ test environments</span></li>
-                        <li>Built Docker infrastructure for <span class="metric">20+ microservices</span> with automated CI/CD pipelines</li>
-                        <li>Implemented StackState observability with Grafana, OpenTelemetry, and centralized logging</li>
-                        <li>Created Terraform modules for AWS/GCP multi-cloud deployments</li>
-                        <li>Automated AMI building with Packer reducing deployment time by <span class="metric">75%</span></li>
+                        <li>Worked in Agile Scrum team of 10, responsible for <strong>StackState Agent</strong> and integrations development</li>
+                        <li>Engineered <strong>"Beest"</strong> E2E testing framework automating StackState agent validation across Linux, Windows, and Kubernetes platforms - provisioning test infrastructure with Terraform, deploying agents via Ansible/Molecule, validating telemetry flow to StackState APM receiver</li>
+                        <li>Developed <strong>StackState Simulator</strong> framework generating synthetic workloads and telemetry data for feature development and load testing</li>
+                        <li>Built integrations with Splunk, ServiceNow, Zabbix, Dynatrace, VMware including test automation</li>
+                        <li>Deployed AWS services: IAM, EC2, S3, Lambda, EventBridge, SQS, SNS, ECS, ECR, EKS, CloudFormation</li>
+                        <li>Maintained <span class="metric">4 Kubernetes clusters</span> with <span class="metric">100+ Helm charts</span> for testing StackState agent workloads</li>
+                    </ul>
+                    <div class="exp-description" style="margin-top: 15px;">
+                        <strong>Project 2: SwipeGuide</strong> (www.swipeguide.com) - Digital work instruction platform  
+                    </div>
+                    <ul class="achievements">
+                        <li>Infrastructure Engineer maintaining and deploying applications on Elastic Beanstalk using Terraform</li>
+                        <li>Build and release maintenance on Jenkins with on-call support for production deployments</li>
+                        <li>Developed and implemented Disaster Recovery plan</li>
                     </ul>
                 </div>
                 
@@ -752,10 +826,13 @@
                         <span class="exp-title">Senior Systems Engineer</span>
                         <span class="exp-date">Jan 2018 – Apr 2018</span>
                     </div>
-                    <div class="exp-company">Guess Corp</div>
+                    <div class="exp-company">Quess Corp</div>
                     <ul class="achievements">
-                        <li>Managed Kubernetes clusters for e-commerce serving <span class="metric">1M+ daily users</span></li>
-                        <li>Automated multi-cloud deployment using Ansible and Docker</li>
+                        <li>Worked on automation using Ansible for retail customers</li>
+                        <li>Implemented multi-cloud (GCP, AWS) provisioning using Terraform</li>
+                        <li>Deployed Docker images using CI/CD pipeline in Jenkins</li>
+                        <li>Explored Kubernetes cluster creation and management</li>
+                        <li>Implemented CloudWatch Logs, Alarms, and Metrics for unified monitoring</li>
                     </ul>
                 </div>
                 
@@ -766,8 +843,25 @@
                     </div>
                     <div class="exp-company">Cognizant</div>
                     <ul class="achievements">
-                        <li>Led AWS infrastructure automation using CloudFormation and Auto Scaling</li>
-                        <li>Implemented HAProxy load balancing reducing overhead by <span class="metric">75%</span></li>
+                        <li>Involved in capacity planning and infrastructure automation across AWS private clouds</li>
+                        <li>Configured IAM, ELB, EC2, S3, RDS, CloudFormation, Auto Scaling, DataPipeline, Security Groups</li>
+                        <li>Configured Load Balancers, reverse proxies and firewalls</li>
+                        <li>Analyzed Ansible Nginx playbooks and worked with HAProxy, Artifactory, Tomcat</li>
+                        <li>Responsible for executing CI Jenkins jobs to deploy and automate code</li>
+                    </ul>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <span class="exp-title">Systems Engineer</span>
+                        <span class="exp-date">Dec 2014 – Apr 2016</span>
+                    </div>
+                    <div class="exp-company">Cognizant</div>
+                    <ul class="achievements">
+                        <li>Involved in analyzing logs and implementing monitoring metrics from New Relic</li>
+                        <li>Responsible for scheduling jobs and execution of scripts</li>
+                        <li>Server management and provisioning using Service Now</li>
+                        <li>Leveraged DevOps CI/CD for deployment and testing</li>
                     </ul>
                 </div>
             </div>
@@ -777,7 +871,7 @@
                 <div class="achievements-grid">
                     <div class="achievement-card">
                         <h3>Platform Scale</h3>
-                        <p>Working on infrastructure serving <span class="metric">11,000+ packages</span> to <span class="metric">10,000+ companies</span> with custom Julia automation framework</p>
+                        <p>Working on JuliaHub platform infrastructure supporting enterprise customers with custom Julia automation framework and access to <span class="metric">11,000+ packages</span></p>
                     </div>
                     <div class="achievement-card">
                         <h3>Enterprise Reliability</h3>
