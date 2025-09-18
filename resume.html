@@ -395,6 +395,34 @@
             line-height: 1.5;
         }
         
+        /* Achievement Sidebar */
+        .achievement-sidebar-item {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(251, 191, 36, 0.1);
+            border-radius: 6px;
+            border-left: 3px solid var(--primary-color);
+        }
+        
+        .achievement-sidebar-item h3 {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        
+        .achievement-sidebar-item p {
+            font-size: 10px;
+            color: #e0e0e0;
+            line-height: 1.4;
+        }
+        
+        .achievement-sidebar-item strong {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
         /* Education */
         .education-item {
             margin-bottom: 15px;
@@ -718,6 +746,26 @@
             </div>
             
             <div class="section-sidebar">
+                <h2>Key Achievements</h2>
+                <div class="achievement-sidebar-item">
+                    <h3>Platform Scale</h3>
+                    <p>JuliaHub infrastructure supporting <strong>11,000+ packages</strong> across <strong>35+ AWS accounts</strong></p>
+                </div>
+                <div class="achievement-sidebar-item">
+                    <h3>Enterprise Reliability</h3>
+                    <p>Maintain <strong>147+ configurations</strong> with <strong>99.99% uptime</strong> processing <strong>1TB+ daily</strong></p>
+                </div>
+                <div class="achievement-sidebar-item">
+                    <h3>Performance</h3>
+                    <p>Reduced deployment by <strong>75%</strong> and costs by <strong>40%</strong> through automation</p>
+                </div>
+                <div class="achievement-sidebar-item">
+                    <h3>Team Leadership</h3>
+                    <p>Mentored <strong>5+ engineers</strong> in cloud technologies and DevOps</p>
+                </div>
+            </div>
+            
+            <div class="section-sidebar">
                 <h2>Education</h2>
                 <div class="education-item">
                     <h3>B.E. Computer Science</h3>
@@ -864,28 +912,6 @@
                         <li>Server management and provisioning using Service Now</li>
                         <li>Leveraged DevOps CI/CD for deployment and testing</li>
                     </ul>
-                </div>
-            </div>
-            
-            <div class="section-main">
-                <h2>Key Achievements</h2>
-                <div class="achievements-grid">
-                    <div class="achievement-card">
-                        <h3>Platform Scale</h3>
-                        <p>Working on JuliaHub platform infrastructure supporting enterprise customers with custom Julia automation framework and access to <span class="metric">11,000+ packages</span></p>
-                    </div>
-                    <div class="achievement-card">
-                        <h3>Enterprise Reliability</h3>
-                        <p>Maintain <span class="metric">147+ configurations</span> with <span class="metric">99.99% uptime</span> processing <span class="metric">1TB+ daily telemetry</span></p>
-                    </div>
-                    <div class="achievement-card">
-                        <h3>Performance & Efficiency</h3>
-                        <p>Reduced deployment time by <span class="metric">75%</span> and optimized costs by <span class="metric">40%</span> through automation</p>
-                    </div>
-                    <div class="achievement-card">
-                        <h3>Team Leadership</h3>
-                        <p>Mentored <span class="metric">5+ engineers</span> in cloud technologies, Terraform, and DevOps practices</p>
-                    </div>
                 </div>
             </div>
         </div>
