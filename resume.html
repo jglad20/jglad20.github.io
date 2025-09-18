@@ -589,7 +589,7 @@
                         <svg fill="currentColor" viewBox="0 0 20 20">
                             <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
                         </svg>
-                        <span>+91-7022-549-262</span>
+                        <span>+91-7022549262</span>
                     </div>
                     <div class="contact-item">
                         <svg fill="currentColor" viewBox="0 0 20 20">
@@ -897,28 +897,37 @@
             const downloadBtn = document.querySelector('.download-btn-container');
             downloadBtn.style.display = 'none';
             
-            // Configure PDF options
-            const element = document.body;
+            // Get the resume container for better PDF generation
+            const element = document.querySelector('.resume-container');
             const opt = {
-                margin: 0,
+                margin: [0.25, 0.25, 0.25, 0.25],
                 filename: 'Johnny_Gladwin_Resume.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
+                image: { type: 'jpeg', quality: 1.0 },
                 html2canvas: { 
-                    scale: 2, 
+                    scale: 3,
                     useCORS: true,
                     logging: false,
-                    windowWidth: 850
+                    letterRendering: true,
+                    windowWidth: element.scrollWidth,
+                    windowHeight: element.scrollHeight
                 },
                 jsPDF: { 
                     unit: 'in', 
                     format: 'letter', 
-                    orientation: 'portrait' 
-                }
+                    orientation: 'portrait',
+                    compress: false
+                },
+                pagebreak: { mode: 'avoid-all' }
             };
             
             // Generate and download PDF
             html2pdf().set(opt).from(element).save().then(() => {
                 // Show the download button again
+                downloadBtn.style.display = 'block';
+            }).catch(err => {
+                console.error('PDF generation failed:', err);
+                // Fallback to print
+                window.print();
                 downloadBtn.style.display = 'block';
             });
         }
