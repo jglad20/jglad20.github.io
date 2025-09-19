@@ -945,9 +945,20 @@
             
             const element = document.querySelector('.resume-container');
             
-            // Get the last experience item to determine where content ends
-            const lastExperience = element.querySelector('.experience-item:last-child');
-            const contentEndY = lastExperience ? lastExperience.getBoundingClientRect().bottom - element.getBoundingClientRect().top + 50 : element.scrollHeight;
+            // Find actual content height by checking both sidebar and main content
+            const sidebar = element.querySelector('.sidebar');
+            const mainContent = element.querySelector('.main-content');
+            
+            // Get the bottom-most element from sidebar
+            const sidebarBottom = sidebar ? sidebar.scrollHeight : 0;
+            
+            // Get the bottom-most element from main content  
+            const lastMainElement = mainContent ? mainContent.lastElementChild : null;
+            const mainBottom = lastMainElement ? 
+                lastMainElement.offsetTop + lastMainElement.offsetHeight : 0;
+            
+            // Use the maximum of both + small padding
+            const actualContentHeight = Math.max(sidebarBottom, mainBottom) + 30;
             
             // Use html2canvas with specific height limit
             html2canvas(element, {
@@ -956,7 +967,7 @@
                 logging: false,
                 width: 850,
                 windowWidth: 850,
-                height: contentEndY,
+                height: actualContentHeight,
                 backgroundColor: '#ffffff'
             }).then(canvas => {
                 const imgData = canvas.toDataURL('image/jpeg', 1.0);
