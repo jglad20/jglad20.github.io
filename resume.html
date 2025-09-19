@@ -35,11 +35,12 @@
         }
         
         .resume-container {
+            width: 8.5in;
             max-width: 850px;
             margin: 0 auto;
             background: white;
             display: flex;
-            min-height: 100vh;
+            min-height: 11in;
             box-shadow: 0 0 30px rgba(0,0,0,0.2);
             position: relative;
         }
@@ -562,6 +563,26 @@
             .download-btn-container {
                 display: none !important;
             }
+            
+            .resume-container {
+                width: 100%;
+                max-width: 100%;
+                margin: 0;
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+            
+            .experience-item {
+                page-break-inside: avoid;
+            }
+            
+            .section-main, .section-sidebar {
+                page-break-inside: avoid;
+            }
+            
+            .sidebar {
+                page-break-after: avoid;
+            }
         }
         
         .download-btn {
@@ -738,10 +759,6 @@
                 <div class="language-item">
                     <span class="language-name">Tamil</span>
                     <span class="language-level">Native</span>
-                </div>
-                <div class="language-item">
-                    <span class="language-name">Hindi</span>
-                    <span class="language-level">Conversational</span>
                 </div>
             </div>
             
@@ -927,24 +944,26 @@
             // Get the resume container for better PDF generation
             const element = document.querySelector('.resume-container');
             const opt = {
-                margin: [0.25, 0.25, 0.25, 0.25],
+                margin: 0.5,
                 filename: 'Johnny_Gladwin_Resume.pdf',
-                image: { type: 'jpeg', quality: 1.0 },
+                image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { 
-                    scale: 3,
+                    scale: 2,
                     useCORS: true,
                     logging: false,
-                    letterRendering: true,
-                    windowWidth: element.scrollWidth,
-                    windowHeight: element.scrollHeight
+                    letterRendering: true
                 },
                 jsPDF: { 
                     unit: 'in', 
                     format: 'letter', 
-                    orientation: 'portrait',
-                    compress: false
+                    orientation: 'portrait'
                 },
-                pagebreak: { mode: 'avoid-all' }
+                pagebreak: { 
+                    mode: ['avoid-all', 'css', 'legacy'],
+                    before: '.page-break-before',
+                    after: '.page-break-after',
+                    avoid: '.experience-item'
+                }
             };
             
             // Generate and download PDF
