@@ -753,18 +753,6 @@
             </div>
             
             <div class="section-sidebar">
-                <h2>Languages</h2>
-                <div class="language-item">
-                    <span class="language-name">English</span>
-                    <span class="language-level">Fluent</span>
-                </div>
-                <div class="language-item">
-                    <span class="language-name">Tamil</span>
-                    <span class="language-level">Native</span>
-                </div>
-            </div>
-            
-            <div class="section-sidebar">
                 <h2>Key Achievements</h2>
                 <div class="achievement-sidebar-item">
                     <h3>Platform Scale</h3>
@@ -808,6 +796,18 @@
                         <span class="cert-name">NIIT C and C++</span>
                         <span class="cert-year">2010</span>
                     </div>
+                </div>
+            </div>
+            
+            <div class="section-sidebar">
+                <h2>Languages</h2>
+                <div class="language-item">
+                    <span class="language-name">English</span>
+                    <span class="language-level">Fluent</span>
+                </div>
+                <div class="language-item">
+                    <span class="language-name">Tamil</span>
+                    <span class="language-level">Native</span>
                 </div>
             </div>
         </div>
@@ -945,51 +945,53 @@
             
             const element = document.querySelector('.resume-container');
             
-            // Calculate the exact content height we need
-            const sidebar = element.querySelector('.sidebar');
-            const mainContent = element.querySelector('.main-content');
-            
-            // Get all sections in sidebar
-            const lastSidebarSection = sidebar.querySelector('.section-sidebar:last-child');
-            const sidebarHeight = lastSidebarSection ? 
-                lastSidebarSection.offsetTop + lastSidebarSection.offsetHeight + 40 : sidebar.scrollHeight;
-            
-            // Get all sections in main content
-            const lastMainSection = mainContent.querySelector('.section-main:last-child');
-            const lastExperience = mainContent.querySelector('.experience-item:last-child');
-            
-            // Calculate main content height
-            let mainHeight = 0;
-            if (lastExperience) {
-                mainHeight = lastExperience.offsetTop + lastExperience.offsetHeight + 40;
-            } else if (lastMainSection) {
-                mainHeight = lastMainSection.offsetTop + lastMainSection.offsetHeight + 40;
-            } else {
-                mainHeight = mainContent.scrollHeight;
-            }
-            
-            // Use the maximum height + padding
-            const actualHeight = Math.max(sidebarHeight, mainHeight);
-            
-            // Use html2canvas WITHOUT height limit to capture everything
+            // First capture the full content without any restrictions
             html2canvas(element, {
                 scale: 3,
                 useCORS: true,
                 logging: false,
                 width: 850,
                 windowWidth: 850,
-                backgroundColor: '#ffffff'
+                backgroundColor: '#ffffff',
+                scrollY: -window.scrollY,
+                scrollX: 0
             }).then(canvas => {
-                // Now crop the canvas to remove white space
+                // Find where the content actually ends by scanning from bottom
                 const ctx = canvas.getContext('2d');
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                const pixels = imageData.data;
                 
-                // Create cropped canvas
+                let contentBottom = canvas.height;
+                
+                // Scan from bottom to find last non-white row
+                for (let y = canvas.height - 1; y >= 0; y--) {
+                    let hasContent = false;
+                    
+                    // Check multiple points across the width for non-white pixels
+                    for (let x = 0; x < canvas.width; x += 10) {
+                        const idx = (y * canvas.width + x) * 4;
+                        // Check if pixel is not white (with tolerance)
+                        if (pixels[idx] < 245 || pixels[idx + 1] < 245 || pixels[idx + 2] < 245) {
+                            hasContent = true;
+                            break;
+                        }
+                    }
+                    
+                    if (hasContent) {
+                        contentBottom = Math.min(y + 150, canvas.height); // Add 50px padding (150 because scale=3)
+                        break;
+                    }
+                }
+                
+                // Create cropped canvas with only the content
                 const croppedCanvas = document.createElement('canvas');
                 croppedCanvas.width = canvas.width;
-                croppedCanvas.height = actualHeight * 3; // multiply by scale
+                croppedCanvas.height = contentBottom;
                 
                 const croppedCtx = croppedCanvas.getContext('2d');
-                croppedCtx.drawImage(canvas, 0, 0, canvas.width, actualHeight * 3, 0, 0, canvas.width, actualHeight * 3);
+                croppedCtx.fillStyle = '#ffffff';
+                croppedCtx.fillRect(0, 0, croppedCanvas.width, croppedCanvas.height);
+                croppedCtx.drawImage(canvas, 0, 0);
                 
                 const imgData = croppedCanvas.toDataURL('image/jpeg', 1.0);
                 const pdf = new window.jspdf.jsPDF({
