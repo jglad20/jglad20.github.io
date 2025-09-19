@@ -35,12 +35,12 @@
         }
         
         .resume-container {
-            width: 8.5in;
+            width: 100%;
             max-width: 850px;
             margin: 0 auto;
             background: white;
             display: flex;
-            min-height: 11in;
+            min-height: 100vh;
             box-shadow: 0 0 30px rgba(0,0,0,0.2);
             position: relative;
         }
@@ -59,9 +59,11 @@
         /* Left Sidebar */
         .sidebar {
             width: 320px;
+            min-width: 320px;
             background: var(--bg-sidebar);
             padding: 40px 30px;
             color: #ffffff;
+            flex-shrink: 0;
         }
         
         .profile-section {
@@ -934,45 +936,60 @@
             </div>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
         function downloadPDF() {
-            // Hide the download button during PDF generation
             const downloadBtn = document.querySelector('.download-btn-container');
             downloadBtn.style.display = 'none';
             
-            // Get the resume container for better PDF generation
             const element = document.querySelector('.resume-container');
-            const opt = {
-                margin: 0.5,
-                filename: 'Johnny_Gladwin_Resume.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { 
-                    scale: 2,
-                    useCORS: true,
-                    logging: false,
-                    letterRendering: true
-                },
-                jsPDF: { 
-                    unit: 'in', 
-                    format: 'letter', 
-                    orientation: 'portrait'
-                },
-                pagebreak: { 
-                    mode: ['avoid-all', 'css', 'legacy'],
-                    before: '.page-break-before',
-                    after: '.page-break-after',
-                    avoid: '.experience-item'
-                }
-            };
             
-            // Generate and download PDF
-            html2pdf().set(opt).from(element).save().then(() => {
-                // Show the download button again
+            // Use html2canvas directly for better control
+            html2canvas(element, {
+                scale: 2,
+                useCORS: true,
+                logging: false,
+                width: 850,
+                windowWidth: 850,
+                backgroundColor: '#ffffff'
+            }).then(canvas => {
+                const imgData = canvas.toDataURL('image/jpeg', 1.0);
+                const pdf = new window.jspdf.jsPDF({
+                    orientation: 'portrait',
+                    unit: 'px',
+                    format: [612, 792] // Letter size in pixels at 72 DPI
+                });
+                
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = pdf.internal.pageSize.getHeight();
+                const imgWidth = canvas.width;
+                const imgHeight = canvas.height;
+                
+                // Calculate the ratio to fit the content
+                const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+                const imgX = (pdfWidth - imgWidth * ratio) / 2;
+                const imgY = 0;
+                
+                pdf.addImage(imgData, 'JPEG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
+                
+                // Check if we need multiple pages
+                if (imgHeight * ratio > pdfHeight) {
+                    let heightLeft = imgHeight * ratio - pdfHeight;
+                    let position = -pdfHeight;
+                    
+                    while (heightLeft > 0) {
+                        pdf.addPage();
+                        pdf.addImage(imgData, 'JPEG', imgX, position, imgWidth * ratio, imgHeight * ratio);
+                        heightLeft -= pdfHeight;
+                        position -= pdfHeight;
+                    }
+                }
+                
+                pdf.save('Johnny_Gladwin_Resume.pdf');
                 downloadBtn.style.display = 'block';
             }).catch(err => {
                 console.error('PDF generation failed:', err);
-                // Fallback to print
                 window.print();
                 downloadBtn.style.display = 'block';
             });
