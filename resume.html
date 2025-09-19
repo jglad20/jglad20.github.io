@@ -945,6 +945,13 @@
             
             const element = document.querySelector('.resume-container');
             
+            // Temporarily adjust the element to capture only content area
+            const originalMinHeight = element.style.minHeight;
+            element.style.minHeight = 'auto';
+            
+            // Get the actual content height
+            const actualHeight = element.scrollHeight;
+            
             // Use html2canvas with higher scale for better quality
             html2canvas(element, {
                 scale: 3,
@@ -954,7 +961,40 @@
                 windowWidth: 850,
                 backgroundColor: '#ffffff'
             }).then(canvas => {
-                const imgData = canvas.toDataURL('image/jpeg', 1.0);
+                // Restore original min-height
+                element.style.minHeight = originalMinHeight;
+                
+                // Create a new canvas with trimmed content
+                const ctx = canvas.getContext('2d');
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                const pixels = imageData.data;
+                
+                // Find the last non-white row
+                let bottomMostRow = 0;
+                for (let y = canvas.height - 1; y >= 0; y--) {
+                    let rowHasContent = false;
+                    for (let x = 0; x < canvas.width; x++) {
+                        const idx = (y * canvas.width + x) * 4;
+                        // Check if pixel is not white (allowing for slight variations)
+                        if (pixels[idx] < 250 || pixels[idx + 1] < 250 || pixels[idx + 2] < 250) {
+                            rowHasContent = true;
+                            break;
+                        }
+                    }
+                    if (rowHasContent) {
+                        bottomMostRow = y + 50; // Add a small padding
+                        break;
+                    }
+                }
+                
+                // Create cropped canvas
+                const croppedCanvas = document.createElement('canvas');
+                croppedCanvas.width = canvas.width;
+                croppedCanvas.height = Math.min(bottomMostRow, canvas.height);
+                const croppedCtx = croppedCanvas.getContext('2d');
+                croppedCtx.drawImage(canvas, 0, 0, canvas.width, bottomMostRow, 0, 0, canvas.width, bottomMostRow);
+                
+                const imgData = croppedCanvas.toDataURL('image/jpeg', 1.0);
                 const pdf = new window.jspdf.jsPDF({
                     orientation: 'portrait',
                     unit: 'mm',
@@ -967,13 +1007,12 @@
                 // Calculate dimensions to fill page width with small margins
                 const margin = 5; // 5mm margins
                 const contentWidth = pageWidth - (2 * margin);
-                const contentHeight = (canvas.height * contentWidth) / canvas.width;
+                const contentHeight = (croppedCanvas.height * contentWidth) / croppedCanvas.width;
                 
                 // Check if content fits on one page
                 if (contentHeight <= pageHeight - (2 * margin)) {
-                    // Single page - center vertically if needed
-                    const yPosition = margin;
-                    pdf.addImage(imgData, 'JPEG', margin, yPosition, contentWidth, contentHeight);
+                    // Single page
+                    pdf.addImage(imgData, 'JPEG', margin, margin, contentWidth, contentHeight);
                 } else {
                     // Multi-page document
                     const pageContentHeight = pageHeight - (2 * margin);
@@ -996,6 +1035,8 @@
                 pdf.save('Johnny_Gladwin_Resume.pdf');
                 downloadBtn.style.display = 'block';
             }).catch(err => {
+                // Restore original min-height on error
+                element.style.minHeight = originalMinHeight;
                 console.error('PDF generation failed:', err);
                 window.print();
                 downloadBtn.style.display = 'block';
