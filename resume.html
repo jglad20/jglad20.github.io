@@ -945,32 +945,53 @@
             
             const element = document.querySelector('.resume-container');
             
-            // Find actual content height by checking both sidebar and main content
+            // Calculate the exact content height we need
             const sidebar = element.querySelector('.sidebar');
             const mainContent = element.querySelector('.main-content');
             
-            // Get the bottom-most element from sidebar
-            const sidebarBottom = sidebar ? sidebar.scrollHeight : 0;
+            // Get all sections in sidebar
+            const lastSidebarSection = sidebar.querySelector('.section-sidebar:last-child');
+            const sidebarHeight = lastSidebarSection ? 
+                lastSidebarSection.offsetTop + lastSidebarSection.offsetHeight + 40 : sidebar.scrollHeight;
             
-            // Get the bottom-most element from main content  
-            const lastMainElement = mainContent ? mainContent.lastElementChild : null;
-            const mainBottom = lastMainElement ? 
-                lastMainElement.offsetTop + lastMainElement.offsetHeight : 0;
+            // Get all sections in main content
+            const lastMainSection = mainContent.querySelector('.section-main:last-child');
+            const lastExperience = mainContent.querySelector('.experience-item:last-child');
             
-            // Use the maximum of both + small padding
-            const actualContentHeight = Math.max(sidebarBottom, mainBottom) + 30;
+            // Calculate main content height
+            let mainHeight = 0;
+            if (lastExperience) {
+                mainHeight = lastExperience.offsetTop + lastExperience.offsetHeight + 40;
+            } else if (lastMainSection) {
+                mainHeight = lastMainSection.offsetTop + lastMainSection.offsetHeight + 40;
+            } else {
+                mainHeight = mainContent.scrollHeight;
+            }
             
-            // Use html2canvas with specific height limit
+            // Use the maximum height + padding
+            const actualHeight = Math.max(sidebarHeight, mainHeight);
+            
+            // Use html2canvas WITHOUT height limit to capture everything
             html2canvas(element, {
                 scale: 3,
                 useCORS: true,
                 logging: false,
                 width: 850,
                 windowWidth: 850,
-                height: actualContentHeight,
                 backgroundColor: '#ffffff'
             }).then(canvas => {
-                const imgData = canvas.toDataURL('image/jpeg', 1.0);
+                // Now crop the canvas to remove white space
+                const ctx = canvas.getContext('2d');
+                
+                // Create cropped canvas
+                const croppedCanvas = document.createElement('canvas');
+                croppedCanvas.width = canvas.width;
+                croppedCanvas.height = actualHeight * 3; // multiply by scale
+                
+                const croppedCtx = croppedCanvas.getContext('2d');
+                croppedCtx.drawImage(canvas, 0, 0, canvas.width, actualHeight * 3, 0, 0, canvas.width, actualHeight * 3);
+                
+                const imgData = croppedCanvas.toDataURL('image/jpeg', 1.0);
                 const pdf = new window.jspdf.jsPDF({
                     orientation: 'portrait',
                     unit: 'mm',
@@ -983,7 +1004,7 @@
                 // Calculate dimensions to fill page width with small margins
                 const margin = 5; // 5mm margins
                 const contentWidth = pageWidth - (2 * margin);
-                const contentHeight = (canvas.height * contentWidth) / canvas.width;
+                const contentHeight = (croppedCanvas.height * contentWidth) / croppedCanvas.width;
                 
                 // Check if content fits on one page  
                 if (contentHeight <= pageHeight - (2 * margin)) {
