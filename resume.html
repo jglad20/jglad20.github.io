@@ -30,7 +30,7 @@
             color: var(--text-dark);
             line-height: 1.5;
             background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
-            font-size: 12pt;
+            font-size: 14pt;
             min-height: 100vh;
         }
         
@@ -74,7 +74,7 @@
         }
         
         .profile-section h1 {
-            font-size: 26px;
+            font-size: 32px;
             font-weight: 700;
             color: #ffffff;
             margin-bottom: 8px;
@@ -82,7 +82,7 @@
         }
         
         .profile-section .title {
-            font-size: 14px;
+            font-size: 18px;
             color: var(--primary-color);
             font-weight: 600;
             margin-bottom: 20px;
@@ -99,7 +99,7 @@
             display: flex;
             align-items: center;
             margin-bottom: 12px;
-            font-size: 12px;
+            font-size: 14px;
             color: #a3a3a3;
         }
         
@@ -127,7 +127,7 @@
         }
         
         .section-sidebar h2 {
-            font-size: 14px;
+            font-size: 18px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -147,7 +147,7 @@
         }
         
         .skill-subcategory {
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 600;
             color: var(--primary-color);
             margin-bottom: 8px;
@@ -161,7 +161,7 @@
         }
         
         .skill-list li {
-            font-size: 12px;
+            font-size: 14px;
             color: #e0e0e0;
             margin-bottom: 6px;
             padding-left: 12px;
@@ -174,7 +174,7 @@
             position: absolute;
             left: 0;
             color: var(--primary-color);
-            font-size: 10px;
+            font-size: 12px;
         }
         
         /* Technology Pills */
@@ -188,7 +188,7 @@
             padding: 4px 10px;
             background: transparent;
             color: var(--primary-color);
-            font-size: 11px;
+            font-size: 13px;
             border-radius: 12px;
             font-weight: 500;
             border: 1px solid var(--primary-color);
@@ -205,7 +205,7 @@
             display: flex;
             justify-content: space-between;
             margin-bottom: 10px;
-            font-size: 11px;
+            font-size: 13px;
         }
         
         .language-name {
@@ -230,7 +230,7 @@
         }
         
         .section-main h2 {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -253,7 +253,7 @@
         
         /* Professional Summary */
         .summary {
-            font-size: 12px;
+            font-size: 14px;
             color: var(--text-dark);
             line-height: 1.7;
             text-align: justify;
@@ -303,13 +303,13 @@
         }
         
         .exp-title {
-            font-size: 14px;
+            font-size: 18px;
             font-weight: 700;
             color: var(--text-dark);
         }
         
         .exp-date {
-            font-size: 12px;
+            font-size: 14px;
             color: #ffffff;
             background: var(--text-dark);
             padding: 4px 12px;
@@ -320,14 +320,14 @@
         }
         
         .exp-company {
-            font-size: 12px;
+            font-size: 14px;
             color: var(--secondary-color);
             margin-bottom: 10px;
             font-weight: 600;
         }
         
         .exp-description {
-            font-size: 11px;
+            font-size: 13px;
             color: var(--text-light);
             margin-bottom: 10px;
             font-style: italic;
@@ -335,7 +335,7 @@
         
         .achievements {
             list-style: none;
-            font-size: 11px;
+            font-size: 13px;
             color: var(--text-dark);
             line-height: 1.6;
         }
@@ -386,14 +386,14 @@
         }
         
         .achievement-card h3 {
-            font-size: 11px;
+            font-size: 13px;
             color: var(--primary-color);
             margin-bottom: 6px;
             font-weight: 600;
         }
         
         .achievement-card p {
-            font-size: 11px;
+            font-size: 13px;
             color: var(--text-dark);
             line-height: 1.5;
         }
@@ -408,7 +408,7 @@
         }
         
         .achievement-sidebar-item h3 {
-            font-size: 11px;
+            font-size: 13px;
             font-weight: 600;
             color: var(--primary-color);
             margin-bottom: 5px;
@@ -416,7 +416,7 @@
         }
         
         .achievement-sidebar-item p {
-            font-size: 10px;
+            font-size: 12px;
             color: #e0e0e0;
             line-height: 1.4;
         }
@@ -432,14 +432,14 @@
         }
         
         .education-item h3 {
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 600;
             color: #ffffff;
             margin-bottom: 3px;
         }
         
         .education-item p {
-            font-size: 11px;
+            font-size: 13px;
             color: #a3a3a3;
         }
         
@@ -460,13 +460,13 @@
         }
         
         .cert-name {
-            font-size: 11px;
+            font-size: 13px;
             color: #e0e0e0;
             font-weight: 500;
         }
         
         .cert-year {
-            font-size: 10px;
+            font-size: 12px;
             color: var(--primary-color);
             font-weight: 600;
         }
@@ -596,7 +596,7 @@
             font-weight: 700;
             cursor: pointer;
             transition: all 0.2s;
-            font-size: 14px;
+            font-size: 18px;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -945,9 +945,9 @@
             
             const element = document.querySelector('.resume-container');
             
-            // Use html2canvas directly for better control
+            // Use html2canvas with higher scale for better quality
             html2canvas(element, {
-                scale: 2,
+                scale: 3,
                 useCORS: true,
                 logging: false,
                 width: 850,
@@ -957,32 +957,39 @@
                 const imgData = canvas.toDataURL('image/jpeg', 1.0);
                 const pdf = new window.jspdf.jsPDF({
                     orientation: 'portrait',
-                    unit: 'px',
-                    format: [612, 792] // Letter size in pixels at 72 DPI
+                    unit: 'mm',
+                    format: 'letter'
                 });
                 
-                const pdfWidth = pdf.internal.pageSize.getWidth();
-                const pdfHeight = pdf.internal.pageSize.getHeight();
-                const imgWidth = canvas.width;
-                const imgHeight = canvas.height;
+                const pageWidth = 215.9; // Letter width in mm
+                const pageHeight = 279.4; // Letter height in mm
                 
-                // Calculate the ratio to fit the content
-                const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
-                const imgX = (pdfWidth - imgWidth * ratio) / 2;
-                const imgY = 0;
+                // Calculate dimensions to fill page width with small margins
+                const margin = 5; // 5mm margins
+                const contentWidth = pageWidth - (2 * margin);
+                const contentHeight = (canvas.height * contentWidth) / canvas.width;
                 
-                pdf.addImage(imgData, 'JPEG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
-                
-                // Check if we need multiple pages
-                if (imgHeight * ratio > pdfHeight) {
-                    let heightLeft = imgHeight * ratio - pdfHeight;
-                    let position = -pdfHeight;
+                // Check if content fits on one page
+                if (contentHeight <= pageHeight - (2 * margin)) {
+                    // Single page - center vertically if needed
+                    const yPosition = margin;
+                    pdf.addImage(imgData, 'JPEG', margin, yPosition, contentWidth, contentHeight);
+                } else {
+                    // Multi-page document
+                    const pageContentHeight = pageHeight - (2 * margin);
+                    let position = 0;
                     
-                    while (heightLeft > 0) {
+                    // Add first page
+                    pdf.addImage(imgData, 'JPEG', margin, margin, contentWidth, contentHeight);
+                    
+                    // Calculate how many additional pages we need
+                    let remainingHeight = contentHeight - pageContentHeight;
+                    
+                    while (remainingHeight > 0) {
                         pdf.addPage();
-                        pdf.addImage(imgData, 'JPEG', imgX, position, imgWidth * ratio, imgHeight * ratio);
-                        heightLeft -= pdfHeight;
-                        position -= pdfHeight;
+                        position -= pageContentHeight;
+                        pdf.addImage(imgData, 'JPEG', margin, position + margin, contentWidth, contentHeight);
+                        remainingHeight -= pageContentHeight;
                     }
                 }
                 
