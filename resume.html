@@ -943,19 +943,38 @@
             const downloadBtn = document.querySelector('.download-btn-container');
             downloadBtn.style.display = 'none';
             
+            // Force a reflow to ensure all DOM changes are applied
+            document.body.offsetHeight;
+            
             const element = document.querySelector('.resume-container');
             
+            // Set a fixed height to capture ALL content
+            const originalHeight = element.style.height;
+            const originalMinHeight = element.style.minHeight;
+            element.style.height = 'auto';
+            element.style.minHeight = 'auto';
+            
+            // Get the actual scrollHeight after layout update
+            const fullHeight = element.scrollHeight;
+            
             // First capture the full content without any restrictions
-            html2canvas(element, {
-                scale: 3,
-                useCORS: true,
-                logging: false,
-                width: 850,
-                windowWidth: 850,
-                backgroundColor: '#ffffff',
-                scrollY: -window.scrollY,
-                scrollX: 0
-            }).then(canvas => {
+            setTimeout(() => {
+                html2canvas(element, {
+                    scale: 3,
+                    useCORS: true,
+                    logging: false,
+                    width: 850,
+                    windowWidth: 850,
+                    height: fullHeight,
+                    windowHeight: fullHeight + 100,
+                    backgroundColor: '#ffffff',
+                    scrollY: 0,
+                    scrollX: 0,
+                    y: 0
+                }).then(canvas => {
+                    // Restore original styles
+                    element.style.height = originalHeight;
+                    element.style.minHeight = originalMinHeight;
                 // Find where the content actually ends by scanning from bottom
                 const ctx = canvas.getContext('2d');
                 const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -1034,10 +1053,14 @@
                 pdf.save('Johnny_Gladwin_Resume.pdf');
                 downloadBtn.style.display = 'block';
             }).catch(err => {
+                // Restore original styles on error
+                element.style.height = originalHeight;
+                element.style.minHeight = originalMinHeight;
                 console.error('PDF generation failed:', err);
                 window.print();
                 downloadBtn.style.display = 'block';
             });
+            }, 100); // Small delay to ensure DOM updates
         }
         
         // Fallback to print dialog if needed
