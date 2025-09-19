@@ -12,6 +12,24 @@
             box-sizing: border-box;
         }
         
+        /* Prevent rendering issues */
+        @media screen {
+            .duplicate-fix {
+                display: none !important;
+            }
+        }
+        
+        /* Ensure no content overflow causes duplicates */
+        .skill-category-item {
+            overflow: hidden;
+            clear: both;
+        }
+        
+        .skill-subcategory {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
         :root {
             --primary-color: #fbbf24;
             --secondary-color: #f59e0b;
@@ -64,6 +82,8 @@
             padding: 40px 30px;
             color: #ffffff;
             flex-shrink: 0;
+            overflow: hidden;
+            position: relative;
         }
         
         .profile-section {
@@ -124,6 +144,8 @@
         
         .section-sidebar {
             margin-bottom: 30px;
+            clear: both;
+            overflow: hidden;
         }
         
         .section-sidebar h2 {
@@ -144,6 +166,9 @@
         
         .skill-category-item {
             margin-bottom: 20px;
+            display: block;
+            clear: both;
+            page-break-inside: avoid;
         }
         
         .skill-subcategory {
@@ -273,6 +298,8 @@
             padding-bottom: 20px;
             border-bottom: 1px solid #f0f0f0;
             position: relative;
+            page-break-inside: avoid;
+            clear: both;
         }
         
         .experience-item::before {
@@ -429,6 +456,9 @@
         /* Education */
         .education-item {
             margin-bottom: 15px;
+            display: block;
+            clear: both;
+            page-break-inside: avoid;
         }
         
         .education-item h3 {
@@ -436,11 +466,14 @@
             font-weight: 600;
             color: #ffffff;
             margin-bottom: 3px;
+            display: block;
         }
         
         .education-item p {
             font-size: 13px;
             color: #a3a3a3;
+            margin: 2px 0;
+            display: block;
         }
         
         /* Certifications */
@@ -473,6 +506,12 @@
         
         /* Print Styles */
         @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+            
             body {
                 margin: 0;
                 padding: 0;
@@ -485,6 +524,7 @@
                 margin: 0;
                 display: flex;
                 min-height: 100vh;
+                page-break-inside: avoid;
             }
             
             .sidebar {
@@ -494,6 +534,7 @@
                 print-color-adjust: exact;
                 width: 35%;
                 padding: 30px 20px;
+                page-break-inside: avoid;
             }
             
             .main-content {
@@ -523,6 +564,8 @@
             .section-main h2 {
                 font-size: 13px;
                 margin-bottom: 12px;
+                page-break-after: avoid;
+                page-break-inside: avoid;
             }
             
             .skill-bar,
@@ -547,6 +590,31 @@
             }
             
             /* Ensure it fits on standard paper */
+            /* Prevent duplicate rendering */
+            .section-sidebar {
+                page-break-inside: avoid;
+            }
+            
+            .education-item {
+                page-break-inside: avoid;
+            }
+            
+            .skill-category-item {
+                page-break-inside: avoid;
+            }
+            
+            /* Prevent duplicate content */
+            .sidebar .section-sidebar:nth-of-type(n+7) {
+                display: none !important;
+            }
+            
+            /* Ensure skill categories don't duplicate */
+            .skill-category-item {
+                page-break-inside: avoid !important;
+                overflow: hidden !important;
+            }
+            
+            
             @page {
                 size: letter;
                 margin: 0;
@@ -777,7 +845,7 @@
                 <div class="education-item">
                     <h3>B.E. Computer Science</h3>
                     <p>Sathyabama University, Chennai</p>
-                    <p>2014</p>
+                    <p style="margin-top: 2px;">2014</p>
                 </div>
             </div>
             
@@ -943,124 +1011,82 @@
             const downloadBtn = document.querySelector('.download-btn-container');
             downloadBtn.style.display = 'none';
             
-            // Force a reflow to ensure all DOM changes are applied
-            document.body.offsetHeight;
-            
             const element = document.querySelector('.resume-container');
-            
-            // Set a fixed height to capture ALL content
-            const originalHeight = element.style.height;
-            const originalMinHeight = element.style.minHeight;
-            element.style.height = 'auto';
-            element.style.minHeight = 'auto';
-            
-            // Get the actual scrollHeight after layout update
-            const fullHeight = element.scrollHeight;
-            
-            // First capture the full content without any restrictions
-            setTimeout(() => {
-                html2canvas(element, {
-                    scale: 3,
+            const options = {
+                margin: 0,
+                filename: 'Johnny_Gladwin_Resume.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { 
+                    scale: 2,
                     useCORS: true,
                     logging: false,
-                    width: 850,
-                    windowWidth: 850,
-                    height: fullHeight,
-                    windowHeight: fullHeight + 100,
-                    backgroundColor: '#ffffff',
-                    scrollY: 0,
-                    scrollX: 0,
-                    y: 0
-                }).then(canvas => {
-                    // Restore original styles
-                    element.style.height = originalHeight;
-                    element.style.minHeight = originalMinHeight;
-                // Find where the content actually ends by scanning from bottom
-                const ctx = canvas.getContext('2d');
-                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                const pixels = imageData.data;
-                
-                let contentBottom = canvas.height;
-                
-                // Scan from bottom to find last non-white row
-                for (let y = canvas.height - 1; y >= 0; y--) {
-                    let hasContent = false;
-                    
-                    // Check multiple points across the width for non-white pixels
-                    for (let x = 0; x < canvas.width; x += 10) {
-                        const idx = (y * canvas.width + x) * 4;
-                        // Check if pixel is not white (with tolerance)
-                        if (pixels[idx] < 245 || pixels[idx + 1] < 245 || pixels[idx + 2] < 245) {
-                            hasContent = true;
-                            break;
-                        }
-                    }
-                    
-                    if (hasContent) {
-                        contentBottom = Math.min(y + 150, canvas.height); // Add 50px padding (150 because scale=3)
-                        break;
-                    }
+                    letterRendering: true,
+                    windowWidth: element.scrollWidth,
+                    windowHeight: element.scrollHeight
+                },
+                jsPDF: { 
+                    unit: 'mm', 
+                    format: 'letter', 
+                    orientation: 'portrait' 
                 }
+            };
+            
+            // Create a clone and clean it up
+            const clone = element.cloneNode(true);
+            
+            // Remove download button from clone
+            const btnInClone = clone.querySelector('.download-btn-container');
+            if (btnInClone) btnInClone.remove();
+            
+            // Create temporary container
+            const container = document.createElement('div');
+            container.style.position = 'absolute';
+            container.style.left = '-9999px';
+            container.style.width = '850px';
+            document.body.appendChild(container);
+            container.appendChild(clone);
+            
+            // Use html2canvas and jsPDF directly for better control
+            html2canvas(clone, {
+                scale: 2,
+                useCORS: true,
+                backgroundColor: '#ffffff',
+                logging: false,
+                width: 850,
+                windowWidth: 850
+            }).then(canvas => {
+                document.body.removeChild(container);
                 
-                // Create cropped canvas with only the content
-                const croppedCanvas = document.createElement('canvas');
-                croppedCanvas.width = canvas.width;
-                croppedCanvas.height = contentBottom;
+                const imgData = canvas.toDataURL('image/jpeg', 1.0);
+                const pdf = new window.jspdf.jsPDF('p', 'mm', 'letter');
                 
-                const croppedCtx = croppedCanvas.getContext('2d');
-                croppedCtx.fillStyle = '#ffffff';
-                croppedCtx.fillRect(0, 0, croppedCanvas.width, croppedCanvas.height);
-                croppedCtx.drawImage(canvas, 0, 0);
-                
-                const imgData = croppedCanvas.toDataURL('image/jpeg', 1.0);
-                const pdf = new window.jspdf.jsPDF({
-                    orientation: 'portrait',
-                    unit: 'mm',
-                    format: 'letter'
-                });
-                
-                const pageWidth = 215.9; // Letter width in mm
+                const imgWidth = 215.9; // Letter width in mm
                 const pageHeight = 279.4; // Letter height in mm
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                let heightLeft = imgHeight;
+                let position = 0;
                 
-                // Calculate dimensions to fill page width with small margins
-                const margin = 5; // 5mm margins
-                const contentWidth = pageWidth - (2 * margin);
-                const contentHeight = (croppedCanvas.height * contentWidth) / croppedCanvas.width;
+                // Add first page
+                pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
                 
-                // Check if content fits on one page  
-                if (contentHeight <= pageHeight - (2 * margin)) {
-                    // Single page
-                    pdf.addImage(imgData, 'JPEG', margin, margin, contentWidth, contentHeight);
-                } else {
-                    // Multi-page document
-                    const pageContentHeight = pageHeight - (2 * margin);
-                    let position = 0;
-                    
-                    // Add first page
-                    pdf.addImage(imgData, 'JPEG', margin, margin, contentWidth, contentHeight);
-                    
-                    // Calculate how many additional pages we need
-                    let remainingHeight = contentHeight - pageContentHeight;
-                    
-                    while (remainingHeight > 0) {
-                        pdf.addPage();
-                        position -= pageContentHeight;
-                        pdf.addImage(imgData, 'JPEG', margin, position + margin, contentWidth, contentHeight);
-                        remainingHeight -= pageContentHeight;
-                    }
+                // Add additional pages if needed
+                while (heightLeft >= 0) {
+                    position = heightLeft - imgHeight;
+                    pdf.addPage();
+                    pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+                    heightLeft -= pageHeight;
                 }
                 
+                // Save the PDF
                 pdf.save('Johnny_Gladwin_Resume.pdf');
                 downloadBtn.style.display = 'block';
-            }).catch(err => {
-                // Restore original styles on error
-                element.style.height = originalHeight;
-                element.style.minHeight = originalMinHeight;
-                console.error('PDF generation failed:', err);
-                window.print();
+            }).catch(error => {
+                console.error('Error generating PDF:', error);
+                document.body.removeChild(container);
                 downloadBtn.style.display = 'block';
+                alert('Error generating PDF. Please try again.');
             });
-            }, 100); // Small delay to ensure DOM updates
         }
         
         // Fallback to print dialog if needed
